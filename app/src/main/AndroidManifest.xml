@@ -37,6 +37,11 @@
             android:theme="@style/Theme.AndroidCuisine" >
         </activity>
 
+        <activity
+            android:name=".views.MainActivity"
+            android:exported="false"
+            android:theme="@style/Theme.AndroidCuisine"
+             />
 <!--        <activity-->
 <!--            android:name=".CuisieneApp"-->
 <!--            android:exported="true"-->
