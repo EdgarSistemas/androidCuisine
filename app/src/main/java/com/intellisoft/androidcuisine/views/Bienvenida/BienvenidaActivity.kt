@@ -4,15 +4,9 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
-import android.widget.Toast
 import com.google.android.material.bottomsheet.BottomSheetDialog
-import com.google.android.material.textfield.TextInputEditText
 import com.intellisoft.androidcuisine.R
-//
-// AQUÍ ESTÁ LA CORRECCIÓN:
-// Añadimos ".Bienvenida" a la ruta de importación
-//
-import com.intellisoft.androidcuisine.views.MainActivity
+import com.intellisoft.androidcuisine.views.Main.MainActivity
 
 class BienvenidaActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,43 +16,41 @@ class BienvenidaActivity : AppCompatActivity() {
         val btnLogin = findViewById<Button>(R.id.btnLogin)
         val btnCrearCuenta = findViewById<Button>(R.id.btnCrearCuenta)
 
+        // Listener para el botón de Login
         btnLogin.setOnClickListener {
             val bottomSheetView = layoutInflater.inflate(R.layout.bottom_sheet_login, null)
             val dialog = BottomSheetDialog(this)
             dialog.setContentView(bottomSheetView)
 
-            val etUsuario = bottomSheetView.findViewById<TextInputEditText>(R.id.inputEmail)
-            val etContrasena = bottomSheetView.findViewById<TextInputEditText>(R.id.inputContraseña)
+            // --- INICIO DE LA MODIFICACIÓN ---
+            // Encontrar el botón "Entrar" DENTRO del bottom sheet
             val btnConfirmarLogin = bottomSheetView.findViewById<Button>(R.id.btnConfirmarLogin)
-
             btnConfirmarLogin.setOnClickListener {
-                val usuario = etUsuario.text.toString()
-                val contrasena = etContrasena.text.toString()
+                // TODO: Aquí deberías agregar tu lógica de validación de email y contraseña
 
-                if (usuario == "admin" && contrasena == "admin") {
-                    Toast.makeText(this, "Login exitoso", Toast.LENGTH_SHORT).show()
+                // Si el login es exitoso, navegar a MainActivity
+                val intent = Intent(this@BienvenidaActivity, MainActivity::class.java)
+                startActivity(intent)
 
-                    // Ahora este Intent usará la importación_ CORRECTA
-                    val intent = Intent(this, MainActivity::class.java)
-                    startActivity(intent)
-
-                    dialog.dismiss()
-                    finish()
-
-                } else {
-                    Toast.makeText(this, "Usuario o contraseña incorrectos", Toast.LENGTH_SHORT).show()
-                }
+                // Cerrar esta actividad (BienvenidaActivity) para que el usuario no pueda volver
+                finish()
+                // Cerrar el BottomSheet
+                dialog.dismiss()
             }
+            // --- FIN DE LA MODIFICACIÓN ---
 
             dialog.show()
         }
 
+        // Listener para el botón de Crear Cuenta
         btnCrearCuenta.setOnClickListener {
             val bottomSheetView = layoutInflater.inflate(R.layout.bottom_sheet_register, null)
             val dialog = BottomSheetDialog(this)
             dialog.setContentView(bottomSheetView)
+
+            // TODO: Agregar lógica para el botón de registro aquí (similar al de login)
+
             dialog.show()
         }
     }
 }
-

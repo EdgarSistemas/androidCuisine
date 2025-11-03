@@ -9,4 +9,15 @@
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
+
+    <!-- Strings para el Navigation Drawer -->
+    <string name="navigation_drawer_open">Abrir menú lateral</string>
+    <string name="navigation_drawer_close">Cerrar menú lateral</string>
+    <string name="menu_inicio">Inicio</string>
+    <string name="menu_menu">Menú</string>
+    <string name="menu_reservas">Reservas</string>
+    <string name="menu_pedidos">Pedidos</string>
+    <string name="menu_perfil">Perfil</string>
+    <string name="title_activity_main">MainActivity</string>
+
 </resources>
