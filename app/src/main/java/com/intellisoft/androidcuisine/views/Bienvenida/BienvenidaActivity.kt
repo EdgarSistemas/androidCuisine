@@ -37,7 +37,6 @@ class BienvenidaActivity : AppCompatActivity() {
                 // Cerrar el BottomSheet
                 dialog.dismiss()
             }
-            // --- FIN DE LA MODIFICACIÓN ---
 
             dialog.show()
         }
