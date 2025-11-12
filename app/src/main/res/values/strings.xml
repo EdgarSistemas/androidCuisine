@@ -20,4 +20,22 @@
     <string name="menu_perfil">Perfil</string>
     <string name="title_activity_main">MainActivity</string>
 
+
+    <!-- FCM Strings -->
+    <string name="fcm_test_title">Cuisine App - FCM Test</string>
+    <string name="generate_token_button">Generar Token FCM</string>
+    <string name="get_saved_token_button">Obtener Token Guardado</string>
+    <string name="test_notification_button">Probar Notificación</string>
+    <string name="token_not_generated">Token: No generado</string>
+    <string name="generating_token">Generando token…</string>
+    <string name="token_format">Token: %1$s</string>
+    <string name="saved_token_format">Token guardado: %1$s</string>
+    <string name="error_format">Error: %1$s</string>
+    <string name="no_saved_token">No hay token guardado</string>
+    <string name="notification_permission_granted">Permisos de notificación concedidos</string>
+    <string name="notification_permission_denied">Permisos de notificación denegados</string>
+    <string name="token_generated_success">Token generado exitosamente</string>
+    <string name="token_generation_error">Error al generar token</string>
+    <string name="token_from_local_storage">Token obtenido de memoria local</string>
+    <string name="notification_received_format">Notificación recibida: %1$s</string>
 </resources>
