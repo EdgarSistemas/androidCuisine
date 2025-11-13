@@ -4,19 +4,31 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="24dp">
+    android:background="@color/cuisine_white_accent"
+    android:paddingHorizontal="24dp"
+    android:paddingTop="12dp"
+    android:paddingBottom="32dp">
 
-    <TextView
+    <com.google.android.material.bottomsheet.BottomSheetDragHandleView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:tint="@color/material_on_surface_disabled"/>
+
+    <com.google.android.material.textview.MaterialTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Iniciar Sesión"
         android:textSize="24sp"
         android:textStyle="bold"
-        android:layout_marginBottom="16dp"/>
+        android:textColor="@color/cuisine_dark_text"
+        android:layout_marginBottom="24dp"/>
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:boxStrokeColor="@color/cuisine_brown_primary"
+        app:hintTextColor="@color/cuisine_brown_primary"
+        style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
         android:hint="Correo Electrónico">
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/inputEmail"
@@ -28,20 +40,25 @@
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         app:passwordToggleEnabled="true"
+        app:boxStrokeColor="@color/cuisine_brown_primary"
+        app:hintTextColor="@color/cuisine_brown_primary"
+        style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
         android:hint="Contraseña">
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/inputContraseña"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword"/>
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <Button
-        android:id="@+id/btnConfirmarLogin"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Entrar"
-        android:layout_marginTop="24dp"/>
+    </com.google.android.material.textfield.TextInputLayout> <com.google.android.material.button.MaterialButton
+    android:id="@+id/btnConfirmarLogin"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="Entrar"
+    android:backgroundTint="@color/cuisine_brown_primary"
+    android:textColor="@color/white"
+    android:paddingVertical="14dp"
+    app:cornerRadius="8dp"
+    android:layout_marginTop="32dp"/>
 </LinearLayout>
