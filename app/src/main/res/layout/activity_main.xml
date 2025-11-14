@@ -6,6 +6,7 @@
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
     tools:context=".views.Main.MainActivity"
     tools:openDrawer="start">
 
@@ -50,7 +51,7 @@
             android:layout_margin="16dp"
             android:src="@drawable/ic_menu_hamburger"
             app:tint="@color/white"
-            android:backgroundTint="@color/cuisine_green_dark"
+            android:backgroundTint="@color/cuisine_green_light"
             app:elevation="6dp"
             android:contentDescription="Abrir menú" />
 

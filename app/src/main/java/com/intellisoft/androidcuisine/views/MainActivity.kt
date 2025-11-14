@@ -39,9 +39,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         // Configurar el DrawerLayout
         drawerLayout = findViewById(R.id.drawer_layout)
 
-        // --- INICIO DE CAMBIOS ---
-        // Ya no necesitamos la Toolbar ni el ActionBarDrawerToggle
-
         // 1. Encontrar el nuevo FloatingActionButton
         val fabOpenDrawer: FloatingActionButton = findViewById(R.id.fab_open_drawer)
 
@@ -49,8 +46,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         fabOpenDrawer.setOnClickListener {
             drawerLayout.openDrawer(GravityCompat.START)
         }
-        // --- FIN DE CAMBIOS ---
-
 
         // Configurar NavigationView (Drawer)
         navigationView = findViewById(R.id.nav_view)
