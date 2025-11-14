@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.intellisoft.androidcuisine.util.SessionManager
 import com.intellisoft.androidcuisine.databinding.FragmentCuentaBinding
+import kotlinx.coroutines.launch
 
 class CuentaFragment : Fragment() {
 
@@ -99,18 +100,18 @@ class CuentaFragment : Fragment() {
             return
         }
 
-//        lifecycleScope.launch {
-//            try {
-//                val response = ApiClient.apiService.changePassword(currentPassword, newPassword)
-//                if (response.isSuccessful) {
-//                    Toast.makeText(requireContext(), "Contraseña actualizada", Toast.LENGTH_SHORT).show()
-//                } else {
-//                    Toast.makeText(requireContext(), "Error al cambiar contraseña", Toast.LENGTH_SHORT).show()
-//                }
-//            } catch (e: Exception) {
-//                Toast.makeText(requireContext(), "Error de red", Toast.LENGTH_SHORT).show()
-//            }
-//        }
+        lifecycleScope.launch {
+            try {
+                val response = ApiClient.apiService.changePassword(currentPassword, newPassword)
+                if (response.isSuccessful) {
+                    Toast.makeText(requireContext(), "Contraseña actualizada", Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(requireContext(), "Error al cambiar contraseña", Toast.LENGTH_SHORT).show()
+                }
+            } catch (e: Exception) {
+                Toast.makeText(requireContext(), "Error de red", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 
     override fun onDestroyView() {

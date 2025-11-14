@@ -7,4 +7,11 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="cuisine_beige_background">#EDE0D4</color>
+    <color name="cuisine_dark_text">#333333</color>
+    <color name="cuisine_brown_primary">#57300D</color>
+    <color name="cuisine_green_dark">#588157</color>
+    <color name="cuisine_green_light">#A3B18A</color>
+    <color name="cuisine_white_accent">#F8F9FA</color>
 </resources>
