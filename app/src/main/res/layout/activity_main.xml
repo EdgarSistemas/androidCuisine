@@ -9,29 +9,55 @@
     tools:context=".views.Main.MainActivity"
     tools:openDrawer="start">
 
-    <LinearLayout
+    <!-- 1. Contenido Principal de la Pantalla -->
+    <!-- Usamos CoordinatorLayout para permitir que el FAB flote sobre el LinearLayout -->
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <FrameLayout
-            android:id="@+id/fragment_container"
+        <!-- Tu LinearLayout original que contiene el fragment y el bottom nav -->
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:background="@color/cuisine_beige_background"/>
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/bottom_navigation"
-            android:layout_width="match_parent"
+            <!-- Contenedor para los Fragments (Fondo Beige) -->
+            <FrameLayout
+                android:id="@+id/fragment_container"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="@color/cuisine_beige_background"/>
+
+            <!-- Bottom Navigation (Fondo Verde) -->
+            <com.google.android.material.bottomnavigation.BottomNavigationView
+                android:id="@+id/bottom_navigation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/cuisine_green_dark"
+                app:menu="@menu/bottom_navigation_menu"
+                app:itemIconTint="@drawable/bottom_nav_colors"
+                app:itemTextColor="@drawable/bottom_nav_colors" />
+
+        </LinearLayout>
+
+        <!-- NUEVO: Botón Flotante para abrir el menú -->
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_open_drawer"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/cuisine_green_dark"
-            app:menu="@menu/bottom_navigation_menu"
-            app:itemIconTint="@drawable/bottom_nav_colors"
-            app:itemTextColor="@drawable/bottom_nav_colors" />
+            android:layout_gravity="top|start"
+            android:layout_margin="16dp"
+            android:src="@drawable/ic_menu_hamburger"
+            app:tint="@color/white"
+            android:backgroundTint="@color/cuisine_green_dark"
+            app:elevation="6dp"
+            android:contentDescription="Abrir menú" />
 
-    </LinearLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
+
+    <!-- 2. Menú Lateral Deslizable (Sidebar) -->
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nav_view"
         android:layout_width="wrap_content"

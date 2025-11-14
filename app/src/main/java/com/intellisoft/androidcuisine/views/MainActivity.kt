@@ -3,18 +3,15 @@ package com.intellisoft.androidcuisine.views.Main
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
-import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
 import com.intellisoft.androidcuisine.R
 import com.intellisoft.androidcuisine.data.remote.dto.Modulo
 import com.intellisoft.androidcuisine.views.Bienvenida.BienvenidaActivity
@@ -24,7 +21,6 @@ import com.intellisoft.androidcuisine.data.managers.SessionManager
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     private lateinit var drawerLayout: DrawerLayout
-    private lateinit var toggle: ActionBarDrawerToggle
     private lateinit var bottomNavigation: BottomNavigationView
     private lateinit var navigationView: NavigationView
     private lateinit var sessionManager: SessionManager
@@ -40,24 +36,21 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         // Obtener datos del usuario de SessionManager
         loadUserData()
 
-        // Configurar la Toolbar
-//        val toolbar: androidx.appcompat.widget.Toolbar = findViewById(R.id.toolbar)
-//        setSupportActionBar(toolbar)
-
-        // Configurar el DrawerLayout y el Toggle
+        // Configurar el DrawerLayout
         drawerLayout = findViewById(R.id.drawer_layout)
-        toggle = ActionBarDrawerToggle(
-            this,
-            drawerLayout,
-//            toolbar,
-            R.string.navigation_drawer_open,
-            R.string.navigation_drawer_close
-        )
-        drawerLayout.addDrawerListener(toggle)
-        toggle.syncState()
 
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.setHomeButtonEnabled(true)
+        // --- INICIO DE CAMBIOS ---
+        // Ya no necesitamos la Toolbar ni el ActionBarDrawerToggle
+
+        // 1. Encontrar el nuevo FloatingActionButton
+        val fabOpenDrawer: FloatingActionButton = findViewById(R.id.fab_open_drawer)
+
+        // 2. Asignar el listener para abrir el drawer
+        fabOpenDrawer.setOnClickListener {
+            drawerLayout.openDrawer(GravityCompat.START)
+        }
+        // --- FIN DE CAMBIOS ---
+
 
         // Configurar NavigationView (Drawer)
         navigationView = findViewById(R.id.nav_view)
@@ -94,9 +87,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         Log.d("MainActivity", "Usuario: ${userData?.nombre}")
         Log.d("MainActivity", "Bearer Token: ${sessionManager.getBearerToken()?.take(30)}...")
         Log.d("MainActivity", "Módulos: ${userModules.size}")
-
-        // Actualizar título de la toolbar
-        supportActionBar?.title = "Bienvenido ${userData?.nombre ?: "Usuario"}"
     }
 
     private fun redirectToLogin() {
@@ -148,13 +138,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     private fun setupDynamicMenus() {
-        // Aquí puedes filtrar los elementos del drawer basándote en los módulos del usuario
         val menu = navigationView.menu
-
-        // Ejemplo: ocultar elementos del menú si el usuario no tiene acceso
         val userModuleCodes = userModules.map { it.clave }
 
-        // Mostrar/ocultar elementos basándose en los módulos del usuario
         menu.findItem(R.id.nav_usuarios)?.isVisible = userModuleCodes.contains("USUARIOS")
         menu.findItem(R.id.nav_sucursales)?.isVisible = userModuleCodes.contains("SUCURSALES")
         menu.findItem(R.id.nav_areas)?.isVisible = userModuleCodes.contains("AREAS")
@@ -182,11 +168,13 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         menu.findItem(R.id.nav_configuracion)?.isVisible = userModuleCodes.contains("CONFIGURACION")
     }
 
-    // Maneja los clics en los ítems del menú lateral
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.nav_cuenta -> {
-                Toast.makeText(this, "Cuenta", Toast.LENGTH_SHORT).show()
+                supportFragmentManager.beginTransaction()
+                    .replace(R.id.fragment_container, CuentaFragment())
+                    .addToBackStack(null)
+                    .commit()
             }
             R.id.nav_usuarios -> {
                 Toast.makeText(this, "Usuarios", Toast.LENGTH_SHORT).show()
@@ -240,11 +228,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 Toast.makeText(this, "Mermas", Toast.LENGTH_SHORT).show()
             }
             R.id.nav_horarios -> {
-// Cargar el nuevo HorariosFragment
                 supportFragmentManager.beginTransaction()
                     .replace(R.id.fragment_container, HorariosFragment())
-                    .addToBackStack(null) // Opcional: permite al usuario volver al fragment anterior con el botón "atrás"
-                    .commit()            }
+                    .addToBackStack(null)
+                    .commit()
+            }
             R.id.nav_asistencia -> {
                 Toast.makeText(this, "Asistencia", Toast.LENGTH_SHORT).show()
             }
@@ -273,12 +261,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 cerrarSesion()
             }
         }
-        // Cierra el drawer después de seleccionar un ítem
         drawerLayout.closeDrawer(GravityCompat.START)
         return true
     }
 
-    // Maneja el botón "atrás" para cerrar el drawer si está abierto
     @Deprecated("Deprecated in Java")
     override fun onBackPressed() {
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
@@ -288,27 +274,22 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
     }
 
-    // Permite que el icono de hamburguesa abra el menú
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (toggle.onOptionsItemSelected(item)) {
-            return true
-        }
-        return super.onOptionsItemSelected(item)
-    }
+    // ELIMINAMOS onOptionsItemSelected PORQUE YA NO HAY TOOLBAR
+    // override fun onOptionsItemSelected(item: MenuItem): Boolean {
+    //     if (toggle.onOptionsItemSelected(item)) {
+    //         return true
+    //     }
+    //     return super.onOptionsItemSelected(item)
+    // }
 
     private fun cerrarSesion() {
-        // Mostrar diálogo de confirmación
         AlertDialog.Builder(this)
             .setTitle("Cerrar Sesión")
             .setMessage("¿Estás seguro que deseas cerrar sesión?")
             .setPositiveButton("Sí") { _, _ ->
-                // Limpiar sesión usando SessionManager
                 sessionManager.clearSession()
-
                 Log.d("MainActivity", "✅ Sesión cerrada con SessionManager")
                 Toast.makeText(this, "Sesión cerrada exitosamente", Toast.LENGTH_SHORT).show()
-
-                // Redirigir a BienvenidaActivity
                 redirectToLogin()
             }
             .setNegativeButton("Cancelar", null)
