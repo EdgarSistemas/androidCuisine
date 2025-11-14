@@ -33,7 +33,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Login"
-            android:backgroundTint="@color/cuisine_brown_primary"
+            android:backgroundTint="@color/cuisine_green_dark"
             android:textColor="@color/white"
             android:paddingVertical="14dp"
             app:cornerRadius="8dp"/>
@@ -45,11 +45,10 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
             android:text="Crear Cuenta"
-            android:textColor="@color/cuisine_brown_primary"
-            app:strokeColor="@color/cuisine_brown_primary"
+            android:textColor="@color/cuisine_green_dark"
+            app:strokeColor="@color/cuisine_green_dark"
             android:paddingVertical="14dp"
             app:cornerRadius="8dp"/>
 
     </LinearLayout>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

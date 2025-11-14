@@ -14,7 +14,7 @@ import retrofit2.http.*
 import java.util.concurrent.TimeUnit
 
 object ApiClient {
-    private const val BASE_URL = "http://10.74.241.162:5000/api/"
+    private const val BASE_URL = "https://api-cuisine-intellisoft-a2bpbafygvekfcc5.canadacentral-01.azurewebsites.net/api/"
 
     private var context: android.content.Context? = null
 

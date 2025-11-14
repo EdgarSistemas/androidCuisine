@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:background="@color/cuisine_white_accent"
+    android:background="@drawable/bottom_sheet_background"
     android:paddingHorizontal="24dp"
     android:paddingTop="12dp"
     android:paddingBottom="32dp">
@@ -26,8 +26,8 @@
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:boxStrokeColor="@color/cuisine_brown_primary"
-        app:hintTextColor="@color/cuisine_brown_primary"
+        app:boxStrokeColor="@color/cuisine_green_dark"
+        app:hintTextColor="@color/cuisine_green_dark"
         style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
         android:hint="Nombre de usuario">
         <com.google.android.material.textfield.TextInputEditText
@@ -40,8 +40,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        app:boxStrokeColor="@color/cuisine_brown_primary"
-        app:hintTextColor="@color/cuisine_brown_primary"
+        app:boxStrokeColor="@color/cuisine_green_dark"
+        app:hintTextColor="@color/cuisine_green_dark"
         style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
         android:hint="Correo Electrónico">
         <com.google.android.material.textfield.TextInputEditText
@@ -54,7 +54,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Registrarse"
-        android:backgroundTint="@color/cuisine_brown_primary"
+        android:backgroundTint="@color/cuisine_green_dark"
         android:textColor="@color/white"
         android:paddingVertical="14dp"
         app:cornerRadius="8dp"

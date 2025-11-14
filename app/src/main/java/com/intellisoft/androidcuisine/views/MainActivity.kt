@@ -41,15 +41,15 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         loadUserData()
 
         // Configurar la Toolbar
-        val toolbar: androidx.appcompat.widget.Toolbar = findViewById(R.id.toolbar)
-        setSupportActionBar(toolbar)
+//        val toolbar: androidx.appcompat.widget.Toolbar = findViewById(R.id.toolbar)
+//        setSupportActionBar(toolbar)
 
         // Configurar el DrawerLayout y el Toggle
         drawerLayout = findViewById(R.id.drawer_layout)
         toggle = ActionBarDrawerToggle(
             this,
             drawerLayout,
-            toolbar,
+//            toolbar,
             R.string.navigation_drawer_open,
             R.string.navigation_drawer_close
         )
@@ -240,8 +240,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 Toast.makeText(this, "Mermas", Toast.LENGTH_SHORT).show()
             }
             R.id.nav_horarios -> {
-                Toast.makeText(this, "Horarios", Toast.LENGTH_SHORT).show()
-            }
+// Cargar el nuevo HorariosFragment
+                supportFragmentManager.beginTransaction()
+                    .replace(R.id.fragment_container, HorariosFragment())
+                    .addToBackStack(null) // Opcional: permite al usuario volver al fragment anterior con el botón "atrás"
+                    .commit()            }
             R.id.nav_asistencia -> {
                 Toast.makeText(this, "Asistencia", Toast.LENGTH_SHORT).show()
             }
