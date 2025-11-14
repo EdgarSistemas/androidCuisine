@@ -14,7 +14,7 @@ import com.intellisoft.androidcuisine.R
 import com.intellisoft.androidcuisine.utils.ApiResult
 import com.intellisoft.androidcuisine.views.Main.MainActivity
 import kotlinx.coroutines.launch
-import com.intellisoft.androidcuisine.data.managers.SessionManager
+import com.intellisoft.androidcuisine.util.SessionManager
 
 class BienvenidaActivity : AppCompatActivity() {
 

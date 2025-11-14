@@ -3,7 +3,6 @@ package com.intellisoft.androidcuisine.views.Main
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -13,12 +12,10 @@ import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
 import com.intellisoft.androidcuisine.R
 import com.intellisoft.androidcuisine.data.remote.dto.Modulo
 import com.intellisoft.androidcuisine.views.Bienvenida.BienvenidaActivity
-import com.intellisoft.androidcuisine.data.managers.SessionManager
+import com.intellisoft.androidcuisine.util.SessionManager
 
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
