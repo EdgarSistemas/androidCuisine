@@ -6,6 +6,8 @@ import android.util.Log
 import com.google.gson.Gson
 import com.intellisoft.androidcuisine.data.remote.dto.LoginResponse
 import com.intellisoft.androidcuisine.data.remote.dto.ModuloDto
+import com.intellisoft.androidcuisine.data.remote.dto.RolDto
+import com.intellisoft.androidcuisine.data.remote.dto.SucursalDto
 
 class SessionManager(context: Context) {
 
@@ -27,6 +29,8 @@ class SessionManager(context: Context) {
         private const val KEY_USER_MODULES = "user_modules"
         private const val KEY_LOGIN_TIME = "login_time"
         private const val KEY_FCM_TOKEN = "fcm_token"
+        private const val KEY_USER_ROLES = "user_roles"
+        private const val KEY_USER_SUCURSALES = "user_sucursales"
 
         @Volatile
         private var INSTANCE: SessionManager? = null
@@ -61,11 +65,13 @@ class SessionManager(context: Context) {
         editor.putBoolean(KEY_MOSTRAR_EMPRESAS, user.mostrar_empresas)
         editor.putString(KEY_TIPO_ACCESO, user.tipo_acceso)
 
-        val modulesJson = gson.toJson(user.modulos)
-        editor.putString(KEY_USER_MODULES, modulesJson)
+        // Guardar módulos, roles y sucursales como JSON
+        editor.putString(KEY_USER_MODULES, gson.toJson(user.modulos))
+        editor.putString(KEY_USER_ROLES, gson.toJson(user.roles))
+        editor.putString(KEY_USER_SUCURSALES, gson.toJson(user.sucursales))
 
         editor.apply()
-        Log.d("SessionManager", "✅ Sesión guardada para: ${user.nombre}")
+        Log.d("SessionManager", "Sesión guardada para: ${user.nombre}")
     }
 
     fun getBearerToken(): String? {
@@ -131,6 +137,31 @@ class SessionManager(context: Context) {
 
     fun getFcmToken(): String {
         return sharedPreferences.getString(KEY_FCM_TOKEN, "") ?: ""
+    }
+
+    fun getUserRoles(): List<RolDto> {
+        val rolesJson = sharedPreferences.getString(KEY_USER_ROLES, "[]") ?: "[]"
+        return try {
+            val type = object : com.google.gson.reflect.TypeToken<List<RolDto>>() {}.type
+            gson.fromJson(rolesJson, type) ?: emptyList()
+        } catch (e: Exception) {
+            emptyList()
+        }
+    }
+
+    fun getUserSucursales(): List<SucursalDto> {
+        val sucursalesJson = sharedPreferences.getString(KEY_USER_SUCURSALES, "[]") ?: "[]"
+        return try {
+            val type = object : com.google.gson.reflect.TypeToken<List<SucursalDto>>() {}.type
+            gson.fromJson(sucursalesJson, type) ?: emptyList()
+        } catch (e: Exception) {
+            emptyList()
+        }
+    }
+
+    fun getPrimaryRole(): String {
+        val roles = getUserRoles()
+        return if (roles.isNotEmpty()) roles[0].nombre else "Usuario"
     }
 }
 

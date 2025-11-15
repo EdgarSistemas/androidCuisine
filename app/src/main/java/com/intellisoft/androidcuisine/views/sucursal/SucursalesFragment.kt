@@ -1,4 +1,4 @@
-package com.intellisoft.androidcuisine.views.Main
+package com.intellisoft.androidcuisine.views.sucursal
 
 import android.app.AlertDialog
 import android.os.Bundle
@@ -17,9 +17,10 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.textfield.TextInputEditText
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.intellisoft.androidcuisine.R
 import com.intellisoft.androidcuisine.data.remote.api.ApiClient
-import com.intellisoft.androidcuisine.data.remote.dto.Sucursal
+import com.intellisoft.androidcuisine.data.remote.dto.SucursalDto
 import com.intellisoft.androidcuisine.data.remote.dto.SucursalRequest
 import com.intellisoft.androidcuisine.views.adapters.SucursalesAdapter
 import kotlinx.coroutines.launch
@@ -31,6 +32,9 @@ class SucursalesFragment : Fragment() {
     private lateinit var progressBar: ProgressBar
     private lateinit var tvEmpty: TextView
     private lateinit var fabAdd: FloatingActionButton
+
+    private lateinit var etBuscar: TextInputEditText
+    private var allSucursales: List<SucursalDto> = emptyList()
 
     private lateinit var adapter: SucursalesAdapter
 
@@ -57,6 +61,7 @@ class SucursalesFragment : Fragment() {
         progressBar = view.findViewById(R.id.progressBar)
         tvEmpty = view.findViewById(R.id.tvEmpty)
         fabAdd = view.findViewById(R.id.fabAddSucursal)
+        etBuscar = view.findViewById(R.id.etBuscar)
     }
 
     private fun setupRecyclerView() {
@@ -77,6 +82,28 @@ class SucursalesFragment : Fragment() {
         swipeRefresh.setOnRefreshListener {
             loadSucursales()
         }
+
+        etBuscar.addTextChangedListener(object : android.text.TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+            override fun afterTextChanged(s: android.text.Editable?) {
+                filterSucursales(s.toString())
+            }
+        })
+    }
+
+    private fun filterSucursales(query: String) {
+        val filtered = if (query.isEmpty()) {
+            allSucursales
+        } else {
+            allSucursales.filter {
+                it.nombre.contains(query, ignoreCase = true) ||
+                        it.direccion.contains(query, ignoreCase = true) ||
+                        it.codigo_sucursal.contains(query, ignoreCase = true)
+            }
+        }
+        adapter.submitList(filtered)
+        showEmpty(filtered.isEmpty())
     }
 
     private fun loadSucursales() {
@@ -84,7 +111,7 @@ class SucursalesFragment : Fragment() {
 
         lifecycleScope.launch {
             try {
-                Log.d("SucursalesFragment", "🔄 Cargando sucursales...")
+                Log.d("SucursalesFragment", "Cargando sucursales...")
 
                 val response = ApiClient.sucursalService.getSucursalesActivas()
 
@@ -93,12 +120,12 @@ class SucursalesFragment : Fragment() {
                     if (sucursalesResponse?.success == true) {
                         val sucursales = sucursalesResponse.data ?: emptyList()
 
-                        Log.d("SucursalesFragment", "✅ Sucursales cargadas: ${sucursales.size}")
-
+                        Log.d("SucursalesFragment", "Sucursales cargadas: ${sucursales.size}")
+                        allSucursales = sucursales
                         adapter.submitList(sucursales)
                         showEmpty(sucursales.isEmpty())
                     } else {
-                        Log.e("SucursalesFragment", "❌ Error en respuesta: ${sucursalesResponse?.message}")
+                        Log.e("SucursalesFragment", "Error en respuesta: ${sucursalesResponse?.message}")
                         showError("Error en la respuesta del servidor")
                     }
                 } else {
@@ -121,11 +148,11 @@ class SucursalesFragment : Fragment() {
         showSucursalDialog(null)
     }
 
-    private fun showEditDialog(sucursal: Sucursal) {
+    private fun showEditDialog(sucursal: SucursalDto) {
         showSucursalDialog(sucursal)
     }
 
-    private fun showSucursalDialog(sucursal: Sucursal?) {
+    private fun showSucursalDialog(sucursal: SucursalDto?) {
         val dialogView = LayoutInflater.from(requireContext())
             .inflate(R.layout.dialog_sucursal, null)
 
@@ -148,7 +175,7 @@ class SucursalesFragment : Fragment() {
             btnGuardar.text = "Crear"
         }
 
-        val dialog = AlertDialog.Builder(requireContext())
+        val dialog = MaterialAlertDialogBuilder(requireContext())
             .setView(dialogView)
             .create()
 
@@ -251,7 +278,7 @@ class SucursalesFragment : Fragment() {
         }
     }
 
-    private fun showDeleteConfirmation(sucursal: Sucursal) {
+    private fun showDeleteConfirmation(sucursal: SucursalDto) {
         AlertDialog.Builder(requireContext())
             .setTitle("Eliminar Sucursal")
             .setMessage("¿Estás seguro que deseas eliminar la sucursal '${sucursal.nombre}'?")
@@ -262,7 +289,7 @@ class SucursalesFragment : Fragment() {
             .show()
     }
 
-    private fun deleteSucursal(sucursal: Sucursal) {
+    private fun deleteSucursal(sucursal: SucursalDto) {
         lifecycleScope.launch {
             try {
                 Log.d("SucursalesFragment", "🗑️ Eliminando sucursal: ${sucursal.nombre}")

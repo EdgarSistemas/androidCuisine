@@ -3,21 +3,21 @@ package com.intellisoft.androidcuisine.views.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.button.MaterialButton
+import com.google.android.material.chip.Chip
 import com.intellisoft.androidcuisine.R
-import com.intellisoft.androidcuisine.data.remote.dto.Sucursal
+import com.intellisoft.androidcuisine.data.remote.dto.SucursalDto
 import java.text.SimpleDateFormat
 import java.util.*
 
 class SucursalesAdapter(
-    private val onEditClick: (Sucursal) -> Unit,
-    private val onDeleteClick: (Sucursal) -> Unit
-) : ListAdapter<Sucursal, SucursalesAdapter.SucursalViewHolder>(SucursalDiffCallback()) {
+    private val onEditClick: (SucursalDto) -> Unit,
+    private val onDeleteClick: (SucursalDto) -> Unit
+) : ListAdapter<SucursalDto, SucursalesAdapter.SucursalViewHolder>(SucursalDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SucursalViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -35,15 +35,26 @@ class SucursalesAdapter(
         private val tvDireccion: TextView = itemView.findViewById(R.id.tvDireccion)
         private val tvTelefono: TextView = itemView.findViewById(R.id.tvTelefono)
         private val tvFechas: TextView = itemView.findViewById(R.id.tvFechas)
-        private val ivStatus: ImageView = itemView.findViewById(R.id.ivStatus)
-        private val btnEditar: Button = itemView.findViewById(R.id.btnEditar)
-        private val btnEliminar: Button = itemView.findViewById(R.id.btnEliminar)
+        private val chipStatus: Chip = itemView.findViewById(R.id.chipStatus)
+        private val btnEditar: MaterialButton = itemView.findViewById(R.id.btnEditar)
+        private val btnEliminar: MaterialButton = itemView.findViewById(R.id.btnEliminar)
 
-        fun bind(sucursal: Sucursal) {
+        fun bind(sucursal: SucursalDto) {
             tvNombre.text = sucursal.nombre
             tvCodigo.text = sucursal.codigo_sucursal
             tvDireccion.text = sucursal.direccion
             tvTelefono.text = sucursal.telefono
+
+            // Configurar chip de estado
+            if (sucursal.es_activa) {
+                chipStatus.text = "Activa"
+                chipStatus.setChipBackgroundColorResource(R.color.cuisine_green_dark)
+                chipStatus.setTextColor(itemView.context.getColor(R.color.white))
+            } else {
+                chipStatus.text = "Inactiva"
+                chipStatus.setChipBackgroundColorResource(R.color.cuisine_beige_background)
+                chipStatus.setTextColor(itemView.context.getColor(R.color.cuisine_dark_text))
+            }
 
             // Formatear fechas
             val inputFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
@@ -51,38 +62,28 @@ class SucursalesAdapter(
 
             try {
                 val createdDate = inputFormat.parse(sucursal.created_at)
-                val updatedDate = inputFormat.parse(sucursal.updated_at.split("T")[0] + " " +
-                    sucursal.updated_at.split("T")[1].split(".")[0])
+                val updatedDateStr = sucursal.updated_at.replace("T", " ").split(".")[0]
+                val updatedDate = inputFormat.parse(updatedDateStr)
 
                 val createdFormatted = createdDate?.let { outputFormat.format(it) } ?: sucursal.created_at
                 val updatedFormatted = updatedDate?.let { outputFormat.format(it) } ?: sucursal.updated_at
 
                 tvFechas.text = "Creado: $createdFormatted | Actualizado: $updatedFormatted"
             } catch (e: Exception) {
-                tvFechas.text = "Creado: ${sucursal.created_at} | Actualizado: ${sucursal.updated_at}"
+                tvFechas.text = "Creado: ${sucursal.created_at.take(10)}"
             }
 
-            // Status indicator
-            if (sucursal.es_activa) {
-                ivStatus.backgroundTintList =
-                    android.content.res.ColorStateList.valueOf(itemView.context.getColor(android.R.color.holo_green_dark))
-            } else {
-                ivStatus.backgroundTintList =
-                    android.content.res.ColorStateList.valueOf(itemView.context.getColor(android.R.color.holo_red_dark))
-            }
-
-            // Click listeners
             btnEditar.setOnClickListener { onEditClick(sucursal) }
             btnEliminar.setOnClickListener { onDeleteClick(sucursal) }
         }
     }
 
-    class SucursalDiffCallback : DiffUtil.ItemCallback<Sucursal>() {
-        override fun areItemsTheSame(oldItem: Sucursal, newItem: Sucursal): Boolean {
+    class SucursalDiffCallback : DiffUtil.ItemCallback<SucursalDto>() {
+        override fun areItemsTheSame(oldItem: SucursalDto, newItem: SucursalDto): Boolean {
             return oldItem.id_sucursal == newItem.id_sucursal
         }
 
-        override fun areContentsTheSame(oldItem: Sucursal, newItem: Sucursal): Boolean {
+        override fun areContentsTheSame(oldItem: SucursalDto, newItem: SucursalDto): Boolean {
             return oldItem == newItem
         }
     }

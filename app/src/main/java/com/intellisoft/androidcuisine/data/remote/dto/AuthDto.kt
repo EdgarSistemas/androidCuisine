@@ -27,7 +27,7 @@ data class UserDto(
     val tipo_acceso: String,
     val modulos: List<ModuloDto>,
     val roles: List<RolDto>,
-    val sucursales: List<Sucursal>
+    val sucursales: List<SucursalDto>
 )
 
 data class ModuloDto(

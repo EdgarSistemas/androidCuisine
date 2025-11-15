@@ -73,6 +73,10 @@ dependencies {
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
     implementation("com.squareup.okhttp3:logging-interceptor:4.12.0")
 
+    implementation("com.google.android.material:material:1.9.0")
+    implementation("androidx.fragment:fragment-ktx:1.6.2")
+    implementation("androidx.viewpager2:viewpager2:1.0.0")
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

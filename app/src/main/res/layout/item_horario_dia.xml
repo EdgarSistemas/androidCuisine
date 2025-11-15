@@ -9,7 +9,8 @@
     android:layout_marginHorizontal="8dp"
     android:layout_marginVertical="6dp"
     app:cardCornerRadius="12dp"
-    app:cardElevation="4dp">
+    app:cardElevation="2dp"
+    app:cardBackgroundColor="@color/cuisine_white_accent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -26,7 +27,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/btnRegistrarAsistencia"
-            tools:text="Lunes" />
+            tools:text="Lunes"/>
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tvHoras"
@@ -37,32 +38,30 @@
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvDiaSemana"
-            tools:text="09:00 - 17:00" />
+            tools:text="09:00 - 17:00"/>
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tvStatusAsistencia"
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chipEstadoAsistencia"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Asistencia Registrada"
-            android:textColor="@color/cuisine_green_dark"
-            android:textStyle="bold"
-            android:visibility="gone"
-            tools:visibility="visible"
+            android:layout_marginTop="8dp"
+            android:textSize="12sp"
+            app:chipMinHeight="28dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvHoras"
-            android:layout_marginTop="8dp"/>
+            tools:text="Asistencia"/>
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnRegistrarAsistencia"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Registrar"
+            android:textSize="12sp"
             android:backgroundTint="@color/cuisine_green_dark"
             app:cornerRadius="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            tools:enabled="false" />
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>

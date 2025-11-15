@@ -11,8 +11,8 @@ import androidx.core.app.NotificationCompat
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 import com.intellisoft.androidcuisine.R
-import com.intellisoft.androidcuisine.views.Main.MainActivity
 import com.intellisoft.androidcuisine.util.SessionManager
+import com.intellisoft.androidcuisine.views.Main.MainActivity
 
 class CuisineFirebaseMessagingService : FirebaseMessagingService() {
 

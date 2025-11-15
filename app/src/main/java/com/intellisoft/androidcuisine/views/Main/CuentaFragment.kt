@@ -41,7 +41,7 @@ class CuentaFragment : Fragment() {
         }
 
         binding.btnChangePassword.setOnClickListener {
-            changePassword()
+           // changePassword()
         }
 
         binding.btnLogout.setOnClickListener {
@@ -90,29 +90,29 @@ class CuentaFragment : Fragment() {
 //        }
 //    }
 
-    private fun changePassword() {
-        val currentPassword = binding.etCurrentPassword.text.toString()
-        val newPassword = binding.etNewPassword.text.toString()
-        val confirmPassword = binding.etConfirmPassword.text.toString()
-
-        if (newPassword != confirmPassword) {
-            Toast.makeText(requireContext(), "Las contraseñas no coinciden", Toast.LENGTH_SHORT).show()
-            return
-        }
-
-        lifecycleScope.launch {
-            try {
-                val response = ApiClient.apiService.changePassword(currentPassword, newPassword)
-                if (response.isSuccessful) {
-                    Toast.makeText(requireContext(), "Contraseña actualizada", Toast.LENGTH_SHORT).show()
-                } else {
-                    Toast.makeText(requireContext(), "Error al cambiar contraseña", Toast.LENGTH_SHORT).show()
-                }
-            } catch (e: Exception) {
-                Toast.makeText(requireContext(), "Error de red", Toast.LENGTH_SHORT).show()
-            }
-        }
-    }
+//    private fun changePassword() {
+//        val currentPassword = binding.etCurrentPassword.text.toString()
+//        val newPassword = binding.etNewPassword.text.toString()
+//        val confirmPassword = binding.etConfirmPassword.text.toString()
+//
+//        if (newPassword != confirmPassword) {
+//            Toast.makeText(requireContext(), "Las contraseñas no coinciden", Toast.LENGTH_SHORT).show()
+//            return
+//        }
+//
+//        lifecycleScope.launch {
+//            try {
+//                val response = ApiClient.apiService.changePassword(currentPassword, newPassword)
+//                if (response.isSuccessful) {
+//                    Toast.makeText(requireContext(), "Contraseña actualizada", Toast.LENGTH_SHORT).show()
+//                } else {
+//                    Toast.makeText(requireContext(), "Error al cambiar contraseña", Toast.LENGTH_SHORT).show()
+//                }
+//            } catch (e: Exception) {
+//                Toast.makeText(requireContext(), "Error de red", Toast.LENGTH_SHORT).show()
+//            }
+//        }
+//    }
 
     override fun onDestroyView() {
         super.onDestroyView()

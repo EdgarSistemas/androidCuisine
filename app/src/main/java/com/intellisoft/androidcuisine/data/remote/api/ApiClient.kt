@@ -49,4 +49,8 @@ object ApiClient {
     val sucursalService: SucursalService by lazy {
         retrofit.create(SucursalService::class.java)
     }
+
+    val horarioService: HorarioService by lazy {
+        retrofit.create(HorarioService::class.java)
+    }
 }

@@ -1,24 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:showIn="navigation_view">
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <group android:checkableBehavior="single" android:title="Principal">
-        <item
-            android:id="@+id/nav_cuenta"
-            android:icon="@drawable/ic_menu_profile"
-            android:title="Cuenta" />
-    </group>
-
-    <group android:checkableBehavior="single" android:title="Gestión">
-        <item
-            android:id="@+id/nav_usuarios"
-            android:icon="@drawable/ic_menu_profile"
-            android:title="Usuarios" />
+    <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_sucursales"
             android:icon="@drawable/ic_menu_home"
             android:title="Sucursales" />
+        <item
+            android:id="@+id/nav_usuarios"
+            android:icon="@drawable/ic_menu_profile"
+            android:title="Usuarios" />
         <item
             android:id="@+id/nav_areas"
             android:icon="@drawable/ic_menu_home"
@@ -29,7 +20,7 @@
             android:title="Mesas" />
     </group>
 
-    <group android:checkableBehavior="single" android:title="Menú y Productos">
+    <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_categorias"
             android:icon="@drawable/ic_menu_restaurant"
@@ -44,26 +35,7 @@
             android:title="Productos y Recetas" />
     </group>
 
-    <group android:checkableBehavior="single" android:title="Operaciones">
-        <item
-            android:id="@+id/nav_reservas_cliente"
-            android:icon="@drawable/ic_menu_calendar"
-            android:title="Reservas Cliente" />
-        <item
-            android:id="@+id/nav_ordenes_pickup"
-            android:icon="@drawable/ic_menu_orders"
-            android:title="Órdenes Pickup" />
-        <item
-            android:id="@+id/nav_limpieza"
-            android:icon="@drawable/ic_menu_home"
-            android:title="Limpieza" />
-        <item
-            android:id="@+id/nav_pagos"
-            android:icon="@drawable/ic_menu_orders"
-            android:title="Pagos" />
-    </group>
-
-    <group android:checkableBehavior="single" android:title="Inventario">
+    <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_insumos"
             android:icon="@drawable/ic_menu_restaurant"
@@ -73,20 +45,12 @@
             android:icon="@drawable/ic_menu_profile"
             android:title="Proveedores" />
         <item
-            android:id="@+id/nav_unidades_medida"
-            android:icon="@drawable/ic_menu_restaurant"
-            android:title="Unidades Medida" />
-        <item
             android:id="@+id/nav_compras"
             android:icon="@drawable/ic_menu_orders"
             android:title="Compras" />
-        <item
-            android:id="@+id/nav_mermas"
-            android:icon="@drawable/ic_menu_orders"
-            android:title="Mermas" />
     </group>
 
-    <group android:checkableBehavior="single" android:title="Personal">
+    <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_horarios"
             android:icon="@drawable/ic_menu_calendar"
@@ -95,40 +59,20 @@
             android:id="@+id/nav_asistencia"
             android:icon="@drawable/ic_menu_profile"
             android:title="Asistencia" />
-        <item
-            android:id="@+id/nav_cliente_empleado_crm"
-            android:icon="@drawable/ic_menu_profile"
-            android:title="CRM Clientes y Empleados" />
     </group>
 
-    <group android:checkableBehavior="single" android:title="Sistema">
-        <item
-            android:id="@+id/nav_tickets"
-            android:icon="@drawable/ic_menu_orders"
-            android:title="Tickets" />
-        <item
-            android:id="@+id/nav_buzon_mejoras"
-            android:icon="@drawable/ic_menu_home"
-            android:title="Buzón de Mejoras" />
-        <item
-            android:id="@+id/nav_recompensas_cliente"
-            android:icon="@drawable/ic_menu_home"
-            android:title="Recompensas Cliente" />
-        <item
-            android:id="@+id/nav_recompensas_empleado"
-            android:icon="@drawable/ic_menu_home"
-            android:title="Recompensas Empleado" />
-        <item
-            android:id="@+id/nav_auditoria"
-            android:icon="@drawable/ic_menu_home"
-            android:title="Auditoría" />
+    <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_configuracion"
             android:icon="@drawable/ic_menu_home"
             android:title="Configuración" />
+        <item
+            android:id="@+id/nav_auditoria"
+            android:icon="@drawable/ic_menu_home"
+            android:title="Auditoría" />
     </group>
 
-    <group android:title="Sesión">
+    <group android:checkableBehavior="none">
         <item
             android:id="@+id/nav_cerrar_sesion"
             android:icon="@drawable/ic_menu_profile"

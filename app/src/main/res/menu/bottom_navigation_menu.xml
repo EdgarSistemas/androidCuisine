@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/nav_dashboard"
+        android:id="@+id/nav_inicio"
         android:icon="@drawable/ic_menu_home"
-        android:title="Dashboard" />
+        android:title="Inicio" />
     <item
         android:id="@+id/nav_reservas"
         android:icon="@drawable/ic_menu_calendar"
@@ -16,10 +16,6 @@
         android:id="@+id/nav_cocina"
         android:icon="@drawable/ic_menu_restaurant"
         android:title="Cocina" />
-    <item
-        android:id="@+id/nav_sucursales"
-        android:icon="@drawable/ic_menu_orders"
-        android:title="Sucursales" />
     <item
         android:id="@+id/nav_cuenta"
         android:icon="@drawable/ic_menu_profile"
