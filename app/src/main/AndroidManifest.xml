@@ -39,6 +39,18 @@
             android:exported="false"
             android:theme="@style/Theme.AndroidCuisine"/>
 
+        <!-- Recovery de contraseña -->
+
+        <activity
+            android:name=".views.auth.RecoverPasswordActivity"
+            android:exported="false"
+            android:theme="@style/Theme.AndroidCuisine" />
+
+        <activity
+            android:name=".views.auth.ValidateCodeActivity"
+            android:exported="false"
+            android:theme="@style/Theme.AndroidCuisine" />
+
         <!-- NUEVA MainActivity (Pantalla Principal con Drawer) -->
         <activity
             android:name=".views.Main.MainActivity"
