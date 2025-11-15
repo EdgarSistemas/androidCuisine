@@ -9,71 +9,86 @@
     android:background="@color/cuisine_white_accent">
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/tvDialogTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Agregar Sucursal"
+        android:text="Solicitar Vacaciones"
         android:textSize="24sp"
         android:textStyle="bold"
         android:textColor="@color/cuisine_dark_text"
+        android:layout_marginBottom="16dp"/>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Completa los datos para enviar tu solicitud de vacaciones."
+        android:textSize="14sp"
+        android:textColor="@color/cuisine_dark_text"
+        android:alpha="0.8"
         android:layout_marginBottom="24dp"/>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tilNombre"
+        android:id="@+id/tilFechaInicio"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
         app:boxStrokeColor="@color/cuisine_green_dark"
         app:hintTextColor="@color/cuisine_green_dark"
-        android:hint="Nombre de la Sucursal">
+        app:endIconMode="custom"
+        app:endIconDrawable="@drawable/ic_calendar"
+        android:hint="Fecha de Inicio">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etNombre"
+            android:id="@+id/etFechaInicio"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textCapWords"
-            android:maxLines="1"
-            android:textColor="@color/black"/>
+            android:inputType="none"
+            android:focusable="false"
+            android:clickable="true"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tilDireccion"
+        android:id="@+id/tilFechaFin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
         app:boxStrokeColor="@color/cuisine_green_dark"
         app:hintTextColor="@color/cuisine_green_dark"
-        android:hint="Dirección">
+        app:endIconMode="custom"
+        app:endIconDrawable="@drawable/ic_calendar"
+        android:hint="Fecha de Fin">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etDireccion"
+            android:id="@+id/etFechaFin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textCapSentences"
-            android:maxLines="2"
-            android:textColor="@color/black"/>
+            android:inputType="none"
+            android:focusable="false"
+            android:clickable="true"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tilTelefono"
+        android:id="@+id/tilMotivo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
         app:boxStrokeColor="@color/cuisine_green_dark"
         app:hintTextColor="@color/cuisine_green_dark"
-        android:hint="Teléfono">
+        app:counterEnabled="true"
+        app:counterMaxLength="200"
+        android:hint="Motivo (opcional)">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etTelefono"
+            android:id="@+id/etMotivo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="phone"
-            android:maxLines="1"
-            android:textColor="@color/black"/>
+            android:inputType="textMultiLine"
+            android:minLines="3"
+            android:maxLines="5"
+            android:gravity="top"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -94,11 +109,11 @@
             android:layout_marginEnd="8dp"/>
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnGuardar"
+            android:id="@+id/btnEnviarSolicitud"
             style="@style/Widget.Material3.Button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Guardar"
+            android:text="Enviar Solicitud"
             android:backgroundTint="@color/cuisine_green_dark"/>
 
     </LinearLayout>

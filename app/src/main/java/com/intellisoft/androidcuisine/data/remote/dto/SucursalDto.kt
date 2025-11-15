@@ -1,6 +1,6 @@
 package com.intellisoft.androidcuisine.data.remote.dto
 
-data class Sucursal(
+data class SucursalDto(
     val codigo_sucursal: String,
     val created_at: String,
     val direccion: String,
@@ -12,13 +12,13 @@ data class Sucursal(
 )
 
 data class SucursalResponse(
-    val data: List<Sucursal>? = null,
+    val data: List<SucursalDto>? = null,
     val success: Boolean,
     val message: String? = null
 )
 
 data class SucursalSingleResponse(
-    val data: Sucursal? = null,
+    val data: SucursalDto? = null,
     val success: Boolean,
     val message: String? = null
 )

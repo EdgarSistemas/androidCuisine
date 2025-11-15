@@ -36,7 +36,7 @@
             android:backgroundTint="@color/cuisine_green_dark"
             android:textColor="@color/white"
             android:paddingVertical="14dp"
-            app:cornerRadius="8dp"/>
+            app:cornerRadius="30dp"/>
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnCrearCuenta"
@@ -48,7 +48,7 @@
             android:textColor="@color/cuisine_green_dark"
             app:strokeColor="@color/cuisine_green_dark"
             android:paddingVertical="14dp"
-            app:cornerRadius="8dp"/>
+            app:cornerRadius="30dp"/>
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

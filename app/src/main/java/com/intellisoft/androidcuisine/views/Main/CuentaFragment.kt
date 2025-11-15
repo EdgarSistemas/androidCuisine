@@ -6,10 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.lifecycleScope
-import com.intellisoft.androidcuisine.R
-import com.intellisoft.androidcuisine.data.managers.SessionManager
-import com.intellisoft.androidcuisine.data.remote.api.ApiClient
+import com.intellisoft.androidcuisine.util.SessionManager
 import com.intellisoft.androidcuisine.databinding.FragmentCuentaBinding
 import kotlinx.coroutines.launch
 
@@ -34,17 +31,17 @@ class CuentaFragment : Fragment() {
         val userId = userData?.id
 
         if (userId != null) {
-           // fetchUserData(userId)
+            //fetchUserData(userId)
         } else {
             Toast.makeText(requireContext(), "Usuario no autenticado", Toast.LENGTH_SHORT).show()
         }
 
         binding.btnUpdate.setOnClickListener {
-          //  updateUserData(userId)
+            //updateUserData(userId)
         }
 
         binding.btnChangePassword.setOnClickListener {
-            changePassword()
+           // changePassword()
         }
 
         binding.btnLogout.setOnClickListener {
@@ -93,16 +90,16 @@ class CuentaFragment : Fragment() {
 //        }
 //    }
 
-    private fun changePassword() {
-        val currentPassword = binding.etCurrentPassword.text.toString()
-        val newPassword = binding.etNewPassword.text.toString()
-        val confirmPassword = binding.etConfirmPassword.text.toString()
-
-        if (newPassword != confirmPassword) {
-            Toast.makeText(requireContext(), "Las contraseñas no coinciden", Toast.LENGTH_SHORT).show()
-            return
-        }
-
+//    private fun changePassword() {
+//        val currentPassword = binding.etCurrentPassword.text.toString()
+//        val newPassword = binding.etNewPassword.text.toString()
+//        val confirmPassword = binding.etConfirmPassword.text.toString()
+//
+//        if (newPassword != confirmPassword) {
+//            Toast.makeText(requireContext(), "Las contraseñas no coinciden", Toast.LENGTH_SHORT).show()
+//            return
+//        }
+//
 //        lifecycleScope.launch {
 //            try {
 //                val response = ApiClient.apiService.changePassword(currentPassword, newPassword)
@@ -115,7 +112,7 @@ class CuentaFragment : Fragment() {
 //                Toast.makeText(requireContext(), "Error de red", Toast.LENGTH_SHORT).show()
 //            }
 //        }
-    }
+//    }
 
     override fun onDestroyView() {
         super.onDestroyView()

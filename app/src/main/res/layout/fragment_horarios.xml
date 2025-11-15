@@ -1,61 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:background="@color/cuisine_beige_background"
-    tools:context=".views.Main.HorariosFragment">
+    tools:context=".views.horario.HorariosFragment">
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tvHorarioTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Mi Horario Semanal"
+        android:text="Horarios y Solicitudes"
         android:textSize="24sp"
         android:textStyle="bold"
         android:textColor="@color/cuisine_dark_text"
         android:layout_marginTop="24dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        android:layout_marginBottom="16dp"
+        android:layout_gravity="center_horizontal"/>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewHorarios"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="16dp"
-        android:paddingHorizontal="8dp"
-        android:clipToPadding="false"
-        app:layout_constraintTop_toBottomOf="@id/tvHorarioTitle"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:listitem="@layout/item_horario_dia" />
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabLayout"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@color/cuisine_beige_background"
+        app:tabMode="fixed"
+        app:tabGravity="fill"
+        app:tabIndicatorColor="@color/cuisine_green_dark"
+        app:tabSelectedTextColor="@color/cuisine_green_dark"
+        app:tabTextColor="@color/cuisine_dark_text"
+        app:tabIndicatorHeight="3dp"
+        app:tabRippleColor="@color/cuisine_green_light"/>
 
-    <ProgressBar
-        android:id="@+id/progressBarHorarios"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        tools:visibility="visible"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/tvHorarioEmpty"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="No tienes un horario asignado."
-        android:textSize="18sp"
-        android:visibility="gone"
-        android:textColor="@color/cuisine_dark_text"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

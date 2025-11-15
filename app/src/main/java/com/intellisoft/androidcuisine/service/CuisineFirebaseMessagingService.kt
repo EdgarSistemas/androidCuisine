@@ -10,8 +10,9 @@ import android.util.Log
 import androidx.core.app.NotificationCompat
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
-import com.intellisoft.androidcuisine.CuisieneApp
 import com.intellisoft.androidcuisine.R
+import com.intellisoft.androidcuisine.util.SessionManager
+import com.intellisoft.androidcuisine.views.Main.MainActivity
 
 class CuisineFirebaseMessagingService : FirebaseMessagingService() {
 
@@ -27,15 +28,16 @@ class CuisineFirebaseMessagingService : FirebaseMessagingService() {
 
     override fun onNewToken(token: String) {
         super.onNewToken(token)
-        Log.d(TAG, "Nuevo token FCM: $token")
+        Log.d(TAG, "Nuevo token FCM recibido")
+
+        // Guardar automáticamente cuando Firebase genera nuevo token
+        SessionManager.getInstance(applicationContext).saveFcmToken(token)
     }
 
     override fun onMessageReceived(remoteMessage: RemoteMessage) {
         super.onMessageReceived(remoteMessage)
+        Log.d(TAG, "Notificación recibida")
 
-        Log.d(TAG, "Mensaje FCM recibido")
-
-        // Mostrar notificación cuando la app está en primer plano
         remoteMessage.notification?.let { notification ->
             showNotification(
                 title = notification.title ?: "Cuisine",
@@ -47,14 +49,12 @@ class CuisineFirebaseMessagingService : FirebaseMessagingService() {
     private fun showNotification(title: String, body: String) {
         val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
-        val intent = Intent(this, CuisieneApp::class.java).apply {
+        val intent = Intent(this, MainActivity::class.java).apply {
             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         }
 
         val pendingIntent = PendingIntent.getActivity(
-            this,
-            0,
-            intent,
+            this, 0, intent,
             PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
         )
 
@@ -67,7 +67,7 @@ class CuisineFirebaseMessagingService : FirebaseMessagingService() {
             .setPriority(NotificationCompat.PRIORITY_HIGH)
             .build()
 
-        notificationManager.notify(1, notification)
+        notificationManager.notify(System.currentTimeMillis().toInt(), notification)
     }
 
     private fun createNotificationChannel() {

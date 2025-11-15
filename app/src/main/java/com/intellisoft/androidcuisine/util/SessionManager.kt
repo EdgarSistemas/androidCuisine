@@ -1,11 +1,13 @@
-package com.intellisoft.androidcuisine.data.managers
+package com.intellisoft.androidcuisine.util
 
 import android.content.Context
 import android.content.SharedPreferences
 import android.util.Log
 import com.google.gson.Gson
 import com.intellisoft.androidcuisine.data.remote.dto.LoginResponse
-import com.intellisoft.androidcuisine.data.remote.dto.Modulo
+import com.intellisoft.androidcuisine.data.remote.dto.ModuloDto
+import com.intellisoft.androidcuisine.data.remote.dto.RolDto
+import com.intellisoft.androidcuisine.data.remote.dto.SucursalDto
 
 class SessionManager(context: Context) {
 
@@ -26,6 +28,9 @@ class SessionManager(context: Context) {
         private const val KEY_TIPO_ACCESO = "tipo_acceso"
         private const val KEY_USER_MODULES = "user_modules"
         private const val KEY_LOGIN_TIME = "login_time"
+        private const val KEY_FCM_TOKEN = "fcm_token"
+        private const val KEY_USER_ROLES = "user_roles"
+        private const val KEY_USER_SUCURSALES = "user_sucursales"
 
         @Volatile
         private var INSTANCE: SessionManager? = null
@@ -40,19 +45,14 @@ class SessionManager(context: Context) {
     private val sharedPreferences: SharedPreferences = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
     private val gson = Gson()
 
-    /**
-     * Guarda toda la información de login
-     */
     fun saveLoginData(loginResponse: LoginResponse) {
         val editor = sharedPreferences.edit()
 
-        // Token info
         editor.putString(KEY_ACCESS_TOKEN, loginResponse.access_token)
         editor.putString(KEY_TOKEN_TYPE, loginResponse.token_type)
         editor.putInt(KEY_EXPIRES_IN, loginResponse.expires_in)
         editor.putLong(KEY_LOGIN_TIME, System.currentTimeMillis())
 
-        // User info
         val user = loginResponse.user
         editor.putInt(KEY_USER_ID, user.id)
         editor.putString(KEY_USER_NAME, user.nombre)
@@ -65,70 +65,40 @@ class SessionManager(context: Context) {
         editor.putBoolean(KEY_MOSTRAR_EMPRESAS, user.mostrar_empresas)
         editor.putString(KEY_TIPO_ACCESO, user.tipo_acceso)
 
-        // Modules as JSON
-        val modulesJson = gson.toJson(user.modulos)
-        editor.putString(KEY_USER_MODULES, modulesJson)
+        // Guardar módulos, roles y sucursales como JSON
+        editor.putString(KEY_USER_MODULES, gson.toJson(user.modulos))
+        editor.putString(KEY_USER_ROLES, gson.toJson(user.roles))
+        editor.putString(KEY_USER_SUCURSALES, gson.toJson(user.sucursales))
 
         editor.apply()
-
-        Log.d("SessionManager", "✅ Datos de sesión guardados")
-        Log.d("SessionManager", "Usuario: ${user.nombre}")
-        Log.d("SessionManager", "Token: ${loginResponse.access_token.take(20)}...")
-        Log.d("SessionManager", "Módulos: ${user.modulos.size}")
+        Log.d("SessionManager", "Sesión guardada para: ${user.nombre}")
     }
 
-    /**
-     * Obtiene el token Bearer completo para Authorization header
-     */
     fun getBearerToken(): String? {
         val tokenType = sharedPreferences.getString(KEY_TOKEN_TYPE, "Bearer") ?: "Bearer"
         val accessToken = sharedPreferences.getString(KEY_ACCESS_TOKEN, null)
-
-        return if (accessToken != null) {
-            "$tokenType $accessToken"
-        } else {
-            null
-        }
+        return if (accessToken != null) "$tokenType $accessToken" else null
     }
 
-    /**
-     * Obtiene solo el access token
-     */
     fun getAccessToken(): String? {
         return sharedPreferences.getString(KEY_ACCESS_TOKEN, null)
     }
 
-    /**
-     * Verifica si hay una sesión activa
-     */
     fun isLoggedIn(): Boolean {
         val token = getAccessToken()
         return !token.isNullOrEmpty() && !isTokenExpired()
     }
 
-    /**
-     * Verifica si el token ha expirado
-     */
     fun isTokenExpired(): Boolean {
         val loginTime = sharedPreferences.getLong(KEY_LOGIN_TIME, 0)
         val expiresIn = sharedPreferences.getInt(KEY_EXPIRES_IN, 0)
-
-        if (loginTime == 0L || expiresIn == 0) {
-            return true
-        }
-
-        val currentTime = System.currentTimeMillis()
-        val expirationTime = loginTime + (expiresIn * 1000L) // expiresIn está en segundos
-
-        return currentTime >= expirationTime
+        if (loginTime == 0L || expiresIn == 0) return true
+        val expirationTime = loginTime + (expiresIn * 1000L)
+        return System.currentTimeMillis() >= expirationTime
     }
 
-    /**
-     * Obtiene datos del usuario
-     */
     fun getUserData(): UserData? {
         if (!isLoggedIn()) return null
-
         return UserData(
             id = sharedPreferences.getInt(KEY_USER_ID, 0),
             nombre = sharedPreferences.getString(KEY_USER_NAME, "") ?: "",
@@ -143,52 +113,58 @@ class SessionManager(context: Context) {
         )
     }
 
-    /**
-     * Obtiene módulos del usuario
-     */
-    fun getUserModules(): List<Modulo> {
+    fun getUserModules(): List<ModuloDto> {
         val modulesJson = sharedPreferences.getString(KEY_USER_MODULES, "[]") ?: "[]"
         return try {
-            val type = object : com.google.gson.reflect.TypeToken<List<Modulo>>() {}.type
+            val type = object : com.google.gson.reflect.TypeToken<List<ModuloDto>>() {}.type
             gson.fromJson(modulesJson, type) ?: emptyList()
         } catch (e: Exception) {
-            Log.e("SessionManager", "Error parseando módulos: ${e.message}")
             emptyList()
         }
     }
 
-    /**
-     * Limpia toda la sesión
-     */
     fun clearSession() {
         sharedPreferences.edit().clear().apply()
         Log.d("SessionManager", "🚮 Sesión limpiada")
     }
 
-    /**
-     * Actualiza solo el token (para refresh token)
-     */
-    fun updateToken(newToken: String, expiresIn: Int) {
-        val editor = sharedPreferences.edit()
-        editor.putString(KEY_ACCESS_TOKEN, newToken)
-        editor.putInt(KEY_EXPIRES_IN, expiresIn)
-        editor.putLong(KEY_LOGIN_TIME, System.currentTimeMillis())
-        editor.apply()
+    fun getUserId(): Int = sharedPreferences.getInt(KEY_USER_ID, -1)
 
-        Log.d("SessionManager", "🔄 Token actualizado")
+    fun saveFcmToken(token: String) {
+        sharedPreferences.edit().putString(KEY_FCM_TOKEN, token).apply()
+        Log.d("SessionManager", "🔔 FCM Token guardado")
     }
 
-    /**
-     * Obtiene el ID del usuario almacenado en la sesión
-     */
-    fun getUserId(): Int {
-        return sharedPreferences.getInt(KEY_USER_ID, -1)
+    fun getFcmToken(): String {
+        return sharedPreferences.getString(KEY_FCM_TOKEN, "") ?: ""
+    }
+
+    fun getUserRoles(): List<RolDto> {
+        val rolesJson = sharedPreferences.getString(KEY_USER_ROLES, "[]") ?: "[]"
+        return try {
+            val type = object : com.google.gson.reflect.TypeToken<List<RolDto>>() {}.type
+            gson.fromJson(rolesJson, type) ?: emptyList()
+        } catch (e: Exception) {
+            emptyList()
+        }
+    }
+
+    fun getUserSucursales(): List<SucursalDto> {
+        val sucursalesJson = sharedPreferences.getString(KEY_USER_SUCURSALES, "[]") ?: "[]"
+        return try {
+            val type = object : com.google.gson.reflect.TypeToken<List<SucursalDto>>() {}.type
+            gson.fromJson(sucursalesJson, type) ?: emptyList()
+        } catch (e: Exception) {
+            emptyList()
+        }
+    }
+
+    fun getPrimaryRole(): String {
+        val roles = getUserRoles()
+        return if (roles.isNotEmpty()) roles[0].nombre else "Usuario"
     }
 }
 
-/**
- * Clase de datos para información del usuario
- */
 data class UserData(
     val id: Int,
     val nombre: String,
