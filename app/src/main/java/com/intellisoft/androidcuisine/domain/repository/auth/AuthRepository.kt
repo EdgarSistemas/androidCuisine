@@ -1,4 +1,4 @@
-package com.intellisoft.androidcuisine.domain.repository
+package com.intellisoft.androidcuisine.domain.repository.auth
 
 import com.intellisoft.androidcuisine.data.remote.dto.LoginResponse
 

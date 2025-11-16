@@ -1,4 +1,4 @@
-package com.intellisoft.androidcuisine.domain.repository
+package com.intellisoft.androidcuisine.domain.repository.horario
 
 import com.intellisoft.androidcuisine.data.remote.dto.HorarioUsuarioData
 

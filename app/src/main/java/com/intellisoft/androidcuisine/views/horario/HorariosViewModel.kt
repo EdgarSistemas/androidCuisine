@@ -6,8 +6,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.intellisoft.androidcuisine.data.remote.dto.HorarioDetalle
-import com.intellisoft.androidcuisine.data.repository.HorarioRepositoryImpl
-import com.intellisoft.androidcuisine.domain.repository.HorarioRepository
+import com.intellisoft.androidcuisine.domain.repository.horario.HorarioRepositoryImpl
+import com.intellisoft.androidcuisine.domain.repository.horario.HorarioRepository
 import com.intellisoft.androidcuisine.util.SessionManager
 import kotlinx.coroutines.launch
 

@@ -1,9 +1,8 @@
-package com.intellisoft.androidcuisine.data.repository
+package com.intellisoft.androidcuisine.domain.repository.auth
 
 import com.intellisoft.androidcuisine.data.remote.api.ApiClient
 import com.intellisoft.androidcuisine.data.remote.dto.LoginRequest
 import com.intellisoft.androidcuisine.data.remote.dto.LoginResponse
-import com.intellisoft.androidcuisine.domain.repository.AuthRepository
 
 class AuthRepositoryImpl : AuthRepository {
 

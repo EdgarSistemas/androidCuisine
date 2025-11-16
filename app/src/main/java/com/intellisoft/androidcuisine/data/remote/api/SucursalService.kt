@@ -11,7 +11,9 @@ interface SucursalService {
     suspend fun getSucursalesActivas(): Response<SucursalResponse>
 
     @POST("sucursales")
-    suspend fun createSucursal(@Body sucursal: SucursalRequest): Response<SucursalSingleResponse>
+    suspend fun createSucursal(
+        @Body sucursal: SucursalRequest
+    ): Response<SucursalSingleResponse>
 
     @PUT("sucursales/{id}")
     suspend fun updateSucursal(

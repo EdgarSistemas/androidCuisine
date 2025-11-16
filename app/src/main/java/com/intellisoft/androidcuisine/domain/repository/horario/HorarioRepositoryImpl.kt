@@ -1,8 +1,7 @@
-package com.intellisoft.androidcuisine.data.repository
+package com.intellisoft.androidcuisine.domain.repository.horario
 
 import com.intellisoft.androidcuisine.data.remote.api.ApiClient
 import com.intellisoft.androidcuisine.data.remote.dto.HorarioUsuarioData
-import com.intellisoft.androidcuisine.domain.repository.HorarioRepository
 
 class HorarioRepositoryImpl : HorarioRepository {
 
