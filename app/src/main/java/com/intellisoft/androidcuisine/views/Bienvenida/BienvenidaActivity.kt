@@ -3,6 +3,7 @@ package com.intellisoft.androidcuisine.views.Bienvenida
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -11,6 +12,7 @@ import com.google.android.material.textfield.TextInputEditText
 import com.intellisoft.androidcuisine.R
 import com.intellisoft.androidcuisine.views.Bienvenida.BienvenidaViewModel
 import com.intellisoft.androidcuisine.views.Main.MainActivity
+import com.intellisoft.androidcuisine.views.auth.RecoverPasswordActivity
 
 class BienvenidaActivity : AppCompatActivity() {
 
@@ -54,9 +56,20 @@ class BienvenidaActivity : AppCompatActivity() {
         val inputPassword = bottomSheetView.findViewById<TextInputEditText>(R.id.inputContraseña)
         val btnConfirmarLogin = bottomSheetView.findViewById<Button>(R.id.btnConfirmarLogin)
 
+        // 💡 CORRECCIÓN: Declarar y encontrar la vista tvForgotPassword
+        val tvForgotPassword = bottomSheetView.findViewById<TextView>(R.id.tvForgotPassword)
+
         // Pre-llenar para pruebas
         inputEmail.setText("jag030317@hotmail.com")
         inputPassword.setText("Soyjose123@")
+
+        // AGREGAR LISTENER PARA OLVIDÉ CONTRASEÑA
+        tvForgotPassword.setOnClickListener {
+            dialog.dismiss() // Cierra el Bottom Sheet
+            // Asegúrate de que RecuperacionViewModel esté importado para que el intent funcione
+            val intent = Intent(this, RecoverPasswordActivity::class.java)
+            startActivity(intent)
+        }
 
         observeLoginState(btnConfirmarLogin, dialog)
 
@@ -68,7 +81,6 @@ class BienvenidaActivity : AppCompatActivity() {
 
         dialog.show()
     }
-
     private fun observeLoginState(button: Button, dialog: BottomSheetDialog) {
         viewModel.loginState.observe(this) { state ->
             when (state) {

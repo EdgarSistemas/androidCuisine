@@ -51,6 +51,11 @@
             android:exported="false"
             android:theme="@style/Theme.AndroidCuisine" />
 
+        <activity
+            android:name=".views.auth.RestablecerPasswordActivity"
+            android:exported="false"
+            android:theme="@style/Theme.AndroidCuisine" />
+
         <!-- NUEVA MainActivity (Pantalla Principal con Drawer) -->
         <activity
             android:name=".views.Main.MainActivity"
