@@ -114,7 +114,7 @@ class CuentaFragment : Fragment() {
                 etName.setText(it.nombre)
                 etApellido.setText(it.apellido)
                 etEmail.setText(it.email)
-                etPhone.setText(it.telefono ?: "") // Llenamos teléfono si existe en el objeto User
+
             }
         }
 

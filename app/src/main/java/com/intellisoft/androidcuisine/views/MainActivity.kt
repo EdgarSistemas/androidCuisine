@@ -18,7 +18,7 @@ import com.intellisoft.androidcuisine.R
 import com.intellisoft.androidcuisine.util.SessionManager
 import com.intellisoft.androidcuisine.views.Bienvenida.BienvenidaActivity
 
-import com.intellisoft.androidcuisine.views.Main.cuenta.CuentaFragment
+import com.intellisoft.androidcuisine.views.cuenta.CuentaFragment
 import com.intellisoft.androidcuisine.views.horario.HorariosFragment
 import com.intellisoft.androidcuisine.views.sucursal.SucursalesFragment
 
