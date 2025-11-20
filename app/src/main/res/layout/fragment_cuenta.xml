@@ -75,7 +75,8 @@
                         android:id="@+id/etName"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="textPersonName"
+                        android:inputType="textPersonName|textCapWords"
+                        android:maxLength="50"
                         android:textColor="@color/black"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -94,7 +95,8 @@
                         android:id="@+id/etApellido"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="textPersonName"
+                        android:inputType="textPersonName|textCapWords"
+                        android:maxLength="30"
                         android:textColor="@color/black"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
