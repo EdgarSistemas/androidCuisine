@@ -57,4 +57,8 @@ object ApiClient {
     val solicitarService: SolicitarService by lazy {
         retrofit.create(SolicitarService::class.java)
     }
+
+    val usuarioService: UsuarioService by lazy {
+        retrofit.create(UsuarioService::class.java)
+    }
 }

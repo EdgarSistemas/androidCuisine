@@ -3,11 +3,13 @@ package com.intellisoft.androidcuisine.util
 import android.content.Context
 import android.content.SharedPreferences
 import android.util.Log
+//import com.google.common.base.StandardSystemProperty.USER_NAME
 import com.google.gson.Gson
 import com.intellisoft.androidcuisine.data.remote.dto.LoginResponse
 import com.intellisoft.androidcuisine.data.remote.dto.ModuloDto
 import com.intellisoft.androidcuisine.data.remote.dto.RolDto
 import com.intellisoft.androidcuisine.data.remote.dto.SucursalDto
+
 
 class SessionManager(context: Context) {
 
@@ -31,6 +33,8 @@ class SessionManager(context: Context) {
         private const val KEY_FCM_TOKEN = "fcm_token"
         private const val KEY_USER_ROLES = "user_roles"
         private const val KEY_USER_SUCURSALES = "user_sucursales"
+
+
 
         @Volatile
         private var INSTANCE: SessionManager? = null
@@ -113,6 +117,9 @@ class SessionManager(context: Context) {
         )
     }
 
+
+
+
     fun getUserModules(): List<ModuloDto> {
         val modulesJson = sharedPreferences.getString(KEY_USER_MODULES, "[]") ?: "[]"
         return try {
@@ -163,6 +170,16 @@ class SessionManager(context: Context) {
         val roles = getUserRoles()
         return if (roles.isNotEmpty()) roles[0].nombre else "Usuario"
     }
+
+    //FUNCION AGREGADA POR CESAR
+    fun updateUserData(nombre: String, apellido: String, email: String) {
+        val editor = sharedPreferences.edit()
+        editor.putString(KEY_USER_NAME, nombre)
+        editor.putString(KEY_USER_APELLIDO, apellido)
+        editor.putString(KEY_USER_EMAIL, email)
+        editor.apply()
+        Log.d("SessionManager", "♻️ Datos actualizados")
+    }
 }
 
 data class UserData(
@@ -177,3 +194,4 @@ data class UserData(
     val mostrarEmpresas: Boolean,
     val tipoAcceso: String
 )
+
