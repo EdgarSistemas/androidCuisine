@@ -4,5 +4,6 @@ import com.intellisoft.androidcuisine.data.remote.dto.UsuarioUpdateRequest
 import com.intellisoft.androidcuisine.data.remote.dto.UsuarioUpdateResponse
 
 interface UsuarioRepository {
-    suspend fun updateUsuario(usuarioId: Int, request: UsuarioUpdateRequest): Result<UsuarioUpdateResponse>
+    suspend fun updateUsuario(usuarioId: Int, request: UsuarioUpdateRequest):
+            Result<UsuarioUpdateResponse>
 }

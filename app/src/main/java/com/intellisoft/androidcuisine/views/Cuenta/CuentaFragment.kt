@@ -54,7 +54,7 @@ class CuentaFragment : Fragment() {
         etName = view.findViewById(R.id.etName)
         etApellido = view.findViewById(R.id.etApellido)
         etEmail = view.findViewById(R.id.etEmail)
-        etPhone = view.findViewById(R.id.etPhone)
+       // etPhone = view.findViewById(R.id.etPhone)
         btnUpdate = view.findViewById(R.id.btnUpdate)
 
         // 2. Cambio de Contraseña

@@ -118,24 +118,24 @@
 
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/tilTelefono"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
-                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
-                    app:boxStrokeColor="@color/cuisine_green_dark"
-                    app:hintTextColor="@color/cuisine_green_dark"
-                    android:hint="Teléfono">
+<!--                <com.google.android.material.textfield.TextInputLayout-->
+<!--                    android:id="@+id/tilTelefono"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginTop="12dp"-->
+<!--                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox"-->
+<!--                    app:boxStrokeColor="@color/cuisine_green_dark"-->
+<!--                    app:hintTextColor="@color/cuisine_green_dark"-->
+<!--                    android:hint="Teléfono">-->
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/etPhone"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="phone"
-                        android:textColor="@color/black"/>
+<!--                    <com.google.android.material.textfield.TextInputEditText-->
+<!--                        android:id="@+id/etPhone"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:inputType="phone"-->
+<!--                        android:textColor="@color/black"/>-->
 
-                </com.google.android.material.textfield.TextInputLayout>
+<!--                </com.google.android.material.textfield.TextInputLayout>-->
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnUpdate"

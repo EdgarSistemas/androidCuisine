@@ -11,13 +11,16 @@ class UsuarioRepositoryImpl : UsuarioRepository {
             val response = ApiClient.usuarioService.updateUsuario(usuarioId, request)
 
             if (response.isSuccessful && response.body() != null) {
-                if (response.body()!!.success) {
-                    Result.success(response.body()!!)
+                val body = response.body()!!
+                // Verificamos success del JSON
+                if (body.success) {
+                    Result.success(body)
                 } else {
-                    Result.failure(Exception(response.body()!!.message ?: "Error al actualizar"))
+                    Result.failure(Exception(body.message ?: "Error al actualizar (API success false)"))
                 }
             } else {
-                val errorMsg = response.errorBody()?.string() ?: "Error de servidor"
+                // Manejo de errores HTTP (404, 500, etc)
+                val errorMsg = response.errorBody()?.string() ?: "Error de servidor: ${response.code()}"
                 Result.failure(Exception(errorMsg))
             }
         } catch (e: Exception) {
