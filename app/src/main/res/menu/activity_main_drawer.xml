@@ -72,6 +72,14 @@
             android:title="Auditoría" />
     </group>
 
+<!--    mejoras-->
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_mejoras"
+            android:icon="@drawable/ic_menu_mejoras"
+            android:title="Buzón de Mejoras" />
+    </group>
+
     <group android:checkableBehavior="none">
         <item
             android:id="@+id/nav_cerrar_sesion"

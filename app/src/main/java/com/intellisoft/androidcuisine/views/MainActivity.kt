@@ -20,6 +20,7 @@ import com.intellisoft.androidcuisine.views.Bienvenida.BienvenidaActivity
 
 import com.intellisoft.androidcuisine.views.cuenta.CuentaFragment
 import com.intellisoft.androidcuisine.views.horario.HorariosFragment
+import com.intellisoft.androidcuisine.views.mejoras.MejorasFragment
 import com.intellisoft.androidcuisine.views.sucursal.SucursalesFragment
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -155,8 +156,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.nav_insumos -> Toast.makeText(this, "Insumos", Toast.LENGTH_SHORT).show()
             R.id.nav_proveedores -> Toast.makeText(this, "Proveedores", Toast.LENGTH_SHORT).show()
             R.id.nav_compras -> Toast.makeText(this, "Compras", Toast.LENGTH_SHORT).show()
-            R.id.nav_horarios -> loadFragment(HorariosFragment())
             R.id.nav_asistencia -> Toast.makeText(this, "Asistencia", Toast.LENGTH_SHORT).show()
+            R.id.nav_horarios -> loadFragment(HorariosFragment())
+            R.id.nav_mejoras -> Toast.makeText(this, "Mejoras", Toast.LENGTH_SHORT).show()
+            R.id.nav_mejoras -> loadFragment(MejorasFragment())
             R.id.nav_configuracion -> Toast.makeText(this, "Configuración", Toast.LENGTH_SHORT).show()
             R.id.nav_auditoria -> Toast.makeText(this, "Auditoría", Toast.LENGTH_SHORT).show()
             R.id.nav_cerrar_sesion -> showLogoutDialog()
