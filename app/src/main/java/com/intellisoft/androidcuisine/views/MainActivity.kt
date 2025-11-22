@@ -136,6 +136,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         menu.findItem(R.id.nav_asistencia)?.isVisible = userModules.contains("ASISTENCIA")
         menu.findItem(R.id.nav_configuracion)?.isVisible = userModules.contains("CONFIGURACION")
         menu.findItem(R.id.nav_auditoria)?.isVisible = userModules.contains("AUDITORIA")
+        menu.findItem(R.id.nav_tickets)?.isVisible = true
     }
 
     private fun loadFragment(fragment: androidx.fragment.app.Fragment) {
@@ -158,7 +159,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.nav_compras -> Toast.makeText(this, "Compras", Toast.LENGTH_SHORT).show()
             R.id.nav_asistencia -> Toast.makeText(this, "Asistencia", Toast.LENGTH_SHORT).show()
             R.id.nav_horarios -> loadFragment(HorariosFragment())
-            R.id.nav_mejoras -> Toast.makeText(this, "Mejoras", Toast.LENGTH_SHORT).show()
+            R.id.nav_tickets -> loadFragment(com.intellisoft.androidcuisine.views.tickets.TicketsFragment())
             R.id.nav_mejoras -> loadFragment(MejorasFragment())
             R.id.nav_configuracion -> Toast.makeText(this, "Configuración", Toast.LENGTH_SHORT).show()
             R.id.nav_auditoria -> Toast.makeText(this, "Auditoría", Toast.LENGTH_SHORT).show()

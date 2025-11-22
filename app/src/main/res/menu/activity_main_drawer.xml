@@ -75,10 +75,19 @@
 <!--    mejoras-->
     <group android:checkableBehavior="single">
         <item
+            android:id="@+id/nav_tickets"
+            android:icon="@drawable/ic_menu_orders"
+            android:title="Tickets de Incidencia" />
+    </group>
+
+    <group android:checkableBehavior="single">
+        <item
             android:id="@+id/nav_mejoras"
             android:icon="@drawable/ic_menu_mejoras"
             android:title="Buzón de Mejoras" />
     </group>
+
+
 
     <group android:checkableBehavior="none">
         <item
