@@ -28,12 +28,6 @@ class TicketsViewModel(application: Application) : AndroidViewModel(application)
     private val _createState = MutableLiveData<TicketCreateState>()
     val createState: LiveData<TicketCreateState> = _createState
 
-    // Saber si el usuario es Admin/Gerente para habilitar cambios de estatus
-    fun isUserAdminOrManager(): Boolean {
-        val role = sessionManager.getPrimaryRole().uppercase()
-        return role.contains("ADMIN") || role.contains("GERENTE")
-    }
-
     fun cargarTickets(estatus: Int? = null) {
         _ticketsState.value = TicketsListState.Loading
         viewModelScope.launch {
@@ -63,10 +57,10 @@ class TicketsViewModel(application: Application) : AndroidViewModel(application)
         _createState.value = TicketCreateState.Loading
 
         viewModelScope.launch {
-            // 1. Convertir imagen en hilo secundario (Default dispatcher)
+            // Convertir imagen en hilo secundario
             val base64String = convertBitmapToBase64(bitmap)
 
-            // 2. Enviar al repositorio
+            // Enviar al repositorio
             val result = repository.crearTicket(notas, base64String)
 
             result.fold(
@@ -81,14 +75,18 @@ class TicketsViewModel(application: Application) : AndroidViewModel(application)
         }
     }
 
-    // Función auxiliar para convertir Bitmap a Base64
+    // 2. LÓGICA CORREGIDA: Agregar prefijo data URI para que el Backend lo acepte
     private suspend fun convertBitmapToBase64(bitmap: Bitmap): String = withContext(Dispatchers.Default) {
         val outputStream = ByteArrayOutputStream()
-        // Comprimimos a JPEG calidad 60 para no saturar el payload
+        // Comprimimos a JPEG calidad 60
         bitmap.compress(Bitmap.CompressFormat.JPEG, 60, outputStream)
         val byteParams = outputStream.toByteArray()
-        // No agregamos prefijos "data:image...", enviamos el raw string
-        Base64.encodeToString(byteParams, Base64.NO_WRAP)
+
+        // Convertimos a string base64
+        val base64Raw = Base64.encodeToString(byteParams, Base64.NO_WRAP)
+
+        // Agregamos el prefijo que espera el servidor
+        "data:image/jpeg;base64,$base64Raw"
     }
 
     fun resetCreateState() {

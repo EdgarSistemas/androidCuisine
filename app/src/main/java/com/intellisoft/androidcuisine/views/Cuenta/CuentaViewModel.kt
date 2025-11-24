@@ -6,16 +6,19 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.intellisoft.androidcuisine.data.remote.dto.UsuarioUpdateRequest
+import com.intellisoft.androidcuisine.domain.repository.auth.AuthRepository
+import com.intellisoft.androidcuisine.domain.repository.auth.AuthRepositoryImpl
 import com.intellisoft.androidcuisine.domain.repository.usuario.UsuarioRepository
 import com.intellisoft.androidcuisine.domain.repository.usuario.UsuarioRepositoryImpl
 import com.intellisoft.androidcuisine.util.SessionManager
-import com.intellisoft.androidcuisine.util.UserData // <--- IMPORTANTE: Importar UserData
+import com.intellisoft.androidcuisine.util.UserData
 import kotlinx.coroutines.launch
 
 class CuentaViewModel(application: Application) : AndroidViewModel(application) {
 
     private val repository: UsuarioRepository = UsuarioRepositoryImpl()
     private val sessionManager = SessionManager.getInstance(application)
+    private val authRepository: AuthRepository = AuthRepositoryImpl()
 
     private val _updateState = MutableLiveData<UpdateState>()
     val updateState: LiveData<UpdateState> = _updateState
@@ -23,6 +26,9 @@ class CuentaViewModel(application: Application) : AndroidViewModel(application) 
     // CAMBIO 1: Usar UserData en lugar de UserDto
     private val _currentUser = MutableLiveData<UserData?>()
     val currentUser: LiveData<UserData?> = _currentUser
+
+    private val _passwordState = MutableLiveData<UpdateState>()
+    val passwordState: LiveData<UpdateState> = _passwordState
 
     init {
         loadCurrentUser()
@@ -106,6 +112,46 @@ class CuentaViewModel(application: Application) : AndroidViewModel(application) 
                 }
             )
         }
+    }
+
+
+    //CAMBIAR CONTRASEÑA
+
+    fun cambiarPassword(actual: String, nueva: String, confirmacion: String) {
+        // Validaciones básicas antes de enviar
+        if (actual.isBlank() || nueva.isBlank() || confirmacion.isBlank()) {
+            _passwordState.value = UpdateState.Error("Todos los campos son obligatorios.")
+            return
+        }
+        if (nueva != confirmacion) {
+            _passwordState.value = UpdateState.Error("Las contraseñas nuevas no coinciden.")
+            return
+        }
+        if (nueva.length < 6) { // Ejemplo de validación
+            _passwordState.value = UpdateState.Error("La contraseña debe tener al menos 6 caracteres.")
+            return
+        }
+
+        _passwordState.value = UpdateState.Loading
+
+        viewModelScope.launch {
+            val result = authRepository.cambiarPassword(actual, nueva, confirmacion)
+            result.fold(
+                onSuccess = { response ->
+                    _passwordState.value = UpdateState.Success(response.message)
+                },
+                onFailure = { exception ->
+                    // Limpiamos el mensaje de error crudo si viene en JSON
+                    val msg = exception.message ?: "Error desconocido"
+                    // Aquí podrías parsear el JSON de error si quisieras ser más específico
+                    _passwordState.value = UpdateState.Error(msg)
+                }
+            )
+        }
+    }
+
+    fun resetPasswordState() {
+        _passwordState.value = UpdateState.Idle
     }
 
     fun resetState() {

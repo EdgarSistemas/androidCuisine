@@ -1,4 +1,5 @@
 package com.intellisoft.androidcuisine.data.remote.dto
+import com.google.gson.annotations.SerializedName
 
 data class LoginRequest(
     val email: String,
@@ -41,4 +42,21 @@ data class RolDto(
     val id_rol: Int,
     val nombre: String,
     val descripcion: String
+)
+
+
+//DTOS para cambiar contraseña
+data class CambiarPasswordRequest(
+    @SerializedName("password_actual")
+    val passwordActual: String,
+    @SerializedName("nueva_password")
+    val nuevaPassword: String,
+    @SerializedName("confirmar_password")
+    val confirmarPassword: String
+)
+
+data class CambiarPasswordResponse(
+    val success: Boolean,
+    val message: String,
+    val error: String? = null // Para capturar errores específicos del backend
 )
