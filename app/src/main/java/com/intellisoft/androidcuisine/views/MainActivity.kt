@@ -21,6 +21,7 @@ import com.intellisoft.androidcuisine.views.Bienvenida.BienvenidaActivity
 import com.intellisoft.androidcuisine.views.cuenta.CuentaFragment
 import com.intellisoft.androidcuisine.views.horario.HorariosFragment
 import com.intellisoft.androidcuisine.views.mejoras.MejorasFragment
+import com.intellisoft.androidcuisine.views.soporte.SoporteFragment
 import com.intellisoft.androidcuisine.views.sucursal.SucursalesFragment
 import com.intellisoft.androidcuisine.views.tickets.TicketsFragment
 
@@ -138,6 +139,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         menu.findItem(R.id.nav_configuracion)?.isVisible = userModules.contains("CONFIGURACION")
         menu.findItem(R.id.nav_auditoria)?.isVisible = userModules.contains("AUDITORIA")
         menu.findItem(R.id.nav_tickets)?.isVisible = true
+        // NUEVO: Verificar si tiene el módulo "SOPORTE" (ID 31 en tu BD)
+        menu.findItem(R.id.nav_soporte)?.isVisible = userModules.contains("SOPORTE")
     }
 
     private fun loadFragment(fragment: androidx.fragment.app.Fragment) {
@@ -164,6 +167,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.nav_mejoras -> loadFragment(MejorasFragment())
             R.id.nav_configuracion -> Toast.makeText(this, "Configuración", Toast.LENGTH_SHORT).show()
             R.id.nav_auditoria -> Toast.makeText(this, "Auditoría", Toast.LENGTH_SHORT).show()
+            R.id.nav_soporte -> loadFragment(SoporteFragment())
             R.id.nav_cerrar_sesion -> showLogoutDialog()
         }
         drawerLayout.closeDrawer(GravityCompat.START)
