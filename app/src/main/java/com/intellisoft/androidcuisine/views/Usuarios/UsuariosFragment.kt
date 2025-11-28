@@ -165,6 +165,7 @@ class UsuariosFragment : Fragment() {
         val dialog = builder.create()
         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
+        // Configurar Spinner
         val rolesDisponibles = viewModel.roles.value ?: emptyList()
         val adapterRoles = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, rolesDisponibles.map { it.nombre })
         adapterRoles.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
@@ -177,36 +178,31 @@ class UsuariosFragment : Fragment() {
             dialogBinding.etApellidoUsuario.setText(usuario.apellido)
             dialogBinding.etEmailUsuario.setText(usuario.email)
             dialogBinding.etTelefonoUsuario.setText(usuario.telefono ?: "")
-            dialogBinding.tilPasswordUsuario.visibility = View.GONE
-            dialogBinding.spRoles.isEnabled = true
 
-            // Seleccionar Rol
-            val rolActualId = usuario.roles?.firstOrNull()?.id // <--- Usa .id
-            val rolIndex = rolesDisponibles.indexOfFirst { it.id == rolActualId } // <--- Usa .id
+            dialogBinding.tilPasswordUsuario.visibility = View.GONE
+            dialogBinding.spRoles.isEnabled = true // Permitimos editar rol si quieres
+
+            // Preseleccionar rol
+            val rolActualId = usuario.roles?.firstOrNull()?.id
+            val rolIndex = rolesDisponibles.indexOfFirst { it.id == rolActualId }
             if (rolIndex >= 0) dialogBinding.spRoles.setSelection(rolIndex)
 
             dialogBinding.btnGuardar.setOnClickListener {
-                val pos = dialogBinding.spRoles.selectedItemPosition
-                val rolDto = rolesDisponibles.getOrNull(pos)
-
-                if (rolDto != null) {
-                    viewModel.crearUsuario(
-                        dialogBinding.etNombreUsuario.text.toString(),
-                        dialogBinding.etApellidoUsuario.text.toString(),
-                        dialogBinding.etEmailUsuario.text.toString(),
-                        dialogBinding.etPasswordUsuario.text.toString(),
-                        dialogBinding.etTelefonoUsuario.text.toString(),
-
-                        // === CORRECCIÓN AQUÍ ===
-                        // Antes: rolDto.id_rol
-                        // Ahora: rolDto.id
-                        rolDto.id
-                    )
-                    dialog.dismiss()
-                } else {
-                    Toast.makeText(context, "Selecciona un rol", Toast.LENGTH_SHORT).show()
+                // Validación básica para editar
+                if (dialogBinding.etNombreUsuario.text.toString().length < 2) {
+                    dialogBinding.tilNombre.error = "Mínimo 2 letras"
+                    return@setOnClickListener
                 }
+
+                viewModel.actualizarUsuario(
+                    usuario.id,
+                    dialogBinding.etNombreUsuario.text.toString(),
+                    dialogBinding.etApellidoUsuario.text.toString(),
+                    dialogBinding.etEmailUsuario.text.toString()
+                )
+                dialog.dismiss()
             }
+
         } else {
             // MODO CREAR
             dialogBinding.tvTitulo.text = "Nuevo Empleado"
@@ -214,17 +210,56 @@ class UsuariosFragment : Fragment() {
             dialogBinding.spRoles.isEnabled = true
 
             dialogBinding.btnGuardar.setOnClickListener {
+                // === VALIDACIONES DEL BACKEND ===
+                val nombre = dialogBinding.etNombreUsuario.text.toString().trim()
+                val apellido = dialogBinding.etApellidoUsuario.text.toString().trim()
+                val email = dialogBinding.etEmailUsuario.text.toString().trim()
+                val telefono = dialogBinding.etTelefonoUsuario.text.toString().trim()
+                val password = dialogBinding.etPasswordUsuario.text.toString().trim()
+
+                var isValid = true
+
+                // 1. Nombre y Apellido
+                if (nombre.length < 2) {
+                    dialogBinding.tilNombre.error = "Mínimo 2 letras"
+                    isValid = false
+                } else dialogBinding.tilNombre.error = null
+
+                if (apellido.length < 2) {
+                    dialogBinding.tilApellido.error = "Mínimo 2 letras"
+                    isValid = false
+                } else dialogBinding.tilApellido.error = null
+
+                // 2. Email
+                if (email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+                    dialogBinding.tilEmail.error = "Correo inválido"
+                    isValid = false
+                } else dialogBinding.tilEmail.error = null
+
+                // 3. Teléfono (Opcional pero validado si se escribe)
+                if (telefono.isNotEmpty() && (telefono.length < 10 || telefono.length > 15)) {
+                    dialogBinding.tilTelefono.error = "Entre 10 y 15 dígitos"
+                    isValid = false
+                } else dialogBinding.tilTelefono.error = null
+
+                // 4. Password (CRÍTICO: Letra + Número)
+                val tieneLetra = password.any { it.isLetter() }
+                val tieneNumero = password.any { it.isDigit() }
+
+                if (password.length < 6 || !tieneLetra || !tieneNumero) {
+                    dialogBinding.tilPasswordUsuario.error = "Mín. 6 caracteres, 1 letra y 1 número"
+                    isValid = false
+                } else dialogBinding.tilPasswordUsuario.error = null
+
+                if (!isValid) return@setOnClickListener
+
+                // Obtener Rol Seleccionado (CORRECCIÓN FINAL DE LÓGICA)
                 val pos = dialogBinding.spRoles.selectedItemPosition
                 val rolDto = rolesDisponibles.getOrNull(pos)
 
                 if (rolDto != null) {
                     viewModel.crearUsuario(
-                        dialogBinding.etNombreUsuario.text.toString(),
-                        dialogBinding.etApellidoUsuario.text.toString(),
-                        dialogBinding.etEmailUsuario.text.toString(),
-                        dialogBinding.etPasswordUsuario.text.toString(),
-                        dialogBinding.etTelefonoUsuario.text.toString(),
-                        rolDto.id // RolItemDto usa 'id'
+                        nombre, apellido, email, password, telefono, rolDto.id
                     )
                     dialog.dismiss()
                 } else {

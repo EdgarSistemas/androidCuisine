@@ -13,7 +13,7 @@ data class RolItemDto(
 // ==============================================================================
 
 data class UsuarioDto(
-    @SerializedName("id") val id: Int,
+    @SerializedName("id_usuario") val id: Int,
     @SerializedName("nombre") val nombre: String,
     @SerializedName("apellido") val apellido: String?,
     @SerializedName("email") val email: String,
