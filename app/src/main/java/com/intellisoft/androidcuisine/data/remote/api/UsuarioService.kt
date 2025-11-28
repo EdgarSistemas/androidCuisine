@@ -14,12 +14,14 @@ interface UsuarioService {
     // =================================================================================
     // Antes: Response<List<UsuarioDto>>
     // Ahora: Response<ApiResponse<List<UsuarioDto>>>  <-- ESTO ARREGLA EL ERROR
-    @GET("usuarios/filtrar")
-    suspend fun getUsuarios(
-        @Query("rol_id") rolId: Int,
-        @Query("sucursal_id") sucursalId: Int
-    ): Response<ApiResponse<List<UsuarioDto>>>
 
+    //    @GET("usuarios/filtrar")
+//    suspend fun getUsuarios(
+//        @Query("rol_id") rolId: Int,
+//        @Query("sucursal_id") sucursalId: Int
+//    ): Response<ApiResponse<List<UsuarioDto>>>
+    @GET("usuarios")
+    suspend fun getUsuarios(): Response<ApiResponse<List<UsuarioDto>>>
     // =================================================================================
     // CREAR USUARIO (POST)
     // =================================================================================

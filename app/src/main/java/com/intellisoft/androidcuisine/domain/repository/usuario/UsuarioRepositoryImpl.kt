@@ -15,18 +15,54 @@ class UsuarioRepositoryImpl : UsuarioRepository {
     // =================================================================================
     // LISTAR USUARIOS (GET)
     // =================================================================================
+//    override suspend fun getUsuarios(rolId: Int?, sucursalId: Int?): Result<List<UsuarioDto>> {
+//        return try {
+//            val sucursal = sucursalId ?: 0
+//            val rol = rolId ?: 0 // <--- AGREGAMOS ESTO (Si es null, usamos 0)
+//
+//            Log.d("UsuarioRepo", "📡 Pidiendo usuarios... Rol: $rol | Sucursal: $sucursal")            // Ahora pasamos 'rol' que ya es Int seguro
+//            val response = ApiClient.usuarioService.getUsuarios(rol, sucursal)
+//
+//            if (response.isSuccessful && response.body() != null) {
+//                val apiResponse = response.body()!!
+//                if (apiResponse.success && apiResponse.data != null) {
+//                    Result.success(apiResponse.data)
+//                } else {
+//                    Result.success(emptyList())
+//                }
+//            } else {
+//                Result.failure(Exception("Error al listar usuarios: ${response.code()}"))
+//            }
+//        } catch (e: Exception) {
+//            Result.failure(e)
+//        }
+//    }
     override suspend fun getUsuarios(rolId: Int?, sucursalId: Int?): Result<List<UsuarioDto>> {
         return try {
-            val sucursal = sucursalId ?: 0
-            val rol = rolId ?: 0 // <--- AGREGAMOS ESTO (Si es null, usamos 0)
-
-            Log.d("UsuarioRepo", "📡 Pidiendo usuarios... Rol: $rol | Sucursal: $sucursal")            // Ahora pasamos 'rol' que ya es Int seguro
-            val response = ApiClient.usuarioService.getUsuarios(rol, sucursal)
+            // 1. Llamamos al endpoint general (que sí devuelve id_usuario correcto)
+            val response = ApiClient.usuarioService.getUsuarios()
 
             if (response.isSuccessful && response.body() != null) {
                 val apiResponse = response.body()!!
                 if (apiResponse.success && apiResponse.data != null) {
-                    Result.success(apiResponse.data)
+
+                    val todosLosUsuarios = apiResponse.data
+
+                    // 2. FILTRADO MANUAL EN ANDROID (Workaround)
+                    // Filtramos por Rol
+                    var usuariosFiltrados = if (rolId != null && rolId > 0) {
+                        todosLosUsuarios.filter { usuario ->
+                            // Verificamos si el usuario tiene el rol solicitado en su lista
+                            usuario.roles?.any { it.id == rolId } == true
+                        }
+                    } else {
+                        todosLosUsuarios
+                    }
+
+                    // (Opcional) Filtrar por sucursal si tu DTO tuviera ese dato,
+                    // pero por ahora el filtro de Rol suele ser suficiente para la vista.
+
+                    Result.success(usuariosFiltrados)
                 } else {
                     Result.success(emptyList())
                 }
@@ -34,6 +70,7 @@ class UsuarioRepositoryImpl : UsuarioRepository {
                 Result.failure(Exception("Error al listar usuarios: ${response.code()}"))
             }
         } catch (e: Exception) {
+            Log.e("UsuarioRepo", "Error: ${e.message}")
             Result.failure(e)
         }
     }
