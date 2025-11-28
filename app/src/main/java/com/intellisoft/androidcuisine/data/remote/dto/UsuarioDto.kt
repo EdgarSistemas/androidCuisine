@@ -1,90 +1,47 @@
 package com.intellisoft.androidcuisine.data.remote.dto
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
-// ============================================================================================
-//  REQUESTS (Objetos que envías a la API)
-// ============================================================================================
+// === CAMBIO CLAVE: Renombramos a RolItemDto para que no choque con AuthDto ===
+data class RolItemDto(
+    @SerializedName("id_rol") val id: Int, // ✅ CORRECTO: Mapeamos "id_rol" a la variable "id"
+    @SerializedName("nombre") val nombre: String,
+    @SerializedName("descripcion") val descripcion: String?
+) : Serializable
 
-/**
- * Petición para CREAR un nuevo usuario empleado.
- * Endpoint: POST /api/usuarios/empleado
- */
-data class UsuarioCreateRequest(
-    val nombre: String,
-    val apellido: String,
-    val email: String,
-    val password: String,
-    val telefono: String,
+// ==============================================================================
+
+data class UsuarioDto(
+    @SerializedName("id") val id: Int,
+    @SerializedName("nombre") val nombre: String,
+    @SerializedName("apellido") val apellido: String?,
+    @SerializedName("email") val email: String,
+    @SerializedName("telefono") val telefono: String?,
+    @SerializedName("is_active") val isActive: Boolean?,
+    @SerializedName("roles") val roles: List<RolItemDto>? // <--- Aquí usamos la nueva clase
+) : Serializable
+
+data class CreateUsuarioDto(
+    @SerializedName("nombre") val nombre: String,
+    @SerializedName("apellido") val apellido: String,
+    @SerializedName("email") val email: String,
+    @SerializedName("password") val password: String,
+    @SerializedName("telefono") val telefono: String,
+
+    // CORRECCIÓN: El POST espera "rol_id" y "sucursal_id"
+    // (A diferencia del GET que devolvía "id_rol")
     @SerializedName("rol_id") val rolId: Int,
     @SerializedName("sucursal_id") val sucursalId: Int
 )
-
-/**
- * Petición para ACTUALIZAR un usuario existente.
- * Endpoint: PUT /api/usuarios/{id}
- */
-data class UsuarioUpdateRequest(
-    val nombre: String,
-    val apellido: String,
-    val email: String
+data class UpdateUsuarioDto(
+    @SerializedName("nombre") val nombre: String,
+    @SerializedName("apellido") val apellido: String,
+    @SerializedName("email") val email: String
 )
 
-// ============================================================================================
-//  RESPONSES (Objetos que recibes de la API)
-// ============================================================================================
-
-/**
- * Respuesta genérica o "envoltorio" que usa tu API para la mayoría de consultas.
- * Ejemplo de uso: ApiResponse<List<UsuarioDto>>
- */
 data class ApiResponse<T>(
     val success: Boolean,
     val message: String,
     val data: T?
-)
-
-/**
- * Respuesta específica que devuelve la API tras actualizar un usuario.
- */
-data class UsuarioUpdateResponse(
-    val success: Boolean,
-    val message: String,
-    val data: UsuarioUpdateData?
-)
-
-// ============================================================================================
-//  MODELS (Datos puros / Entidades)
-// ============================================================================================
-
-/**
- * Modelo principal de Usuario para mostrar en listas (RecyclerView).
- */
-data class UsuarioDto(
-    @SerializedName("id_usuario") val idUsuario: Int,
-    val nombre: String,
-    val apellido: String,
-    val email: String,
-    val telefono: String?,
-    @SerializedName("rol_id") val rolId: Int?,     // ID del rol asociado
-    val roles: List<RolDto>?                         // Lista de roles (si la API devuelve el objeto completo)
-)
-
-/**
- * Modelo simplificado que devuelve la API dentro de UsuarioUpdateResponse.
- */
-data class UsuarioUpdateData(
-    @SerializedName("id_usuario") val idUsuario: Int,
-    val nombre: String,
-    val apellido: String,
-    val email: String
-)
-
-/**
- * Modelo de Rol para llenar el Spinner (Dropdown).
- */
-data class RolDto(
-    @SerializedName("id_rol") val idRol: Int,
-    val nombre: String,
-    val descripcion: String?
 )

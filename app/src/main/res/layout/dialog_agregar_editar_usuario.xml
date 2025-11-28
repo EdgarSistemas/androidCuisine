@@ -1,182 +1,159 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/bottom_sheet_background"
-    android:padding="16dp">
+    android:layout_margin="16dp"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="8dp"
+    app:cardBackgroundColor="@android:color/white">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp">
 
         <TextView
-            android:id="@+id/tvTituloDialog"
-            android:layout_width="0dp"
+            android:id="@+id/tvTitulo"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Nuevo Usuario"
-            android:textColor="@color/cuisine_brown_primary"
-            android:textSize="22sp"
+            android:textSize="20sp"
             android:textStyle="bold"
-            android:gravity="center"
-            android:layout_marginBottom="24dp"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            android:textColor="@color/black"
+            android:layout_marginBottom="16dp"/>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tilNombre"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
             android:hint="Nombre"
-            app:boxStrokeColor="@color/cuisine_brown_primary"
-            app:hintTextColor="@color/cuisine_brown_primary"
-            app:layout_constraintTop_toBottomOf="@id/tvTituloDialog">
+            app:boxBackgroundMode="outline"
+            app:boxCornerRadiusTopStart="8dp"
+            app:boxCornerRadiusTopEnd="8dp"
+            app:boxCornerRadiusBottomStart="8dp"
+            app:boxCornerRadiusBottomEnd="8dp"
+            android:layout_marginBottom="8dp">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etNombre"
+                android:id="@+id/etNombreUsuario"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textPersonName"
-                android:textColor="@color/cuisine_dark_text" />
+                android:inputType="textPersonName" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tilApellido"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
             android:hint="Apellido"
-            app:boxStrokeColor="@color/cuisine_brown_primary"
-            app:hintTextColor="@color/cuisine_brown_primary"
-            app:layout_constraintTop_toBottomOf="@id/tilNombre">
+            app:boxBackgroundMode="outline"
+            app:boxCornerRadiusTopStart="8dp"
+            app:boxCornerRadiusTopEnd="8dp"
+            app:boxCornerRadiusBottomStart="8dp"
+            app:boxCornerRadiusBottomEnd="8dp"
+            android:layout_marginBottom="8dp">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etApellido"
+                android:id="@+id/etApellidoUsuario"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textPersonName"
-                android:textColor="@color/cuisine_dark_text" />
+                android:inputType="textPersonName" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tilEmail"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
             android:hint="Correo Electrónico"
-            app:boxStrokeColor="@color/cuisine_brown_primary"
-            app:hintTextColor="@color/cuisine_brown_primary"
-            app:layout_constraintTop_toBottomOf="@id/tilApellido">
+            app:boxBackgroundMode="outline"
+            app:boxCornerRadiusTopStart="8dp"
+            app:boxCornerRadiusTopEnd="8dp"
+            app:boxCornerRadiusBottomStart="8dp"
+            app:boxCornerRadiusBottomEnd="8dp"
+            android:layout_marginBottom="8dp">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etEmail"
+                android:id="@+id/etEmailUsuario"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textEmailAddress"
-                android:textColor="@color/cuisine_dark_text" />
+                android:inputType="textEmailAddress" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tilTelefono"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
             android:hint="Teléfono"
-            app:boxStrokeColor="@color/cuisine_brown_primary"
-            app:hintTextColor="@color/cuisine_brown_primary"
-            app:layout_constraintTop_toBottomOf="@id/tilEmail">
+            app:boxBackgroundMode="outline"
+            app:boxCornerRadiusTopStart="8dp"
+            app:boxCornerRadiusTopEnd="8dp"
+            app:boxCornerRadiusBottomStart="8dp"
+            app:boxCornerRadiusBottomEnd="8dp"
+            android:layout_marginBottom="8dp">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etTelefono"
+                android:id="@+id/etTelefonoUsuario"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="phone"
-                android:textColor="@color/cuisine_dark_text" />
+                android:inputType="phone" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilPasswordUsuario"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Contraseña"
+            app:endIconMode="password_toggle"
+            app:boxBackgroundMode="outline"
+            app:boxCornerRadiusTopStart="8dp"
+            app:boxCornerRadiusTopEnd="8dp"
+            app:boxCornerRadiusBottomStart="8dp"
+            app:boxCornerRadiusBottomEnd="8dp"
+            android:layout_marginBottom="12dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etPasswordUsuario"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
-            android:id="@+id/tvLabelRol"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Rol del Empleado"
-            android:textSize="14sp"
-            android:textColor="@color/cuisine_brown_primary"
-            android:textStyle="bold"
-            android:layout_marginTop="16dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tilTelefono" />
+            android:textSize="12sp"
+            android:layout_marginBottom="4dp"/>
 
-        <LinearLayout
-            android:id="@+id/containerSpinner"
+        <Spinner
+            android:id="@+id/spRoles"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:background="@drawable/ic_launcher_background"
-            android:backgroundTint="@color/cuisine_white_accent"
-            android:padding="2dp"
-            app:layout_constraintTop_toBottomOf="@id/tvLabelRol">
-            <Spinner
-                android:id="@+id/spinnerRoles"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:spinnerMode="dropdown" />
-        </LinearLayout>
-
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tilPassword"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:hint="Contraseña"
-            app:endIconMode="password_toggle"
-            app:endIconTint="@color/cuisine_brown_primary"
-            app:boxStrokeColor="@color/cuisine_brown_primary"
-            app:hintTextColor="@color/cuisine_brown_primary"
-            app:layout_constraintTop_toBottomOf="@id/containerSpinner">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etPassword"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textPassword"
-                android:textColor="@color/cuisine_dark_text" />
-        </com.google.android.material.textfield.TextInputLayout>
+            android:layout_height="48dp"
+            android:background="@android:drawable/btn_dropdown"
+            android:layout_marginBottom="24dp"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:gravity="end"
-            android:layout_marginTop="32dp"
-            app:layout_constraintTop_toBottomOf="@id/tilPassword"
-            app:layout_constraintBottom_toBottomOf="parent">
+            android:gravity="end">
 
             <Button
                 android:id="@+id/btnCancelar"
-                style="@style/Widget.MaterialComponents.Button.TextButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Cancelar"
-                android:textColor="@color/cuisine_brown_primary"
-                android:layout_marginEnd="8dp" />
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:textColor="@android:color/darker_gray"
+                android:layout_marginEnd="8dp"/>
 
             <Button
-                android:id="@+id/btnGuardarUsuario"
+                android:id="@+id/btnGuardar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Guardar"
-                android:backgroundTint="@color/cuisine_green_dark"
-                android:textColor="@color/white" />
+                android:backgroundTint="@color/black"
+                android:textColor="@color/white"/>
         </LinearLayout>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</ScrollView>
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>

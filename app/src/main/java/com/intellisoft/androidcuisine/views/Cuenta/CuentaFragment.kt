@@ -13,8 +13,9 @@ import com.google.android.material.textfield.TextInputEditText
 import com.intellisoft.androidcuisine.R
 import com.intellisoft.androidcuisine.util.SessionManager
 import com.intellisoft.androidcuisine.views.Bienvenida.BienvenidaActivity
-import com.intellisoft.androidcuisine.views.Main.cuenta.CuentaViewModel
-import com.intellisoft.androidcuisine.views.Main.cuenta.UpdateState
+import com.intellisoft.androidcuisine.views.Cuenta.CuentaViewModel
+import com.intellisoft.androidcuisine.views.Cuenta.UpdateState
+
 
 class CuentaFragment : Fragment() {
 

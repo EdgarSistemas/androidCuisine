@@ -17,6 +17,7 @@ import com.google.android.material.navigation.NavigationView
 import com.intellisoft.androidcuisine.R
 import com.intellisoft.androidcuisine.util.SessionManager
 import com.intellisoft.androidcuisine.views.Bienvenida.BienvenidaActivity
+import com.intellisoft.androidcuisine.views.Usuarios.UsuariosFragment
 
 import com.intellisoft.androidcuisine.views.cuenta.CuentaFragment
 import com.intellisoft.androidcuisine.views.horario.HorariosFragment
@@ -152,7 +153,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.nav_sucursales -> loadFragment(SucursalesFragment())
-            R.id.nav_usuarios -> Toast.makeText(this, "Usuarios", Toast.LENGTH_SHORT).show()
+            R.id.nav_usuarios -> loadFragment(UsuariosFragment())
             R.id.nav_areas -> Toast.makeText(this, "Áreas", Toast.LENGTH_SHORT).show()
             R.id.nav_mesas -> Toast.makeText(this, "Mesas", Toast.LENGTH_SHORT).show()
             R.id.nav_categorias -> Toast.makeText(this, "Categorías", Toast.LENGTH_SHORT).show()

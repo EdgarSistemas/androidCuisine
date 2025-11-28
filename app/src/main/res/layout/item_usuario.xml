@@ -7,71 +7,86 @@
     android:layout_marginHorizontal="16dp"
     android:layout_marginVertical="8dp"
     app:cardCornerRadius="12dp"
-    app:cardElevation="4dp">
+    app:cardElevation="4dp"
+    app:cardBackgroundColor="@android:color/white">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="16dp">
 
+        <ImageView
+            android:id="@+id/ivAvatar"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@drawable/ic_menu_profile"
+            app:tint="@android:color/darker_gray"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
         <TextView
-            android:id="@+id/tvNombreCompleto"
+            android:id="@+id/tvNombreUsuario"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="Nombre Apellido"
-            android:textSize="18sp"
             android:textStyle="bold"
+            android:textSize="16sp"
             android:textColor="@color/black"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/btnEditar"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_marginStart="16dp"
+            app:layout_constraintStart_toEndOf="@id/ivAvatar"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btnEditar"/>
 
         <TextView
-            android:id="@+id/tvEmail"
+            android:id="@+id/tvRolUsuario"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="email@ejemplo.com"
+            android:text="Rol: Mesero"
             android:textSize="14sp"
-            android:textColor="@color/cuisine_green_light"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/btnEditar"
-            app:layout_constraintTop_toBottomOf="@id/tvNombreCompleto" />
+            android:textColor="@android:color/holo_blue_dark"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="2dp"
+            app:layout_constraintStart_toEndOf="@id/ivAvatar"
+            app:layout_constraintTop_toBottomOf="@id/tvNombreUsuario"
+            app:layout_constraintEnd_toStartOf="@+id/btnEditar"/>
 
-        <com.google.android.material.chip.Chip
-            android:id="@+id/chipRol"
-            android:layout_width="wrap_content"
+        <TextView
+            android:id="@+id/tvEmailUsuario"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Rol"
-            android:layout_marginTop="8dp"
-            android:enabled="false"
-            app:chipMinHeight="32dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvEmail" />
-
-        <ImageButton
-            android:id="@+id/btnEliminar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_delete"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:padding="8dp"
-            app:tint="@color/design_default_color_error"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent" />
+            android:text="usuario@email.com"
+            android:textSize="12sp"
+            android:textColor="@android:color/darker_gray"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="2dp"
+            app:layout_constraintStart_toEndOf="@id/ivAvatar"
+            app:layout_constraintTop_toBottomOf="@id/tvRolUsuario"
+            app:layout_constraintEnd_toStartOf="@+id/btnEditar"/>
 
         <ImageButton
             android:id="@+id/btnEditar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:src="@drawable/ic_edit"
             android:background="?attr/selectableItemBackgroundBorderless"
-            android:padding="8dp"
+            app:tint="@android:color/darker_gray"
             android:layout_marginEnd="8dp"
-            app:tint="@color/cuisine_green_dark"
-            app:layout_constraintEnd_toStartOf="@id/btnEliminar"
+            app:layout_constraintEnd_toStartOf="@+id/btnEliminar"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent" />
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <ImageButton
+            android:id="@+id/btnEliminar"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_delete"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            app:tint="@android:color/holo_red_dark"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </com.google.android.material.card.MaterialCardView>

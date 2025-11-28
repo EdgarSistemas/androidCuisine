@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "65217047825",
-    "project_id": "push-notifications-cuisine",
-    "storage_bucket": "push-notifications-cuisine.firebasestorage.app"
+    "project_number": "674253062496",
+    "project_id": "cuisine-push-new",
+    "storage_bucket": "cuisine-push-new.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:65217047825:android:cd755d0dbba643589930b0",
+        "mobilesdk_app_id": "1:674253062496:android:f1a40f70c316fb4fdede05",
         "android_client_info": {
           "package_name": "com.intellisoft.androidcuisine"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyBSn4U4ySatSk4kXugFn_kX1abEIJv9A4E"
+          "current_key": "AIzaSyC5JBQmtAE3ll3LlmGz9IsCbrnVFrW3MfI"
         }
       ],
       "services": {
