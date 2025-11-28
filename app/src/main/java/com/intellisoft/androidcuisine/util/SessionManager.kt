@@ -180,6 +180,19 @@ class SessionManager(context: Context) {
         editor.apply()
         Log.d("SessionManager", "♻️ Datos actualizados")
     }
+
+    //OBTENER SUCURSALES
+    fun getSucursalId(): Int {
+        val sucursales = getUserSucursales()
+        sucursales.getOrNull(0)?.id_sucursal?.let { Log.d("SessionManager", "ID de la primera sucursal: $it") }
+
+        //IDEA
+        //poner validacion para saber que tipo de rol tiene el que inicio sesion
+        //si es admin siempre agarrar la primer sucursal
+
+        // Retorna el ID de la primera sucursal disponible, o 0 si no tiene ninguna
+        return if (sucursales.isNotEmpty()) sucursales[0].id_sucursal else 0
+    } //RECONOCER SI ESTAS INICIANDO SESSION CON UN ADMIN, C
 }
 
 data class UserData(

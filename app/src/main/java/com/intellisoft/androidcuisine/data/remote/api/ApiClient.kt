@@ -69,4 +69,8 @@ object ApiClient {
     val ticketService: TicketService by lazy {
         retrofit.create(TicketService::class.java)
     }
+
+    val rolService: RolService by lazy {
+        retrofit.create(RolService::class.java)
+    }
 }
