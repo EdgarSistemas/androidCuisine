@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="12dp"
+    android:gravity="center_vertical"
+    android:background="@color/cuisine_white_accent">
+
+    <!-- Info -->
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvNombre"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hamburguesa Clásica"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:textColor="@color/cuisine_dark_text"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvPrecio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="$150.00 c/u"
+            android:textSize="12sp"
+            android:textColor="@color/cuisine_dark_text"
+            android:alpha="0.6"/>
+
+    </LinearLayout>
+
+    <!-- Cantidad -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginHorizontal="8dp">
+
+        <ImageButton
+            android:id="@+id/btnMenos"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/ic_remove"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            app:tint="@color/cuisine_green_dark"
+            android:contentDescription="Menos"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvCantidad"
+            android:layout_width="32dp"
+            android:layout_height="wrap_content"
+            android:text="1"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="@color/cuisine_dark_text"
+            android:gravity="center"/>
+
+        <ImageButton
+            android:id="@+id/btnMas"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/ic_add"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            app:tint="@color/cuisine_green_dark"
+            android:contentDescription="Más"/>
+
+    </LinearLayout>
+
+    <!-- Subtotal -->
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tvSubtotal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="$150.00"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        android:textColor="@color/cuisine_green_dark"
+        android:minWidth="70dp"
+        android:gravity="end"/>
+
+    <!-- Eliminar -->
+    <ImageButton
+        android:id="@+id/btnEliminar"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="8dp"
+        android:src="@drawable/ic_delete"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        app:tint="@android:color/holo_red_dark"
+        android:contentDescription="Eliminar"/>
+
+</LinearLayout>

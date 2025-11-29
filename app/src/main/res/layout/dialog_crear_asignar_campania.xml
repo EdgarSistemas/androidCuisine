@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/cuisine_white_accent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Crear Campaña"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="@color/cuisine_dark_text"
+            android:layout_marginBottom="8dp"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvClientesSeleccionados"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Clientes seleccionados: 0"
+            android:textSize="14sp"
+            android:textColor="@color/cuisine_green_dark"
+            android:textStyle="bold"
+            android:layout_marginBottom="24dp"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+            app:boxStrokeColor="@color/cuisine_green_dark"
+            app:hintTextColor="@color/cuisine_green_dark"
+            android:hint="Nombre de la Campaña *">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etNombreCampania"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textCapWords"
+                android:maxLines="1"
+                android:textColor="@color/black"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+            app:boxStrokeColor="@color/cuisine_green_dark"
+            app:hintTextColor="@color/cuisine_green_dark"
+            android:hint="Código del Cupón *">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etCodigoCampania"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textCapCharacters"
+                android:maxLines="1"
+                android:textColor="@color/black"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+            app:boxStrokeColor="@color/cuisine_green_dark"
+            app:hintTextColor="@color/cuisine_green_dark"
+            app:suffixText="%"
+            android:hint="Porcentaje de Descuento *">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etPorcentaje"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+                android:maxLines="1"
+                android:textColor="@color/black"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+            app:boxStrokeColor="@color/cuisine_green_dark"
+            app:hintTextColor="@color/cuisine_green_dark"
+            app:endIconMode="custom"
+            app:endIconDrawable="@drawable/ic_calendar"
+            app:endIconTint="@color/cuisine_green_dark"
+            android:hint="Fecha de Vigencia (Opcional)">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etFechaVigencia"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="none"
+                android:focusable="false"
+                android:clickable="true"
+                android:textColor="@color/black"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="24dp"
+            android:visibility="gone"
+            android:indeterminateTint="@color/cuisine_green_dark"/>
+
+        <LinearLayout
+            android:id="@+id/layoutBotones"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="24dp"
+            android:gravity="end">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnCancelar"
+                style="@style/Widget.Material3.Button.TextButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cancelar"
+                android:textColor="@color/cuisine_green_dark"
+                android:layout_marginEnd="8dp"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnCrearAsignar"
+                style="@style/Widget.Material3.Button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Crear y Asignar"
+                android:backgroundTint="@color/cuisine_green_dark"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>

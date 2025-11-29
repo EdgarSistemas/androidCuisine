@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/cuisine_beige_background"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nueva Compra"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="@color/cuisine_dark_text"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="24dp"/>
+
+        <!-- Selección de Proveedor -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="2dp"
+            app:cardBackgroundColor="@color/cuisine_white_accent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Proveedor"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/cuisine_green_dark"
+                    android:layout_marginBottom="12dp"/>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilProveedor"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                    app:boxStrokeColor="@color/cuisine_green_dark"
+                    app:hintTextColor="@color/cuisine_green_dark"
+                    android:hint="Seleccionar Proveedor">
+
+                    <AutoCompleteTextView
+                        android:id="@+id/actvProveedor"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="none"
+                        android:textColor="@color/black"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Artículos -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="2dp"
+            app:cardBackgroundColor="@color/cuisine_white_accent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Artículos"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/cuisine_green_dark"/>
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnAgregarArticulo"
+                        style="@style/Widget.Material3.Button.TextButton.Icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Agregar"
+                        android:textColor="@color/cuisine_green_dark"
+                        app:icon="@drawable/ic_add"
+                        app:iconTint="@color/cuisine_green_dark"/>
+
+                </LinearLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerViewArticulos"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:nestedScrollingEnabled="false"
+                    tools:listitem="@layout/item_articulo_compra"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tvNoArticulos"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="No hay artículos agregados"
+                    android:textSize="14sp"
+                    android:textColor="@color/cuisine_dark_text"
+                    android:alpha="0.6"
+                    android:gravity="center"
+                    android:padding="24dp"/>
+
+                <View
+                    android:id="@+id/dividerTotal"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="12dp"
+                    android:background="@color/cuisine_beige_background"
+                    android:visibility="gone"/>
+
+                <LinearLayout
+                    android:id="@+id/layoutTotal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:orientation="horizontal"
+                    android:gravity="end"
+                    android:visibility="gone">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Total: "
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/cuisine_dark_text"/>
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/tvTotal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/cuisine_green_dark"
+                        tools:text="$0.00"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Botones -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnGuardarCompra"
+            style="@style/Widget.Material3.Button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Guardar Compra"
+            android:backgroundTint="@color/cuisine_green_dark"
+            app:cornerRadius="8dp"
+            android:enabled="false"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnCancelar"
+            style="@style/Widget.Material3.Button.TextButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Cancelar"
+            android:textColor="@color/cuisine_dark_text"/>
+
+    </LinearLayout>
+
+</ScrollView>

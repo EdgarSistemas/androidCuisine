@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardCombo"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="4dp"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="2dp"
+    app:cardBackgroundColor="#FFF8E1"
+    app:rippleColor="@color/cuisine_green_light">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="12dp">
+
+        <!-- Badge combo -->
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="🎁 COMBO"
+            android:textSize="10sp"
+            android:textStyle="bold"
+            android:textColor="#E65100"
+            android:background="@drawable/bg_badge_combo"
+            android:paddingHorizontal="8dp"
+            android:paddingVertical="2dp"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvNombre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Combo Familiar"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:textColor="@color/cuisine_dark_text"
+            android:maxLines="2"
+            android:ellipsize="end"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvDescripcion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:text="Ideal para compartir"
+            android:textSize="11sp"
+            android:textColor="@color/cuisine_dark_text"
+            android:alpha="0.6"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:visibility="gone"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvContenido"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="2x Hamburguesa • 2x Refresco"
+            android:textSize="10sp"
+            android:textColor="@color/cuisine_dark_text"
+            android:alpha="0.7"
+            android:maxLines="2"
+            android:ellipsize="end"
+            android:visibility="gone"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvPrecio"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="$350.00"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="#E65100"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnAgregar"
+                style="@style/Widget.Material3.Button.TonalButton"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                app:icon="@drawable/ic_add"
+                app:iconGravity="textStart"
+                app:iconPadding="0dp"
+                app:backgroundTint="#E65100"
+                app:iconTint="@color/white"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

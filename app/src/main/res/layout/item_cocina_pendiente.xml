@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="8dp"
+    android:layout_marginVertical="6dp"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="2dp"
+    app:cardBackgroundColor="@color/cuisine_white_accent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+        <!-- Header: Folio + Tipo + Tiempo -->
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvFolio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:textColor="@color/cuisine_dark_text"
+            android:alpha="0.7"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="ORD-001"/>
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chipTipo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="10sp"
+            app:chipMinHeight="24dp"
+            app:layout_constraintEnd_toStartOf="@id/tvTiempo"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginEnd="8dp"
+            tools:text="Dine-in"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvTiempo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:textColor="@color/cuisine_green_dark"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="5 min"/>
+
+        <!-- Producto -->
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvProducto"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/cuisine_dark_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/tvCantidad"
+            app:layout_constraintTop_toBottomOf="@id/tvFolio"
+            tools:text="Tacos al Pastor"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvCantidad"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="@color/cuisine_green_dark"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvFolio"
+            tools:text="x3"/>
+
+        <!-- Mesa -->
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvMesa"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:textSize="13sp"
+            android:textColor="@color/cuisine_dark_text"
+            android:alpha="0.7"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvProducto"
+            tools:text="Mesa 5"/>
+
+        <!-- Notas -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardNotas"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:visibility="gone"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="0dp"
+            app:cardBackgroundColor="#FFF3E0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvMesa"
+            tools:visibility="visible">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="8dp"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:src="@drawable/ic_notes"
+                    app:tint="#E65100"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tvNotas"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="8dp"
+                    android:textSize="13sp"
+                    android:textColor="#E65100"
+                    android:textStyle="italic"
+                    tools:text="Sin cebolla"/>
+
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Botón Listo -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnListo"
+            style="@style/Widget.Material3.Button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="✓ LISTO"
+            android:textSize="16sp"
+            android:backgroundTint="@color/cuisine_green_dark"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cardNotas"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>

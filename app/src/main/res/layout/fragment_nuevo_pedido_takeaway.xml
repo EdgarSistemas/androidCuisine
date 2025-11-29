@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/cuisine_beige_background">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingBottom="70dp">
+
+        <!-- Sucursal info -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:padding="16dp"
+            android:background="@color/cuisine_white_accent">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_location"
+                app:tint="@color/cuisine_green_dark"
+                android:contentDescription="Ubicación"/>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvSucursal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="Sucursal Centro"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:textColor="@color/cuisine_dark_text"/>
+
+        </LinearLayout>
+
+        <!-- Categorías horizontal scroll -->
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="none"
+            android:paddingVertical="8dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingHorizontal="12dp">
+
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/chipGroupCategorias"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:singleSelection="true"
+                    app:singleLine="true"/>
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipCombos"
+                    style="@style/Widget.Material3.Chip.Filter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="🎁 Combos"
+                    app:chipBackgroundColor="#FFF3E0"
+                    app:checkedIconVisible="false"/>
+
+            </LinearLayout>
+
+        </HorizontalScrollView>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:visibility="gone"
+                android:indeterminateTint="@color/cuisine_green_dark"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerProductos"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="8dp"
+                android:clipToPadding="false"/>
+
+            <!-- Empty State -->
+            <LinearLayout
+                android:id="@+id/layoutEmpty"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:visibility="gone">
+
+                <ImageView
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:src="@drawable/ic_restaurant"
+                    android:alpha="0.3"
+                    app:tint="@color/cuisine_green_dark"
+                    android:contentDescription="Sin productos"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="No hay productos disponibles"
+                    android:textSize="14sp"
+                    android:textColor="@color/cuisine_dark_text"
+                    android:alpha="0.6"/>
+
+            </LinearLayout>
+
+        </FrameLayout>
+
+    </LinearLayout>
+
+    <!-- Bottom bar carrito -->
+    <LinearLayout
+        android:id="@+id/layoutCarrito"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_gravity="bottom"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="16dp"
+        android:background="@color/cuisine_green_dark"
+        android:visibility="gone"
+        android:elevation="8dp">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvCantidadCarrito"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="3 items"
+                android:textSize="12sp"
+                android:textColor="@color/white"
+                android:alpha="0.8"/>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvTotalCarrito"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="$450.00"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@color/white"/>
+
+        </LinearLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnVerCarrito"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="Ver carrito"
+            app:backgroundTint="@color/white"
+            android:textColor="@color/cuisine_green_dark"/>
+
+    </LinearLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

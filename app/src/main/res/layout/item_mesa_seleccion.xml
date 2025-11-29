@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cardMesa"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_margin="4dp"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="2dp"
+    app:cardBackgroundColor="@color/cuisine_white_accent"
+    app:strokeWidth="2dp"
+    app:strokeColor="@android:color/transparent">
+
+    <LinearLayout
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="12dp"
+        android:gravity="center">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvMesa"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:textColor="@color/cuisine_dark_text"
+            tools:text="Mesa 5"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvCapacidad"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="11sp"
+            android:textColor="@color/cuisine_dark_text"
+            android:alpha="0.7"
+            tools:text="4 pers."/>
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chipEstatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:textSize="9sp"
+            app:chipMinHeight="20dp"
+            app:chipMinTouchTargetSize="0dp"
+            tools:text="Disponible"/>
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

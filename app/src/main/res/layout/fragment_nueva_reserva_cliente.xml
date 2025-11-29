@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/cuisine_beige_background"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- PASO 1: Seleccionar Sucursal -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardPaso1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="2dp"
+            app:cardBackgroundColor="@color/cuisine_white_accent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:text="1"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/white"
+                        android:gravity="center"
+                        android:background="@drawable/bg_circle_green"/>
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:text="Selecciona la sucursal"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/cuisine_dark_text"/>
+
+                </LinearLayout>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tvSucursalSeleccionada"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginStart="40dp"
+                    android:textSize="13sp"
+                    android:textColor="@color/cuisine_green_dark"
+                    android:visibility="gone"/>
+
+                <ProgressBar
+                    android:id="@+id/progressSucursales"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="16dp"
+                    android:visibility="gone"
+                    android:indeterminateTint="@color/cuisine_green_dark"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerSucursales"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:nestedScrollingEnabled="false"/>
+
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- PASO 2: Seleccionar Área y Mesa -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardPaso2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="2dp"
+            app:cardBackgroundColor="@color/cuisine_white_accent"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:text="2"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/white"
+                        android:gravity="center"
+                        android:background="@drawable/bg_circle_green"/>
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:text="Selecciona la mesa"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/cuisine_dark_text"/>
+
+                </LinearLayout>
+
+                <!-- Filtro de área -->
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:hint="Área (opcional)">
+
+                    <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                        android:id="@+id/spinnerAreas"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="none"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tvMesaSeleccionada"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:textSize="13sp"
+                    android:textColor="@color/cuisine_green_dark"
+                    android:visibility="gone"/>
+
+                <ProgressBar
+                    android:id="@+id/progressMesas"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="16dp"
+                    android:visibility="gone"
+                    android:indeterminateTint="@color/cuisine_green_dark"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerMesas"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:nestedScrollingEnabled="false"/>
+
+                <!-- Empty mesas -->
+                <LinearLayout
+                    android:id="@+id/layoutPaso2Empty"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:padding="24dp"
+                    android:visibility="gone">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="No hay mesas disponibles"
+                        android:textSize="14sp"
+                        android:textColor="@color/cuisine_dark_text"
+                        android:alpha="0.6"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- PASO 3: Fecha y Hora -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardPaso3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="2dp"
+            app:cardBackgroundColor="@color/cuisine_white_accent"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:text="3"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/white"
+                        android:gravity="center"
+                        android:background="@drawable/bg_circle_green"/>
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:text="Fecha y hora"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/cuisine_dark_text"/>
+
+                </LinearLayout>
+
+                <!-- Fecha y Hora en fila -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:orientation="horizontal">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="8dp"
+                        android:hint="Fecha"
+                        app:startIconDrawable="@drawable/ic_calendar">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/etFecha"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:focusable="false"
+                            android:clickable="true"/>
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:hint="Hora"
+                        app:startIconDrawable="@drawable/ic_clock">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/etHoraInicio"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:focusable="false"
+                            android:clickable="true"/>
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                </LinearLayout>
+
+                <!-- Duración -->
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:hint="Duración estimada">
+
+                    <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                        android:id="@+id/actvDuracion"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="none"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- Notas -->
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:hint="Notas (opcional)">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etNotas"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textMultiLine"
+                        android:maxLines="3"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Contador -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardContador"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="2dp"
+            app:cardBackgroundColor="#FFF3E0"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp"
+                android:gravity="center">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tiempo para confirmar"
+                    android:textSize="12sp"
+                    android:textColor="@color/cuisine_dark_text"
+                    android:alpha="0.7"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tvContador"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="03:00"
+                    android:textSize="36sp"
+                    android:textStyle="bold"
+                    android:textColor="#E65100"
+                    android:fontFamily="monospace"/>
+
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Botones -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="8dp">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnCancelar"
+                style="@style/Widget.Material3.Button.OutlinedButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginEnd="8dp"
+                android:text="Cancelar"
+                app:strokeColor="@color/cuisine_green_dark"
+                android:textColor="@color/cuisine_green_dark"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnConfirmar"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Confirmar Reserva"
+                android:enabled="false"
+                app:backgroundTint="@color/cuisine_green_dark"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>

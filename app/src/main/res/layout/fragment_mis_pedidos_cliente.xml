@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/cuisine_beige_background">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <!-- Filtros -->
+        <com.google.android.material.chip.ChipGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="12dp"
+            app:singleSelection="true"
+            app:selectionRequired="true">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipTodos"
+                style="@style/Widget.Material3.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Todos"
+                android:checked="true"
+                app:checkedIconVisible="false"/>
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipActivos"
+                style="@style/Widget.Material3.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Activos"
+                app:checkedIconVisible="false"/>
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipCompletados"
+                style="@style/Widget.Material3.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Completados"
+                app:checkedIconVisible="false"/>
+
+        </com.google.android.material.chip.ChipGroup>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:visibility="gone"
+                android:indeterminateTint="@color/cuisine_green_dark"/>
+
+            <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+                android:id="@+id/swipeRefresh"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerViewPedidos"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="16dp"
+                    android:clipToPadding="false"/>
+
+            </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+            <!-- Empty State -->
+            <LinearLayout
+                android:id="@+id/layoutEmpty"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:visibility="gone">
+
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/ic_pedidos"
+                    android:alpha="0.3"
+                    app:tint="@color/cuisine_green_dark"
+                    android:contentDescription="Sin pedidos"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="No tienes pedidos"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/cuisine_dark_text"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="¡Haz tu primer pedido!"
+                    android:textSize="14sp"
+                    android:textColor="@color/cuisine_dark_text"
+                    android:alpha="0.7"/>
+
+            </LinearLayout>
+
+        </FrameLayout>
+
+    </LinearLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabNuevoPedido"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="16dp"
+        android:src="@drawable/ic_add"
+        app:backgroundTint="@color/cuisine_green_dark"
+        app:tint="@color/white"
+        android:contentDescription="Nuevo pedido"/>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

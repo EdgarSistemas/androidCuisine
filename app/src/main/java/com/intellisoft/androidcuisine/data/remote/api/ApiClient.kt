@@ -1,7 +1,6 @@
 package com.intellisoft.androidcuisine.data.remote.api
 
 import android.content.Context
-import android.util.Log
 import com.intellisoft.androidcuisine.data.remote.interceptor.AuthInterceptor
 import com.intellisoft.androidcuisine.data.remote.interceptor.ErrorInterceptor
 import okhttp3.OkHttpClient
@@ -52,5 +51,33 @@ object ApiClient {
 
     val horarioService: HorarioService by lazy {
         retrofit.create(HorarioService::class.java)
+    }
+
+    val comprasService: ComprasService by lazy {
+        retrofit.create(ComprasService::class.java)
+    }
+
+    val proveedorService: ProveedorService by lazy {
+        retrofit.create(ProveedorService::class.java)
+    }
+
+    val insumoService: InsumoService by lazy {
+        retrofit.create(InsumoService::class.java)
+    }
+
+    val campaniaService: CampaniaService by lazy {
+        retrofit.create(CampaniaService::class.java)
+    }
+
+    val cocinaService: CocinaService by lazy {
+        retrofit.create(CocinaService::class.java)
+    }
+
+    val recepcionService: ReservasService by lazy {
+        retrofit.create(ReservasService::class.java)
+    }
+
+    val clienteService: ClienteService by lazy {
+        retrofit.create(ClienteService::class.java)
     }
 }

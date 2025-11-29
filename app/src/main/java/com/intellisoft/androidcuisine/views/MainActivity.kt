@@ -17,7 +17,12 @@ import com.google.android.material.navigation.NavigationView
 import com.intellisoft.androidcuisine.R
 import com.intellisoft.androidcuisine.util.SessionManager
 import com.intellisoft.androidcuisine.views.Bienvenida.BienvenidaActivity
+import com.intellisoft.androidcuisine.views.cocina.CocinaFragment
+import com.intellisoft.androidcuisine.views.compras.ComprasFragment
 import com.intellisoft.androidcuisine.views.horario.HorariosFragment
+import com.intellisoft.androidcuisine.views.marketing.MarketingFragment
+import com.intellisoft.androidcuisine.views.reserva.ReservasClienteFragment
+import com.intellisoft.androidcuisine.views.reserva.ReservasFragment
 import com.intellisoft.androidcuisine.views.sucursal.SucursalesFragment
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -95,15 +100,15 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     true
                 }
                 R.id.nav_reservas -> {
-                    Toast.makeText(this, "Reservas", Toast.LENGTH_SHORT).show()
+                    loadFragment(ReservasFragment())
                     true
                 }
                 R.id.nav_ordenes -> {
-                    Toast.makeText(this, "Órdenes", Toast.LENGTH_SHORT).show()
+                    loadFragment(ReservasClienteFragment())
                     true
                 }
                 R.id.nav_cocina -> {
-                    Toast.makeText(this, "Cocina", Toast.LENGTH_SHORT).show()
+                    loadFragment(CocinaFragment())
                     true
                 }
                 R.id.nav_cuenta -> {
@@ -152,11 +157,12 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.nav_productos_recetas -> Toast.makeText(this, "Productos", Toast.LENGTH_SHORT).show()
             R.id.nav_insumos -> Toast.makeText(this, "Insumos", Toast.LENGTH_SHORT).show()
             R.id.nav_proveedores -> Toast.makeText(this, "Proveedores", Toast.LENGTH_SHORT).show()
-            R.id.nav_compras -> Toast.makeText(this, "Compras", Toast.LENGTH_SHORT).show()
+            R.id.nav_compras -> loadFragment(ComprasFragment())
             R.id.nav_horarios -> loadFragment(HorariosFragment())
             R.id.nav_asistencia -> Toast.makeText(this, "Asistencia", Toast.LENGTH_SHORT).show()
             R.id.nav_configuracion -> Toast.makeText(this, "Configuración", Toast.LENGTH_SHORT).show()
             R.id.nav_auditoria -> Toast.makeText(this, "Auditoría", Toast.LENGTH_SHORT).show()
+            R.id.nav_marketing -> loadFragment(MarketingFragment())
             R.id.nav_cerrar_sesion -> showLogoutDialog()
         }
         drawerLayout.closeDrawer(GravityCompat.START)

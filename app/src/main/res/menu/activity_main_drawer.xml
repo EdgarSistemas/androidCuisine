@@ -70,6 +70,11 @@
             android:id="@+id/nav_auditoria"
             android:icon="@drawable/ic_menu_home"
             android:title="Auditoría" />
+
+        <item
+            android:id="@+id/nav_marketing"
+            android:icon="@drawable/ic_campaign"
+            android:title="Marketing CRM" />
     </group>
 
     <group android:checkableBehavior="none">

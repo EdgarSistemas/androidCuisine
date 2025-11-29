@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/cuisine_beige_background"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Clientes VIP -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardVIP"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="2dp"
+            app:cardBackgroundColor="@color/cuisine_white_accent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="16dp"
+                android:gravity="center_vertical">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Clientes VIP"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/cuisine_dark_text"/>
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="Mayor gasto acumulado"
+                        android:textSize="13sp"
+                        android:textColor="@color/cuisine_dark_text"
+                        android:alpha="0.7"/>
+
+                </LinearLayout>
+
+                <com.google.android.material.button.MaterialButton
+                    style="@style/Widget.Material3.Button.IconButton"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    app:icon="@drawable/ic_arrow_forward"
+                    app:iconTint="@color/cuisine_green_dark"/>
+
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Clientes Frecuentes -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardFrecuentes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="2dp"
+            app:cardBackgroundColor="@color/cuisine_white_accent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="16dp"
+                android:gravity="center_vertical">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Clientes Frecuentes"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/cuisine_dark_text"/>
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="Mayor cantidad de visitas"
+                        android:textSize="13sp"
+                        android:textColor="@color/cuisine_dark_text"
+                        android:alpha="0.7"/>
+
+                </LinearLayout>
+
+                <com.google.android.material.button.MaterialButton
+                    style="@style/Widget.Material3.Button.IconButton"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    app:icon="@drawable/ic_arrow_forward"
+                    app:iconTint="@color/cuisine_green_dark"/>
+
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Clientes Inactivos -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardInactivos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="2dp"
+            app:cardBackgroundColor="@color/cuisine_white_accent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="16dp"
+                android:gravity="center_vertical">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Clientes Inactivos"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/cuisine_dark_text"/>
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="Sin actividad reciente"
+                        android:textSize="13sp"
+                        android:textColor="@color/cuisine_dark_text"
+                        android:alpha="0.7"/>
+
+                </LinearLayout>
+
+                <com.google.android.material.button.MaterialButton
+                    style="@style/Widget.Material3.Button.IconButton"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    app:icon="@drawable/ic_arrow_forward"
+                    app:iconTint="@color/cuisine_green_dark"/>
+
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Clientes Nuevos -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardNuevos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="2dp"
+            app:cardBackgroundColor="@color/cuisine_white_accent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="16dp"
+                android:gravity="center_vertical">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Clientes Nuevos"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/cuisine_dark_text"/>
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="Registrados recientemente"
+                        android:textSize="13sp"
+                        android:textColor="@color/cuisine_dark_text"
+                        android:alpha="0.7"/>
+
+                </LinearLayout>
+
+                <com.google.android.material.button.MaterialButton
+                    style="@style/Widget.Material3.Button.IconButton"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    app:icon="@drawable/ic_arrow_forward"
+                    app:iconTint="@color/cuisine_green_dark"/>
+
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Clientes por Canal -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardCanal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="2dp"
+            app:cardBackgroundColor="@color/cuisine_white_accent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="16dp"
+                android:gravity="center_vertical">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Clientes por Canal"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/cuisine_dark_text"/>
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="Preferencia de compra"
+                        android:textSize="13sp"
+                        android:textColor="@color/cuisine_dark_text"
+                        android:alpha="0.7"/>
+
+                </LinearLayout>
+
+                <com.google.android.material.button.MaterialButton
+                    style="@style/Widget.Material3.Button.IconButton"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    app:icon="@drawable/ic_arrow_forward"
+                    app:iconTint="@color/cuisine_green_dark"/>
+
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+    </LinearLayout>
+
+</ScrollView>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardSucursal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="8dp"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="1dp"
+    app:strokeWidth="1dp"
+    app:strokeColor="@color/cuisine_green_light"
+    app:cardBackgroundColor="@color/cuisine_white_accent"
+    app:rippleColor="@color/cuisine_green_light">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="12dp"
+        android:gravity="center_vertical">
+
+        <ImageView
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:src="@drawable/ic_restaurant"
+            app:tint="@color/cuisine_green_dark"
+            android:contentDescription="Sucursal"/>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="12dp"
+            android:orientation="vertical">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvNombre"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sucursal Centro"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:textColor="@color/cuisine_dark_text"/>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvDireccion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Av. Principal #123"
+                android:textSize="12sp"
+                android:textColor="@color/cuisine_dark_text"
+                android:alpha="0.7"
+                android:maxLines="1"
+                android:ellipsize="end"/>
+
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/ic_arrow_forward"
+            app:tint="@color/cuisine_green_dark"
+            android:alpha="0.5"
+            android:contentDescription="Seleccionar"/>
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

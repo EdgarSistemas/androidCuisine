@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@color/cuisine_beige_background">
+
+    <!-- Header -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        android:gravity="center_vertical"
+        android:background="@color/cuisine_white_accent">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Tu carrito"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/cuisine_dark_text"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnLimpiar"
+            style="@style/Widget.Material3.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Limpiar"
+            android:textColor="@android:color/holo_red_dark"/>
+
+    </LinearLayout>
+
+    <!-- Lista items -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerCarrito"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:minHeight="150dp"
+        android:maxHeight="300dp"/>
+
+    <!-- Divider -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/cuisine_green_light"/>
+
+    <!-- Notas -->
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:hint="Notas del pedido (opcional)">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etNotas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textMultiLine"
+            android:maxLines="2"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Footer -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        android:gravity="center_vertical"
+        android:background="@color/cuisine_white_accent">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvTotalDialog"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Total: $450.00"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/cuisine_dark_text"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnConfirmarPedido"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Confirmar Pedido"
+            app:backgroundTint="@color/cuisine_green_dark"/>
+
+    </LinearLayout>
+
+</LinearLayout>

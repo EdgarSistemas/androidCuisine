@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:background="@color/cuisine_white_accent">
+
+    <com.google.android.material.textview.MaterialTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Agregar Artículo"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="@color/cuisine_dark_text"
+        android:layout_marginBottom="24dp"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilInsumo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        app:boxStrokeColor="@color/cuisine_green_dark"
+        app:hintTextColor="@color/cuisine_green_dark"
+        android:hint="Insumo">
+
+        <AutoCompleteTextView
+            android:id="@+id/actvInsumo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="none"
+            android:textColor="@color/black"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilCantidad"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+        app:boxStrokeColor="@color/cuisine_green_dark"
+        app:hintTextColor="@color/cuisine_green_dark"
+        android:hint="Cantidad">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etCantidad"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:textColor="@color/black"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilPresentacion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+        app:boxStrokeColor="@color/cuisine_green_dark"
+        app:hintTextColor="@color/cuisine_green_dark"
+        android:hint="Presentación (ej: costal 25kg)">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etPresentacion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:textColor="@color/black"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilCostoUnitario"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+        app:boxStrokeColor="@color/cuisine_green_dark"
+        app:hintTextColor="@color/cuisine_green_dark"
+        app:prefixText="$"
+        android:hint="Costo Unitario">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etCostoUnitario"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:textColor="@color/black"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="24dp"
+        android:gravity="end">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnCancelar"
+            style="@style/Widget.Material3.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cancelar"
+            android:textColor="@color/cuisine_green_dark"
+            android:layout_marginEnd="8dp"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnAgregar"
+            style="@style/Widget.Material3.Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Agregar"
+            android:backgroundTint="@color/cuisine_green_dark"/>
+
+    </LinearLayout>
+
+</LinearLayout>

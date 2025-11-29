@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="8dp"
+    android:layout_marginVertical="6dp"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="2dp"
+    app:cardBackgroundColor="@color/cuisine_white_accent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Header -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvFolio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@color/cuisine_dark_text"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="ORD-001"/>
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipTipo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="10sp"
+                app:chipMinHeight="24dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Dine-in"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!-- Mesa + Progreso -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvMesa"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="14sp"
+                android:textColor="@color/cuisine_dark_text"
+                tools:text="Mesa 5"/>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvProgreso"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:textColor="@color/cuisine_green_dark"
+                tools:text="Progreso: 2/5"/>
+
+        </LinearLayout>
+
+        <!-- Progress Bar -->
+        <com.google.android.material.progressindicator.LinearProgressIndicator
+            android:id="@+id/progressIndicator"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:indicatorColor="@color/cuisine_green_dark"
+            app:trackColor="@color/cuisine_beige_background"
+            app:trackCornerRadius="4dp"/>
+
+        <!-- Divider -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="12dp"
+            android:background="@color/cuisine_beige_background"/>
+
+        <!-- Items -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewItems"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:nestedScrollingEnabled="false"/>
+
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>

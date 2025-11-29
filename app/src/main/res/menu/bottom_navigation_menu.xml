@@ -6,7 +6,7 @@
         android:title="Inicio" />
     <item
         android:id="@+id/nav_reservas"
-        android:icon="@drawable/ic_menu_calendar"
+        android:icon="@drawable/ic_reserva"
         android:title="Reservas" />
     <item
         android:id="@+id/nav_ordenes"
@@ -14,7 +14,7 @@
         android:title="Órdenes" />
     <item
         android:id="@+id/nav_cocina"
-        android:icon="@drawable/ic_menu_restaurant"
+        android:icon="@drawable/ic_cocina"
         android:title="Cocina" />
     <item
         android:id="@+id/nav_cuenta"
