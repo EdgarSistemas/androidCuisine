@@ -12,9 +12,10 @@ import androidx.fragment.app.viewModels
 import com.google.android.material.textfield.TextInputEditText
 import com.intellisoft.androidcuisine.R
 import com.intellisoft.androidcuisine.util.SessionManager
-import com.intellisoft.androidcuisine.views.Bienvenida.BienvenidaActivity // Asegúrate de importar tu Activity de inicio/login
-import com.intellisoft.androidcuisine.views.Main.cuenta.CuentaViewModel
-import com.intellisoft.androidcuisine.views.Main.cuenta.UpdateState
+import com.intellisoft.androidcuisine.views.Bienvenida.BienvenidaActivity
+import com.intellisoft.androidcuisine.views.Cuenta.CuentaViewModel
+import com.intellisoft.androidcuisine.views.Cuenta.UpdateState
+
 
 class CuentaFragment : Fragment() {
 
@@ -25,7 +26,7 @@ class CuentaFragment : Fragment() {
     private lateinit var etName: TextInputEditText
     private lateinit var etApellido: TextInputEditText
     private lateinit var etEmail: TextInputEditText
-    private lateinit var etPhone: TextInputEditText
+    // private lateinit var etPhone: TextInputEditText
     private lateinit var btnUpdate: Button
 
     // Vistas de Contraseña
@@ -52,11 +53,11 @@ class CuentaFragment : Fragment() {
     }
 
     private fun initViews(view: View) {
-        // 1. Información Personal (IDs del XML nuevo)
+        // 1. Información Personal
         etName = view.findViewById(R.id.etName)
         etApellido = view.findViewById(R.id.etApellido)
         etEmail = view.findViewById(R.id.etEmail)
-       // etPhone = view.findViewById(R.id.etPhone)
+        // etPhone = view.findViewById(R.id.etPhone)
         btnUpdate = view.findViewById(R.id.btnUpdate)
 
         // 2. Cambio de Contraseña
@@ -75,17 +76,18 @@ class CuentaFragment : Fragment() {
             val nombre = etName.text.toString().trim()
             val apellido = etApellido.text.toString().trim()
             val email = etEmail.text.toString().trim()
-            // El teléfono no se envía en updateUsuario por ahora, pero se podría agregar después
 
             viewModel.updateUsuario(nombre, apellido, email)
         }
 
-        // --- Listener Cambiar Contraseña (Validación UI) ---
+        // --- Listener Cambiar Contraseña ---
+        // CORREGIDO: Solo una definición limpia aquí
         btnChangePassword.setOnClickListener {
             val currentPass = etCurrentPassword.text.toString().trim()
             val newPass = etNewPassword.text.toString().trim()
             val confirmPass = etConfirmPassword.text.toString().trim()
 
+            // Validaciones de UI rápidas
             if (currentPass.isEmpty() || newPass.isEmpty() || confirmPass.isEmpty()) {
                 Toast.makeText(context, "Por favor llena todos los campos de contraseña", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
@@ -96,9 +98,8 @@ class CuentaFragment : Fragment() {
                 return@setOnClickListener
             }
 
-            // AQUÍ LLAMARÍAS AL VIEWMODEL PARA CAMBIAR LA CONTRASEÑA
-            // viewModel.cambiarPassword(currentPass, newPass)
-            Toast.makeText(context, "Funcionalidad de cambiar contraseña pendiente de Backend", Toast.LENGTH_SHORT).show()
+            // Llamada al ViewModel
+            viewModel.cambiarPassword(currentPass, newPass, confirmPass)
         }
 
         // --- Listener Cerrar Sesión ---
@@ -108,17 +109,16 @@ class CuentaFragment : Fragment() {
     }
 
     private fun observeViewModel() {
-        // Observar datos del usuario actual para llenar los campos
+        // Observar datos del usuario actual
         viewModel.currentUser.observe(viewLifecycleOwner) { user ->
             user?.let {
                 etName.setText(it.nombre)
                 etApellido.setText(it.apellido)
                 etEmail.setText(it.email)
-
             }
         }
 
-        // Observar estado de la actualización
+        // Observar estado de la actualización de DATOS
         viewModel.updateState.observe(viewLifecycleOwner) { state ->
             when (state) {
                 UpdateState.Loading -> {
@@ -143,11 +143,43 @@ class CuentaFragment : Fragment() {
                 }
             }
         }
+
+        // Observar estado del cambio de CONTRASEÑA
+        viewModel.passwordState.observe(viewLifecycleOwner) { state ->
+            when (state) {
+                UpdateState.Loading -> {
+                    btnChangePassword.isEnabled = false
+                    btnChangePassword.text = "Cambiando..."
+                }
+                is UpdateState.Success -> {
+                    btnChangePassword.isEnabled = true
+                    btnChangePassword.text = "Cambiar Contraseña"
+                    Toast.makeText(requireContext(), "✅ ${state.message}", Toast.LENGTH_LONG).show()
+
+                    // Limpiar campos de contraseña tras éxito
+                    etCurrentPassword.text?.clear()
+                    etNewPassword.text?.clear()
+                    etConfirmPassword.text?.clear()
+
+                    viewModel.resetPasswordState()
+                }
+                is UpdateState.Error -> {
+                    btnChangePassword.isEnabled = true
+                    btnChangePassword.text = "Cambiar Contraseña"
+                    // Muestra el error (ej: "Contraseña actual incorrecta")
+                    Toast.makeText(requireContext(), "❌ ${state.message}", Toast.LENGTH_LONG).show()
+                    viewModel.resetPasswordState()
+                }
+                UpdateState.Idle -> {
+                    btnChangePassword.isEnabled = true
+                    btnChangePassword.text = "Cambiar Contraseña"
+                }
+            }
+        }
     }
 
     private fun logout() {
         sessionManager.clearSession()
-        // Navegar al Login y limpiar el stack para que no pueda volver atrás
         val intent = Intent(requireContext(), BienvenidaActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         startActivity(intent)

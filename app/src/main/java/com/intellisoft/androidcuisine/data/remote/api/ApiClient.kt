@@ -1,6 +1,7 @@
 package com.intellisoft.androidcuisine.data.remote.api
 
 import android.content.Context
+import android.util.Log
 import com.intellisoft.androidcuisine.data.remote.interceptor.AuthInterceptor
 import com.intellisoft.androidcuisine.data.remote.interceptor.ErrorInterceptor
 import okhttp3.OkHttpClient
@@ -87,5 +88,17 @@ object ApiClient {
 
     val clienteService: ClienteService by lazy {
         retrofit.create(ClienteService::class.java)
+    }
+
+    val mejorasService: MejorasService by lazy {
+        retrofit.create(MejorasService::class.java)
+    }
+
+    val ticketService: TicketService by lazy {
+        retrofit.create(TicketService::class.java)
+    }
+
+    val rolService: RolService by lazy {
+        retrofit.create(RolService::class.java)
     }
 }

@@ -76,8 +76,13 @@ dependencies {
     implementation("com.google.android.material:material:1.9.0")
     implementation("androidx.fragment:fragment-ktx:1.6.2")
     implementation("androidx.viewpager2:viewpager2:1.0.0")
-    //implementation(libs.firebase.firestore.ktx)
+
+    //Implementacion para base 64
+    implementation("io.coil-kt:coil:2.6.0")
     implementation(libs.androidx.room.runtime.android)
+
+    //Implementacion de gemini
+    implementation("com.google.ai.client.generativeai:generativeai:0.9.0")
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

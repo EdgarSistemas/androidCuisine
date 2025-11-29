@@ -19,13 +19,17 @@ import com.intellisoft.androidcuisine.util.SessionManager
 import com.intellisoft.androidcuisine.views.Bienvenida.BienvenidaActivity
 import com.intellisoft.androidcuisine.views.cocina.CocinaFragment
 import com.intellisoft.androidcuisine.views.compras.ComprasFragment
+import com.intellisoft.androidcuisine.views.Usuarios.UsuariosFragment
 
 import com.intellisoft.androidcuisine.views.cuenta.CuentaFragment
 import com.intellisoft.androidcuisine.views.horario.HorariosFragment
 import com.intellisoft.androidcuisine.views.marketing.MarketingFragment
 import com.intellisoft.androidcuisine.views.reserva.ReservasClienteFragment
 import com.intellisoft.androidcuisine.views.reserva.ReservasFragment
+import com.intellisoft.androidcuisine.views.mejoras.MejorasFragment
+import com.intellisoft.androidcuisine.views.soporte.SoporteFragment
 import com.intellisoft.androidcuisine.views.sucursal.SucursalesFragment
+import com.intellisoft.androidcuisine.views.tickets.TicketsFragment
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
@@ -140,6 +144,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         menu.findItem(R.id.nav_asistencia)?.isVisible = userModules.contains("ASISTENCIA")
         menu.findItem(R.id.nav_configuracion)?.isVisible = userModules.contains("CONFIGURACION")
         menu.findItem(R.id.nav_auditoria)?.isVisible = userModules.contains("AUDITORIA")
+        menu.findItem(R.id.nav_tickets)?.isVisible = true
+        // NUEVO: Verificar si tiene el módulo "SOPORTE" (ID 31 en tu BD)
+        menu.findItem(R.id.nav_soporte)?.isVisible = userModules.contains("SOPORTE")
     }
 
     private fun loadFragment(fragment: androidx.fragment.app.Fragment) {
@@ -151,7 +158,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.nav_sucursales -> loadFragment(SucursalesFragment())
-            R.id.nav_usuarios -> Toast.makeText(this, "Usuarios", Toast.LENGTH_SHORT).show()
+            R.id.nav_usuarios -> loadFragment(UsuariosFragment())
             R.id.nav_areas -> Toast.makeText(this, "Áreas", Toast.LENGTH_SHORT).show()
             R.id.nav_mesas -> Toast.makeText(this, "Mesas", Toast.LENGTH_SHORT).show()
             R.id.nav_categorias -> Toast.makeText(this, "Categorías", Toast.LENGTH_SHORT).show()
@@ -162,9 +169,13 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.nav_compras -> loadFragment(ComprasFragment())
             R.id.nav_horarios -> loadFragment(HorariosFragment())
             R.id.nav_asistencia -> Toast.makeText(this, "Asistencia", Toast.LENGTH_SHORT).show()
+            R.id.nav_horarios -> loadFragment(HorariosFragment())
+            R.id.nav_tickets -> loadFragment(TicketsFragment())
+            R.id.nav_mejoras -> loadFragment(MejorasFragment())
             R.id.nav_configuracion -> Toast.makeText(this, "Configuración", Toast.LENGTH_SHORT).show()
             R.id.nav_auditoria -> Toast.makeText(this, "Auditoría", Toast.LENGTH_SHORT).show()
             R.id.nav_marketing -> loadFragment(MarketingFragment())
+            R.id.nav_soporte -> loadFragment(SoporteFragment())
             R.id.nav_cerrar_sesion -> showLogoutDialog()
         }
         drawerLayout.closeDrawer(GravityCompat.START)
