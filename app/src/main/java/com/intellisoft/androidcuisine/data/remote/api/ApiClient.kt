@@ -53,6 +53,14 @@ object ApiClient {
         retrofit.create(HorarioService::class.java)
     }
 
+    val solicitarService: SolicitarService by lazy {
+        retrofit.create(SolicitarService::class.java)
+    }
+
+    val usuarioService: UsuarioService by lazy {
+        retrofit.create(UsuarioService::class.java)
+    }
+
     val comprasService: ComprasService by lazy {
         retrofit.create(ComprasService::class.java)
     }

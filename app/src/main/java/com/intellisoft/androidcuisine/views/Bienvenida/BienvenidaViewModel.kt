@@ -5,8 +5,8 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.intellisoft.androidcuisine.data.repository.AuthRepositoryImpl
-import com.intellisoft.androidcuisine.domain.repository.AuthRepository
+import com.intellisoft.androidcuisine.domain.repository.auth.AuthRepositoryImpl
+import com.intellisoft.androidcuisine.domain.repository.auth.AuthRepository
 import com.intellisoft.androidcuisine.util.FcmHelper
 import com.intellisoft.androidcuisine.util.SessionManager
 import kotlinx.coroutines.launch

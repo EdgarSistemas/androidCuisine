@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@color/cuisine_beige_background"
     android:fillViewport="true"
-    tools:context=".views.Main.CuentaFragment">
+    tools:context=".views.cuenta.CuentaFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -75,7 +75,8 @@
                         android:id="@+id/etName"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="textPersonName"
+                        android:inputType="textPersonName|textCapWords"
+                        android:maxLength="50"
                         android:textColor="@color/black"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -94,7 +95,8 @@
                         android:id="@+id/etApellido"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="textPersonName"
+                        android:inputType="textPersonName|textCapWords"
+                        android:maxLength="30"
                         android:textColor="@color/black"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -118,24 +120,24 @@
 
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/tilTelefono"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
-                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
-                    app:boxStrokeColor="@color/cuisine_green_dark"
-                    app:hintTextColor="@color/cuisine_green_dark"
-                    android:hint="Teléfono">
+<!--                <com.google.android.material.textfield.TextInputLayout-->
+<!--                    android:id="@+id/tilTelefono"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginTop="12dp"-->
+<!--                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox"-->
+<!--                    app:boxStrokeColor="@color/cuisine_green_dark"-->
+<!--                    app:hintTextColor="@color/cuisine_green_dark"-->
+<!--                    android:hint="Teléfono">-->
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/etPhone"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="phone"
-                        android:textColor="@color/black"/>
+<!--                    <com.google.android.material.textfield.TextInputEditText-->
+<!--                        android:id="@+id/etPhone"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:inputType="phone"-->
+<!--                        android:textColor="@color/black"/>-->
 
-                </com.google.android.material.textfield.TextInputLayout>
+<!--                </com.google.android.material.textfield.TextInputLayout>-->
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnUpdate"

@@ -4,8 +4,21 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
+
     <!-- Para Android 13+ -->
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
+    <!--permisos para almacenamiento, camara y storage -->
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" android:maxSdkVersion="32" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" android:maxSdkVersion="29" />
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+    <uses-permission android:name="android.permission.READ_MEDIA_VIDEO" />
+
 
     <application
         android:name=".MyApplication"
@@ -39,6 +52,23 @@
             android:exported="false"
             android:theme="@style/Theme.AndroidCuisine"/>
 
+        <!-- Recovery de contraseña -->
+
+        <activity
+            android:name=".views.auth.RecoverPasswordActivity"
+            android:exported="false"
+            android:theme="@style/Theme.AndroidCuisine" />
+
+        <activity
+            android:name=".views.auth.ValidateCodeActivity"
+            android:exported="false"
+            android:theme="@style/Theme.AndroidCuisine" />
+
+        <activity
+            android:name=".views.auth.RestablecerPasswordActivity"
+            android:exported="false"
+            android:theme="@style/Theme.AndroidCuisine" />
+
         <!-- NUEVA MainActivity (Pantalla Principal con Drawer) -->
         <activity
             android:name=".views.Main.MainActivity"
@@ -46,6 +76,12 @@
             android:label="@string/app_name"
             android:theme="@style/Theme.AndroidCuisine" /> <!-- Asegúrate de que el tema no tenga ActionBar si usas Toolbar -->
 
+
+<!--       Pantalla para servicios-->
+        <activity
+            android:name=".views.auth.PermisosObligatoriosActivity"
+            android:exported="false"
+            android:theme="@style/Theme.AndroidCuisine" />
         <activity
             android:name=".CuisieneApp"
             android:exported="false"

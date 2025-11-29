@@ -53,6 +53,18 @@
             android:inputType="textPassword"/>
     </com.google.android.material.textfield.TextInputLayout>
 
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tvForgotPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="¿Olvidaste tu contraseña?"
+        android:textColor="@color/cuisine_green_dark"
+        android:gravity="end"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="?attr/selectableItemBackground"
+        android:paddingVertical="4dp"/>
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnConfirmarLogin"
         android:layout_width="match_parent"
@@ -62,5 +74,4 @@
         android:textColor="@color/white"
         android:paddingVertical="14dp"
         app:cornerRadius="8dp"
-        android:layout_marginTop="32dp"/>
-</LinearLayout>
+        android:layout_marginTop="24dp"/> </LinearLayout>
