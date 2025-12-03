@@ -199,10 +199,22 @@ class TicketsFragment : Fragment() {
                 ivFull.load(ticket.imagenUrl)
             } else {
                 try {
-                    val decodedString = Base64.decode(ticket.imagenUrl, Base64.DEFAULT)
+//                    val decodedString = Base64.decode(ticket.imagenUrl, Base64.DEFAULT)
+//                    val decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.size)
+//                    ivFull.setImageBitmap(decodedByte)
+                    // CORRECCIÓN AQUÍ TAMBIÉN
+                    val cleanBase64 = if (ticket.imagenUrl.contains(",")) {
+                        ticket.imagenUrl.split(",")[1]
+                    } else {
+                        ticket.imagenUrl
+                    }
+
+                    val decodedString = Base64.decode(cleanBase64, Base64.DEFAULT)
                     val decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.size)
                     ivFull.setImageBitmap(decodedByte)
-                } catch (e: Exception) { }
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                }
             }
         }
 

@@ -82,11 +82,26 @@ class TicketsAdapter(
                 } else {
                     // Asumimos que es Base64: Decodificar manualmente
                     try {
-                        val decodedBytes = Base64.decode(ticket.imagenUrl, Base64.DEFAULT)
+//                        val decodedBytes = Base64.decode(ticket.imagenUrl, Base64.DEFAULT)
+//                        val decodedBitmap = BitmapFactory.decodeByteArray(decodedBytes, 0, decodedBytes.size)
+//                        ivImagen.setImageBitmap(decodedBitmap)
+
+                        // --- CORRECCIÓN: Limpiar el prefijo si existe ---
+                        val cleanBase64 = if (ticket.imagenUrl.contains(",")) {
+                            // Separa por la coma y toma la segunda parte (el código real)
+                            ticket.imagenUrl.split(",")[1]
+                        } else {
+                            ticket.imagenUrl
+                        }
+                        // ------------------------------------------------
+
+                        val decodedBytes = Base64.decode(cleanBase64, Base64.DEFAULT)
                         val decodedBitmap = BitmapFactory.decodeByteArray(decodedBytes, 0, decodedBytes.size)
                         ivImagen.setImageBitmap(decodedBitmap)
                     } catch (e: Exception) {
+//                        ivImagen.setImageResource(R.drawable.ic_menu_restaurant)
                         ivImagen.setImageResource(R.drawable.ic_menu_restaurant)
+                        android.util.Log.e("TicketsAdapter", "Error decodificando imagen: ${e.message}")
                     }
                 }
 
