@@ -11,6 +11,10 @@
     <!--permisos para almacenamiento, camara y storage -->
     <uses-permission android:name="android.permission.CAMERA" />
 
+<!--    Uso de geolocalizacion-->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
     <uses-feature
         android:name="android.hardware.camera"
         android:required="true" />
