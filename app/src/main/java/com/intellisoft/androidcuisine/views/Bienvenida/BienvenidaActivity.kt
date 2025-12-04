@@ -28,7 +28,9 @@ class BienvenidaActivity : AppCompatActivity() {
     // 🔴 PERMISOS ESENCIALES OBLIGATORIOS
     private val REQUIRED_PERMISSIONS = mutableListOf(
         Manifest.permission.CAMERA,
-        Manifest.permission.INTERNET // Ya es normal, pero se incluye para un chequeo lógico.
+        Manifest.permission.INTERNET,
+        Manifest.permission.ACCESS_FINE_LOCATION, //PERMISOS DE LOCALIZACION
+        Manifest.permission.ACCESS_COARSE_LOCATION
     ).apply {
         // Añadir permisos de almacenamiento según la versión de Android
         if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.P) {
@@ -100,7 +102,10 @@ class BienvenidaActivity : AppCompatActivity() {
             Manifest.permission.WRITE_EXTERNAL_STORAGE,
             Manifest.permission.READ_MEDIA_IMAGES,
             Manifest.permission.READ_MEDIA_VIDEO,
-            Manifest.permission.POST_NOTIFICATIONS -> true
+            Manifest.permission.POST_NOTIFICATIONS,
+            //PERMISOS DE LOCALIZACION OBLIGATORIOS
+            Manifest.permission.ACCESS_FINE_LOCATION,
+            Manifest.permission.ACCESS_COARSE_LOCATION -> true
 
             else -> false
         }

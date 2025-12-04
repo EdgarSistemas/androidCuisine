@@ -84,6 +84,9 @@ dependencies {
     //Implementacion de gemini
     implementation("com.google.ai.client.generativeai:generativeai:0.9.0")
 
+    //Implementacion geolocalizacion
+    implementation("com.google.android.gms:play-services-location:21.2.0")
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
