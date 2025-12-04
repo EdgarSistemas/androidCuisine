@@ -6,8 +6,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.intellisoft.androidcuisine.data.remote.dto.*
-import com.intellisoft.androidcuisine.data.repository.CocinaRepositoryImpl
-import com.intellisoft.androidcuisine.domain.repository.CocinaRepository
+import com.intellisoft.androidcuisine.domain.repository.cocina.CocinaRepositoryImpl
+import com.intellisoft.androidcuisine.domain.repository.cocina.CocinaRepository
 import kotlinx.coroutines.launch
 
 class CocinaViewModel(application: Application) : AndroidViewModel(application) {

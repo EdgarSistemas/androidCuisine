@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- IDs para navegación del cliente -->
+    <item name="nav_cliente_inicio" type="id"/>
+    <item name="nav_cliente_pedidos" type="id"/>
+    <item name="nav_cliente_cupones" type="id"/>
+</resources>

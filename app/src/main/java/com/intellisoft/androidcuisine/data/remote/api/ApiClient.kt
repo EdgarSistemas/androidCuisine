@@ -86,10 +86,6 @@ object ApiClient {
         retrofit.create(ReservasService::class.java)
     }
 
-    val clienteService: ClienteService by lazy {
-        retrofit.create(ClienteService::class.java)
-    }
-
     val mejorasService: MejorasService by lazy {
         retrofit.create(MejorasService::class.java)
     }
@@ -100,5 +96,9 @@ object ApiClient {
 
     val rolService: RolService by lazy {
         retrofit.create(RolService::class.java)
+    }
+
+    val clienteService: ClienteService by lazy {
+        retrofit.create(ClienteService::class.java)
     }
 }

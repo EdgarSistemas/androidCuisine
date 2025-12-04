@@ -2,96 +2,85 @@
 <com.google.android.material.card.MaterialCardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/cardProducto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="4dp"
+    android:layout_marginBottom="12dp"
     app:cardCornerRadius="12dp"
     app:cardElevation="2dp"
-    app:cardBackgroundColor="@color/cuisine_white_accent"
-    app:rippleColor="@color/cuisine_green_light">
+    app:cardBackgroundColor="@color/white">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="12dp">
+        android:orientation="horizontal"
+        android:padding="12dp"
+        android:gravity="center_vertical">
 
-        <!-- Placeholder imagen -->
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="match_parent"
-            android:layout_height="80dp"
-            app:cardCornerRadius="8dp"
-            app:cardBackgroundColor="@color/cuisine_green_light"
-            app:cardElevation="0dp">
-
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_gravity="center"
-                android:src="@drawable/ic_restaurant"
-                app:tint="@color/cuisine_green_dark"
-                android:alpha="0.5"
-                android:contentDescription="Producto"/>
-
-        </com.google.android.material.card.MaterialCardView>
-
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tvNombre"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="Hamburguesa Clásica"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            android:textColor="@color/cuisine_dark_text"
-            android:maxLines="2"
-            android:ellipsize="end"/>
-
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tvDescripcion"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
-            android:text="Carne de res 200g"
-            android:textSize="11sp"
-            android:textColor="@color/cuisine_dark_text"
-            android:alpha="0.6"
-            android:maxLines="2"
-            android:ellipsize="end"
-            android:visibility="gone"/>
-
+        <!-- Info -->
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:orientation="horizontal"
-            android:gravity="center_vertical">
+            android:layout_weight="1"
+            android:orientation="vertical">
 
+            <!-- Categoría -->
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvCategoria"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hamburguesas"
+                android:textSize="11sp"
+                android:textColor="@color/cuisine_orange"
+                android:textAllCaps="true"/>
+
+            <!-- Nombre -->
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvNombre"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="Hamburguesa Clásica"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@color/cuisine_dark_text"/>
+
+            <!-- Descripción -->
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvDescripcion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="Carne, lechuga, tomate, queso"
+                android:textSize="12sp"
+                android:textColor="@color/cuisine_gray"
+                android:maxLines="2"
+                android:ellipsize="end"/>
+
+            <!-- Precio -->
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/tvPrecio"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="$150.00"
+                android:layout_marginTop="4dp"
+                android:text="$85.00"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 android:textColor="@color/cuisine_green_dark"/>
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnAgregar"
-                style="@style/Widget.Material3.Button.TonalButton"
-                android:layout_width="36dp"
-                android:layout_height="36dp"
-                android:insetTop="0dp"
-                android:insetBottom="0dp"
-                app:icon="@drawable/ic_add"
-                app:iconGravity="textStart"
-                app:iconPadding="0dp"
-                app:backgroundTint="@color/cuisine_green_dark"
-                app:iconTint="@color/white"/>
-
         </LinearLayout>
+
+        <!-- Botón Agregar -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnAgregar"
+            style="@style/Widget.Material3.Button.TonalButton"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            app:icon="@drawable/ic_add"
+            app:iconGravity="textStart"
+            app:iconPadding="0dp"
+            app:backgroundTint="@color/cuisine_orange_light"/>
 
     </LinearLayout>
 

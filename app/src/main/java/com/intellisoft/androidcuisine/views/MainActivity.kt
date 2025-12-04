@@ -4,6 +4,7 @@ import android.graphics.Color
 import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
+import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.SystemBarStyle
@@ -20,11 +21,10 @@ import com.intellisoft.androidcuisine.views.Bienvenida.BienvenidaActivity
 import com.intellisoft.androidcuisine.views.cocina.CocinaFragment
 import com.intellisoft.androidcuisine.views.compras.ComprasFragment
 import com.intellisoft.androidcuisine.views.Usuarios.UsuariosFragment
-
-import com.intellisoft.androidcuisine.views.cuenta.CuentaFragment
+import com.intellisoft.androidcuisine.views.cliente.ClienteHomeFragment
+import com.intellisoft.androidcuisine.views.Cuenta.CuentaFragment
 import com.intellisoft.androidcuisine.views.horario.HorariosFragment
 import com.intellisoft.androidcuisine.views.marketing.MarketingFragment
-import com.intellisoft.androidcuisine.views.reserva.ReservasClienteFragment
 import com.intellisoft.androidcuisine.views.reserva.ReservasFragment
 import com.intellisoft.androidcuisine.views.mejoras.MejorasFragment
 import com.intellisoft.androidcuisine.views.soporte.SoporteFragment
@@ -38,15 +38,17 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private lateinit var navigationView: NavigationView
     private lateinit var sessionManager: SessionManager
 
+    private var isCliente: Boolean = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         enableEdgeToEdge(
             statusBarStyle = SystemBarStyle.dark(
-                scrim = Color.TRANSPARENT, // Example: make status bar transparent
+                scrim = Color.TRANSPARENT,
             ),
             navigationBarStyle = SystemBarStyle.light(
-                scrim = Color.TRANSPARENT, // Example: make navigation bar transparent
+                scrim = Color.TRANSPARENT,
                 darkScrim = Color.TRANSPARENT
             )
         )
@@ -59,15 +61,32 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
 
         setContentView(R.layout.activity_main)
+
+        // Detectar si es cliente
+        isCliente = checkIfCliente()
+
         setupViews()
         setupNavigationHeader()
-        setupBottomNavigation()
-        setupDrawerMenu()
+
+        if (isCliente) {
+            setupClienteUI()
+        } else {
+            setupEmpleadoUI()
+        }
 
         if (savedInstanceState == null) {
-            loadFragment(InicioFragment())
-            bottomNavigation.selectedItemId = R.id.nav_inicio
+            if (isCliente) {
+                loadFragment(ClienteHomeFragment())
+            } else {
+                loadFragment(InicioFragment())
+                bottomNavigation.selectedItemId = R.id.nav_inicio
+            }
         }
+    }
+
+    private fun checkIfCliente(): Boolean {
+        val primaryRole = sessionManager.getPrimaryRole()?.uppercase() ?: ""
+        return primaryRole == "CLIENTE" || primaryRole.contains("CLIENTE")
     }
 
     private fun setupViews() {
@@ -91,6 +110,50 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             sessionManager.getPrimaryRole()
     }
 
+    // ==================== UI PARA CLIENTE ====================
+    private fun setupClienteUI() {
+        // Ocultar drawer para clientes (no necesitan menú lateral)
+        drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
+
+        // Configurar bottom navigation para cliente
+        val menu = bottomNavigation.menu
+        menu.clear()
+
+        // Agregar items del cliente
+        menu.add(0, R.id.nav_cliente_inicio, 0, "Inicio").setIcon(R.drawable.ic_home)
+        menu.add(0, R.id.nav_cliente_pedidos, 1, "Pedidos").setIcon(R.drawable.ic_receipt)
+        menu.add(0, R.id.nav_cliente_cupones, 2, "Cupones").setIcon(R.drawable.ic_coupon)
+        menu.add(0, R.id.nav_cuenta, 3, "Cuenta").setIcon(R.drawable.ic_account)
+
+        bottomNavigation.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.nav_cliente_inicio -> {
+                    loadFragment(ClienteHomeFragment())
+                    true
+                }
+                R.id.nav_cliente_pedidos -> {
+                    loadFragment(com.intellisoft.androidcuisine.views.cliente.pedidos.PedidosClienteFragment())
+                    true
+                }
+                R.id.nav_cliente_cupones -> {
+                    loadFragment(com.intellisoft.androidcuisine.views.cliente.cupones.MisCuponesFragment())
+                    true
+                }
+                R.id.nav_cuenta -> {
+                    loadFragment(CuentaFragment())
+                    true
+                }
+                else -> false
+            }
+        }
+    }
+
+    // ==================== UI PARA EMPLEADO/ADMIN ====================
+    private fun setupEmpleadoUI() {
+        setupBottomNavigation()
+        setupDrawerMenu()
+    }
+
     private fun setupBottomNavigation() {
         val userModules = sessionManager.getUserModules().map { it.clave }
         val menu = bottomNavigation.menu
@@ -110,7 +173,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     true
                 }
                 R.id.nav_ordenes -> {
-                    loadFragment(ReservasClienteFragment())
+                    loadFragment(ReservasFragment()) // O el fragment de órdenes
                     true
                 }
                 R.id.nav_cocina -> {
@@ -145,7 +208,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         menu.findItem(R.id.nav_configuracion)?.isVisible = userModules.contains("CONFIGURACION")
         menu.findItem(R.id.nav_auditoria)?.isVisible = userModules.contains("AUDITORIA")
         menu.findItem(R.id.nav_tickets)?.isVisible = true
-        // NUEVO: Verificar si tiene el módulo "SOPORTE" (ID 31 en tu BD)
         menu.findItem(R.id.nav_soporte)?.isVisible = userModules.contains("SOPORTE")
     }
 
@@ -169,7 +231,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.nav_compras -> loadFragment(ComprasFragment())
             R.id.nav_horarios -> loadFragment(HorariosFragment())
             R.id.nav_asistencia -> Toast.makeText(this, "Asistencia", Toast.LENGTH_SHORT).show()
-            R.id.nav_horarios -> loadFragment(HorariosFragment())
             R.id.nav_tickets -> loadFragment(TicketsFragment())
             R.id.nav_mejoras -> loadFragment(MejorasFragment())
             R.id.nav_configuracion -> Toast.makeText(this, "Configuración", Toast.LENGTH_SHORT).show()
@@ -202,7 +263,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     override fun onBackPressed() {
-        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+        if (!isCliente && drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START)
         } else {
             super.onBackPressed()

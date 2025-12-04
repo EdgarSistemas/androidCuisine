@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardSucursal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="12dp"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="2dp"
+    app:cardBackgroundColor="@color/white"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?attr/selectableItemBackground">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        android:gravity="center_vertical">
+
+        <!-- Icono -->
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_location"
+            app:tint="@color/cuisine_green_dark"
+            android:contentDescription="Ubicación"/>
+
+        <!-- Info -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_marginStart="12dp">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvNombre"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sucursal Centro"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@color/cuisine_dark_text"/>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvDireccion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="Av. Principal #123"
+                android:textSize="13sp"
+                android:textColor="@color/cuisine_dark_text"
+                android:alpha="0.7"
+                android:maxLines="2"
+                android:ellipsize="end"/>
+
+            <!-- Teléfono -->
+            <LinearLayout
+                android:id="@+id/layoutTelefono"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="4dp"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:layout_width="14dp"
+                    android:layout_height="14dp"
+                    android:src="@drawable/ic_phone"
+                    app:tint="@color/cuisine_gray"
+                    android:contentDescription="Teléfono"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tvTelefono"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:text="555-1234"
+                    android:textSize="12sp"
+                    android:textColor="@color/cuisine_gray"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- Arrow -->
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_arrow_forward"
+            app:tint="@color/cuisine_green_dark"
+            android:contentDescription="Seleccionar"/>
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

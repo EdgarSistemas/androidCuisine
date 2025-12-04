@@ -1,129 +1,146 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/cuisine_beige_background">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+    <!-- Filtros -->
+    <com.google.android.material.chip.ChipGroup
+        android:id="@+id/chipGroup"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        app:singleSelection="true"
+        app:selectionRequired="true"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
-        <!-- Filtros -->
-        <com.google.android.material.chip.ChipGroup
-            android:layout_width="match_parent"
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chipTodos"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingHorizontal="16dp"
-            android:paddingVertical="12dp"
-            app:singleSelection="true"
-            app:selectionRequired="true">
+            android:text="Todos"
+            android:checked="true"
+            style="@style/Widget.Material3.Chip.Filter"/>
 
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chipTodos"
-                style="@style/Widget.Material3.Chip.Filter"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Todos"
-                android:checked="true"
-                app:checkedIconVisible="false"/>
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chipActivos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Activos"
+            style="@style/Widget.Material3.Chip.Filter"/>
 
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chipActivos"
-                style="@style/Widget.Material3.Chip.Filter"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Activos"
-                app:checkedIconVisible="false"/>
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chipCompletados"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Completados"
+            style="@style/Widget.Material3.Chip.Filter"/>
 
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chipCompletados"
-                style="@style/Widget.Material3.Chip.Filter"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Completados"
-                app:checkedIconVisible="false"/>
+    </com.google.android.material.chip.ChipGroup>
 
-        </com.google.android.material.chip.ChipGroup>
+    <!-- SwipeRefresh + RecyclerView -->
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefresh"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/chipGroup"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
-        <FrameLayout
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1">
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:padding="16dp"/>
 
-            <ProgressBar
-                android:id="@+id/progressBar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:visibility="gone"
-                android:indeterminateTint="@color/cuisine_green_dark"/>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
-            <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-                android:id="@+id/swipeRefresh"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+    <!-- Progress -->
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/chipGroup"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recyclerViewPedidos"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:padding="16dp"
-                    android:clipToPadding="false"/>
+    <!-- Empty State -->
+    <LinearLayout
+        android:id="@+id/layoutEmpty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/chipGroup"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
-            </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/ic_receipt"
+            app:tint="@color/cuisine_gray"
+            android:alpha="0.5"
+            android:contentDescription="Sin pedidos"/>
 
-            <!-- Empty State -->
-            <LinearLayout
-                android:id="@+id/layoutEmpty"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:gravity="center"
-                android:visibility="gone">
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="No tienes pedidos"
+            android:textSize="16sp"
+            android:textColor="@color/cuisine_dark_text"
+            android:alpha="0.6"/>
 
-                <ImageView
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:src="@drawable/ic_pedidos"
-                    android:alpha="0.3"
-                    app:tint="@color/cuisine_green_dark"
-                    android:contentDescription="Sin pedidos"/>
-
-                <com.google.android.material.textview.MaterialTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:text="No tienes pedidos"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/cuisine_dark_text"/>
-
-                <com.google.android.material.textview.MaterialTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:text="¡Haz tu primer pedido!"
-                    android:textSize="14sp"
-                    android:textColor="@color/cuisine_dark_text"
-                    android:alpha="0.7"/>
-
-            </LinearLayout>
-
-        </FrameLayout>
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="¡Haz tu primer pedido!"
+            android:textSize="14sp"
+            android:textColor="@color/cuisine_orange"/>
 
     </LinearLayout>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fabNuevoPedido"
+    <!-- Error State -->
+    <LinearLayout
+        android:id="@+id/layoutError"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="16dp"
-        android:src="@drawable/ic_add"
-        app:backgroundTint="@color/cuisine_green_dark"
-        app:tint="@color/white"
-        android:contentDescription="Nuevo pedido"/>
+        android:orientation="vertical"
+        android:gravity="center"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/chipGroup"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/ic_error"
+            app:tint="@android:color/holo_red_light"
+            android:alpha="0.7"
+            android:contentDescription="Error"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Error al cargar pedidos"
+            android:textSize="16sp"
+            android:textColor="@android:color/holo_red_dark"/>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

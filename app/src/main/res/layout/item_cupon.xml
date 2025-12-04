@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardCupon"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="12dp"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="2dp"
+    app:cardBackgroundColor="@color/white"
+    app:strokeColor="@color/cuisine_purple"
+    app:strokeWidth="1dp"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?attr/selectableItemBackground">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!-- Lado izquierdo: Descuento -->
+        <LinearLayout
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:background="@color/cuisine_purple"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="12dp">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvDescuento"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="20% OFF"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@color/white"/>
+
+        </LinearLayout>
+
+        <!-- Lado derecho: Info -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:padding="12dp">
+
+            <!-- Código -->
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvCodigo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="DESCUENTO20"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@color/cuisine_dark_text"/>
+
+            <!-- Descripción -->
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvDescripcion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Válido en cualquier pedido"
+                android:textSize="12sp"
+                android:textColor="@color/cuisine_gray"
+                android:maxLines="2"
+                android:ellipsize="end"/>
+
+            <!-- Expiración -->
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvExpiracion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Expira: 2025-12-31"
+                android:textSize="11sp"
+                android:textColor="@color/cuisine_orange"/>
+
+            <!-- Usos -->
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvUsos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="Usos: 1/3"
+                android:textSize="11sp"
+                android:textColor="@color/cuisine_gray"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

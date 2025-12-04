@@ -6,8 +6,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.intellisoft.androidcuisine.data.remote.dto.*
-import com.intellisoft.androidcuisine.data.repository.CampaniaRepositoryImpl
-import com.intellisoft.androidcuisine.domain.repository.CampaniaRepository
+import com.intellisoft.androidcuisine.domain.repository.campania.CampaniaRepositoryImpl
+import com.intellisoft.androidcuisine.domain.repository.campania.CampaniaRepository
 import kotlinx.coroutines.launch
 
 class MarketingViewModel(application: Application) : AndroidViewModel(application) {

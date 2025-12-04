@@ -6,128 +6,131 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="12dp"
-    app:cardCornerRadius="16dp"
-    app:cardElevation="4dp"
-    app:cardBackgroundColor="@color/cuisine_white_accent">
+    app:cardCornerRadius="12dp"
+    app:cardElevation="2dp"
+    app:cardBackgroundColor="@color/white">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="vertical"
+        android:padding="16dp">
 
-        <!-- Lado izquierdo - Fecha -->
+        <!-- Header: ID + Estatus -->
         <LinearLayout
-            android:id="@+id/layoutFecha"
-            android:layout_width="90dp"
-            android:layout_height="match_parent"
-            android:background="@color/cuisine_green_dark"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:padding="12dp">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
 
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/tvFecha"
-                android:layout_width="wrap_content"
+                android:id="@+id/tvIdReserva"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="Lun, 15 Jun"
-                android:textSize="11sp"
-                android:textColor="@color/white"
-                android:textAlignment="center"
-                android:alpha="0.9"/>
-
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/tvHora"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:text="19:00"
-                android:textSize="22sp"
+                android:layout_weight="1"
+                android:text="Reserva #10"
+                android:textSize="16sp"
                 android:textStyle="bold"
-                android:textColor="@color/white"/>
+                android:textColor="@color/cuisine_dark_text"/>
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipEstatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Programada"
+                android:textSize="12sp"
+                app:chipMinHeight="28dp"/>
 
         </LinearLayout>
 
-        <!-- Lado derecho - Info -->
-        <LinearLayout
-            android:layout_width="0dp"
+        <!-- Fecha -->
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvFecha"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:padding="14dp">
+            android:layout_marginTop="8dp"
+            android:text="📅 2025-12-03"
+            android:textSize="14sp"
+            android:textColor="@color/cuisine_dark_text"/>
 
-            <!-- Header: Mesa + Estado -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_vertical">
+        <!-- Horario -->
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvHorario"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="🕐 14:00 - 16:00"
+            android:textSize="14sp"
+            android:textColor="@color/cuisine_gray"/>
 
-                <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/tvMesa"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Mesa 5"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/cuisine_dark_text"/>
+        <!-- Notas -->
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvNotas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="📝 Notas"
+            android:textSize="12sp"
+            android:textColor="@color/cuisine_gray"
+            android:maxLines="2"
+            android:ellipsize="end"
+            android:visibility="gone"/>
 
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chipEstado"
-                    android:layout_width="wrap_content"
-                    android:layout_height="26dp"
-                    android:text="Confirmada"
-                    android:textSize="10sp"
-                    app:chipMinHeight="26dp"
-                    app:chipCornerRadius="13dp"
-                    app:chipStrokeWidth="0dp"/>
+        <!-- Divider -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="12dp"
+            android:background="@color/cuisine_gray_light"/>
 
-            </LinearLayout>
+        <!-- Botones de acción -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:orientation="horizontal"
+            android:gravity="end">
 
-            <!-- Sucursal -->
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/tvSucursal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:text="Sucursal Centro"
-                android:textSize="12sp"
-                android:textColor="@color/cuisine_dark_text"
-                android:alpha="0.7"
-                android:drawablePadding="4dp"
-                app:drawableStartCompat="@drawable/ic_location"
-                app:drawableTint="@color/cuisine_green_dark"
-                android:visibility="gone"/>
-
-            <!-- Notas -->
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/tvNotas"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
-                android:text="Cumpleaños"
-                android:textSize="12sp"
-                android:textColor="@color/cuisine_dark_text"
-                android:alpha="0.6"
-                android:fontStyle="italic"
-                android:maxLines="2"
-                android:ellipsize="end"
-                android:visibility="gone"/>
-
-            <!-- Botón Cancelar -->
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnCancelar"
-                style="@style/Widget.Material3.Button.TextButton"
                 android:layout_width="wrap_content"
-                android:layout_height="32dp"
-                android:layout_marginTop="6dp"
+                android:layout_height="40dp"
                 android:text="Cancelar"
                 android:textSize="12sp"
-                android:textColor="@android:color/holo_red_dark"
                 android:visibility="gone"
-                app:icon="@drawable/ic_close"
-                app:iconTint="@android:color/holo_red_dark"
-                app:iconSize="14dp"/>
+                style="@style/Widget.Material3.Button.TextButton"
+                android:textColor="@color/cuisine_red"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnCompletar"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="Completar"
+                android:textSize="12sp"
+                android:visibility="gone"
+                style="@style/Widget.Material3.Button.TonalButton"
+                app:backgroundTint="@color/cuisine_green_light"
+                android:textColor="@color/cuisine_green_dark"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnOrdenar"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="🍽️ Ordenar"
+                android:textSize="12sp"
+                android:visibility="gone"
+                style="@style/Widget.Material3.Button"
+                app:backgroundTint="@color/cuisine_purple"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnIniciar"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="Iniciar"
+                android:textSize="12sp"
+                android:visibility="gone"
+                style="@style/Widget.Material3.Button"
+                app:backgroundTint="@color/cuisine_orange"/>
 
         </LinearLayout>
 

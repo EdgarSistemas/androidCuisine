@@ -66,6 +66,13 @@ data class VerificarDisponibilidadResponse(
     val success: Boolean? = null
 )
 
+data class ConfirmarHoldResponse(
+    val message: String? = null,
+    val hold: HoldDto? = null,
+    val tiempo_restante_min: Double? = null,
+    val success: Boolean? = null
+)
+
 // Reservas
 data class CrearReservaRequest(
     val cliente_id: Int? = null, // null para recepcionista, ID para cliente

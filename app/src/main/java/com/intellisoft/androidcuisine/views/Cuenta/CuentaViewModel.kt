@@ -1,4 +1,4 @@
-package com.intellisoft.androidcuisine.views.Cuenta // Asegúrate que el paquete sea el correcto, vi que tenías views.Main.cuenta en tu código pero el path es views/Cuenta
+package com.intellisoft.androidcuisine.views.Cuenta
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel

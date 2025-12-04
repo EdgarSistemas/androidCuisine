@@ -14,4 +14,31 @@
     <color name="cuisine_green_dark">#588157</color>
     <color name="cuisine_green_light">#A3B18A</color>
     <color name="cuisine_white_accent">#F8F9FA</color>
+
+    <!-- Naranjas -->
+    <color name="cuisine_orange">#FF9800</color>
+    <color name="cuisine_orange_light">#FFF3E0</color>
+
+    <!-- Rojos -->
+    <color name="cuisine_red">#D32F2F</color>
+    <color name="cuisine_red_light">#FFEBEE</color>
+
+    <!-- Amarillos -->
+    <color name="cuisine_yellow">#FFC107</color>
+    <color name="cuisine_yellow_light">#FFFDE7</color>
+    <color name="cuisine_yellow_dark">#F57F17</color>
+
+    <!-- Azules -->
+    <color name="cuisine_blue">#1976D2</color>
+    <color name="cuisine_blue_light">#E3F2FD</color>
+
+    <!-- Morados -->
+    <color name="cuisine_purple">#7B1FA2</color>
+
+    <!-- Grises -->
+    <color name="cuisine_gray">#9E9E9E</color>
+    <color name="cuisine_gray_light">#F5F5F5</color>
+
+    <!-- Teal -->
+    <color name="cuisine_teal">#00897B</color>
 </resources>

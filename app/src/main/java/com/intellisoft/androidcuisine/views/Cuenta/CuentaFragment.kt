@@ -1,4 +1,4 @@
-package com.intellisoft.androidcuisine.views.cuenta
+package com.intellisoft.androidcuisine.views.Cuenta
 
 import android.content.Intent
 import android.os.Bundle
@@ -13,8 +13,6 @@ import com.google.android.material.textfield.TextInputEditText
 import com.intellisoft.androidcuisine.R
 import com.intellisoft.androidcuisine.util.SessionManager
 import com.intellisoft.androidcuisine.views.Bienvenida.BienvenidaActivity
-import com.intellisoft.androidcuisine.views.Cuenta.CuentaViewModel
-import com.intellisoft.androidcuisine.views.Cuenta.UpdateState
 
 
 class CuentaFragment : Fragment() {

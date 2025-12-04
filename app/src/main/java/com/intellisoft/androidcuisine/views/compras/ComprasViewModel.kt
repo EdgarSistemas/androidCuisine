@@ -10,12 +10,12 @@ import com.intellisoft.androidcuisine.data.remote.dto.CompraDetalleCompleta
 import com.intellisoft.androidcuisine.data.remote.dto.CompraRequest
 import com.intellisoft.androidcuisine.data.remote.dto.InsumoExistenciaDto
 import com.intellisoft.androidcuisine.data.remote.dto.ProveedorDto
-import com.intellisoft.androidcuisine.data.repository.ComprasRepositoryImpl
-import com.intellisoft.androidcuisine.data.repository.InsumoRepositoryImpl
-import com.intellisoft.androidcuisine.data.repository.ProveedorRepositoryImpl
-import com.intellisoft.androidcuisine.domain.repository.ComprasRepository
-import com.intellisoft.androidcuisine.domain.repository.InsumoRepository
-import com.intellisoft.androidcuisine.domain.repository.ProveedorRepository
+import com.intellisoft.androidcuisine.domain.repository.compras.ComprasRepositoryImpl
+import com.intellisoft.androidcuisine.domain.repository.insumo.InsumoRepositoryImpl
+import com.intellisoft.androidcuisine.domain.repository.proveedor.ProveedorRepositoryImpl
+import com.intellisoft.androidcuisine.domain.repository.compras.ComprasRepository
+import com.intellisoft.androidcuisine.domain.repository.insumo.InsumoRepository
+import com.intellisoft.androidcuisine.domain.repository.proveedor.ProveedorRepository
 import com.intellisoft.androidcuisine.util.SessionManager
 import kotlinx.coroutines.launch
 

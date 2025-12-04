@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/cuisine_beige_background">
+
+    <!-- Sucursal seleccionada -->
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tvSucursalSeleccionada"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="📍 Sucursal Centro"
+        android:textSize="13sp"
+        android:textColor="@color/cuisine_green_dark"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/tvAreaSeleccionada"/>
+
+    <!-- Área seleccionada -->
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tvAreaSeleccionada"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="16dp"
+        android:text="🏠 Terraza"
+        android:textSize="13sp"
+        android:textColor="@color/cuisine_orange"
+        android:visibility="gone"
+        android:gravity="end"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="@id/tvSucursalSeleccionada"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <!-- Título -->
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tvTitulo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="8dp"
+        android:text="Selecciona Mesa"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:textColor="@color/cuisine_dark_text"
+        app:layout_constraintTop_toBottomOf="@id/tvSucursalSeleccionada"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <!-- Subtítulo -->
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tvSubtitulo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="4dp"
+        android:text="Elige la mesa de tu preferencia"
+        android:textSize="14sp"
+        android:textColor="@color/cuisine_dark_text"
+        android:alpha="0.6"
+        app:layout_constraintTop_toBottomOf="@id/tvTitulo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <!-- Leyenda de colores -->
+    <LinearLayout
+        android:id="@+id/layoutLeyenda"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="12dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@id/tvSubtitulo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <!-- Disponible -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginEnd="16dp">
+
+            <View
+                android:layout_width="12dp"
+                android:layout_height="12dp"
+                android:background="@color/cuisine_green_dark"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:text="Disponible"
+                android:textSize="11sp"
+                android:textColor="@color/cuisine_dark_text"/>
+        </LinearLayout>
+
+        <!-- Ocupada -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginEnd="16dp">
+
+            <View
+                android:layout_width="12dp"
+                android:layout_height="12dp"
+                android:background="@color/cuisine_red"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:text="Ocupada"
+                android:textSize="11sp"
+                android:textColor="@color/cuisine_dark_text"/>
+        </LinearLayout>
+
+        <!-- Limpieza -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <View
+                android:layout_width="12dp"
+                android:layout_height="12dp"
+                android:background="@color/cuisine_yellow"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:text="Limpieza"
+                android:textSize="11sp"
+                android:textColor="@color/cuisine_dark_text"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!-- Progress -->
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/layoutLeyenda"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <!-- RecyclerView -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="12dp"
+        android:clipToPadding="false"
+        android:padding="12dp"
+        app:layout_constraintTop_toBottomOf="@id/layoutLeyenda"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <!-- Empty State -->
+    <LinearLayout
+        android:id="@+id/layoutEmpty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/layoutLeyenda"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/ic_table"
+            app:tint="@color/cuisine_gray"
+            android:alpha="0.5"
+            android:contentDescription="Sin mesas"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="No hay mesas disponibles"
+            android:textSize="16sp"
+            android:textColor="@color/cuisine_dark_text"
+            android:alpha="0.6"/>
+
+    </LinearLayout>
+
+    <!-- Error State -->
+    <LinearLayout
+        android:id="@+id/layoutError"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/layoutLeyenda"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/ic_error"
+            app:tint="@android:color/holo_red_light"
+            android:alpha="0.7"
+            android:contentDescription="Error"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvError"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Error al cargar"
+            android:textSize="16sp"
+            android:textColor="@android:color/holo_red_dark"/>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,86 +1,134 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
+<androidx.core.widget.NestedScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/cuisine_beige_background"
     android:fillViewport="true">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:padding="16dp">
 
-        <!-- Título -->
-        <com.google.android.material.textview.MaterialTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Nueva Reserva"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            android:textColor="@color/cuisine_dark_text"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="24dp"/>
-
-        <!-- Contador de Hold (siempre visible al entrar) -->
+        <!-- Card Contador -->
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/cardContador"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:visibility="visible"
+            android:visibility="gone"
             app:cardCornerRadius="12dp"
             app:cardElevation="4dp"
-            app:cardBackgroundColor="#FFF3E0">
+            app:cardBackgroundColor="#FFF3E0"
+            app:strokeColor="@color/cuisine_orange"
+            app:strokeWidth="2dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="16dp"
-                android:gravity="center">
+                android:orientation="horizontal"
+                android:padding="12dp"
+                android:gravity="center_vertical">
 
                 <com.google.android.material.textview.MaterialTextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="⏱️ Tiempo para completar reserva"
-                    android:textSize="12sp"
-                    android:textColor="#E65100"/>
+                    android:layout_weight="1"
+                    android:text="⏱️ Tiempo para confirmar:"
+                    android:textSize="14sp"
+                    android:textColor="@color/cuisine_orange"/>
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/tvContador"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="03:00"
-                    android:textSize="42sp"
+                    android:textSize="20sp"
                     android:textStyle="bold"
-                    android:textColor="#E65100"/>
-
-                <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/tvMesaSeleccionada"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:textSize="14sp"
-                    android:textStyle="bold"
-                    android:textColor="#388E3C"
-                    android:visibility="gone"/>
+                    android:textColor="@color/cuisine_orange"/>
 
             </LinearLayout>
 
         </com.google.android.material.card.MaterialCardView>
 
-        <!-- PRIMERO: Datos de Fecha/Hora -->
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="match_parent"
+        <!-- Mesa Seleccionada -->
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvMesaSeleccionada"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
+            android:layout_marginTop="12dp"
+            android:text="✓ Mesa seleccionada"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:textColor="@color/cuisine_green_dark"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@id/cardContador"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <!-- Card Mesas -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardMesas"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
             app:cardCornerRadius="12dp"
             app:cardElevation="2dp"
-            app:cardBackgroundColor="@color/cuisine_white_accent">
+            app:cardBackgroundColor="@color/white"
+            app:layout_constraintTop_toBottomOf="@id/tvMesaSeleccionada"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tvMesaInstruccion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Selecciona una mesa disponible"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/cuisine_dark_text"/>
+
+                <ProgressBar
+                    android:id="@+id/progressMesas"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="16dp"
+                    android:visibility="gone"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerViewMesas"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:nestedScrollingEnabled="false"/>
+
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Card Fecha/Hora -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardFechaHora"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="2dp"
+            app:cardBackgroundColor="@color/white"
+            app:layout_constraintTop_toBottomOf="@id/cardMesas"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -91,32 +139,25 @@
                 <com.google.android.material.textview.MaterialTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="1. Fecha y Hora"
-                    android:textSize="16sp"
+                    android:text="Fecha y hora"
+                    android:textSize="14sp"
                     android:textStyle="bold"
-                    android:textColor="@color/cuisine_green_dark"
-                    android:layout_marginBottom="12dp"/>
+                    android:textColor="@color/cuisine_gray"/>
 
                 <!-- Fecha -->
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
-                    app:boxStrokeColor="@color/cuisine_green_dark"
-                    app:hintTextColor="@color/cuisine_green_dark"
-                    app:endIconMode="custom"
-                    app:endIconDrawable="@drawable/ic_calendar"
-                    app:endIconTint="@color/cuisine_green_dark"
-                    android:hint="Fecha *">
+                    android:layout_marginTop="12dp"
+                    android:hint="Fecha"
+                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etFecha"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="none"
                         android:focusable="false"
-                        android:clickable="true"
-                        android:textColor="@color/black"/>
+                        android:clickable="true"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -124,143 +165,49 @@
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
-                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
-                    app:boxStrokeColor="@color/cuisine_green_dark"
-                    app:hintTextColor="@color/cuisine_green_dark"
-                    app:endIconMode="custom"
-                    app:endIconDrawable="@drawable/ic_time"
-                    app:endIconTint="@color/cuisine_green_dark"
-                    android:hint="Hora de llegada *">
+                    android:layout_marginTop="8dp"
+                    android:hint="Hora de inicio"
+                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etHoraInicio"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="none"
                         android:focusable="false"
-                        android:clickable="true"
-                        android:textColor="@color/black"/>
+                        android:clickable="true"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <!-- Duración estimada -->
+                <!-- Duración -->
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
-                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-                    app:boxStrokeColor="@color/cuisine_green_dark"
-                    app:hintTextColor="@color/cuisine_green_dark"
-                    android:hint="Duración estimada *">
+                    android:layout_marginTop="8dp"
+                    android:hint="Duración"
+                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
 
                     <AutoCompleteTextView
                         android:id="@+id/actvDuracion"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="none"
-                        android:textColor="@color/black"/>
+                        android:inputType="none"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
 
-            </LinearLayout>
-
-        </com.google.android.material.card.MaterialCardView>
-
-        <!-- SEGUNDO: Selección de Mesa -->
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/cardMesas"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="2dp"
-            app:cardBackgroundColor="@color/cuisine_white_accent">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="16dp">
-
-                <com.google.android.material.textview.MaterialTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="2. Seleccionar Mesa"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/cuisine_green_dark"
-                    android:layout_marginBottom="4dp"/>
-
-                <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/tvMesaInstruccion"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Primero selecciona fecha y hora"
-                    android:textSize="12sp"
-                    android:textColor="@color/cuisine_dark_text"
-                    android:alpha="0.7"
-                    android:layout_marginBottom="12dp"/>
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recyclerViewMesas"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:nestedScrollingEnabled="false"
-                    android:visibility="gone"/>
-
-                <ProgressBar
-                    android:id="@+id/progressMesas"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:visibility="gone"
-                    android:indeterminateTint="@color/cuisine_green_dark"/>
-
-            </LinearLayout>
-
-        </com.google.android.material.card.MaterialCardView>
-
-        <!-- TERCERO: Notas -->
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="2dp"
-            app:cardBackgroundColor="@color/cuisine_white_accent">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="16dp">
-
-                <com.google.android.material.textview.MaterialTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="3. Información Adicional"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/cuisine_green_dark"
-                    android:layout_marginBottom="12dp"/>
-
+                <!-- Notas -->
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
-                    app:boxStrokeColor="@color/cuisine_green_dark"
-                    app:hintTextColor="@color/cuisine_green_dark"
-                    android:hint="Nombre del cliente / Notas">
+                    android:layout_marginTop="8dp"
+                    android:hint="Notas (opcional)"
+                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etNotas"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="textMultiLine"
-                        android:minLines="2"
-                        android:maxLines="4"
-                        android:textColor="@color/black"/>
+                        android:maxLines="3"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -270,40 +217,45 @@
 
         <!-- Botones -->
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
             android:orientation="horizontal"
-            android:gravity="end"
-            android:layout_marginTop="8dp">
+            app:layout_constraintTop_toBottomOf="@id/cardFechaHora"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnCancelar"
-                style="@style/Widget.Material3.Button.TextButton"
-                android:layout_width="wrap_content"
+                style="@style/Widget.Material3.Button.OutlinedButton"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="Cancelar"
-                android:textColor="@color/cuisine_green_dark"/>
+                android:layout_weight="1"
+                android:layout_marginEnd="8dp"
+                android:text="Cancelar"/>
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnConfirmar"
-                style="@style/Widget.Material3.Button"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="Confirmar Reserva"
-                android:backgroundTint="@color/cuisine_green_dark"
-                android:enabled="false"/>
+                android:layout_weight="1"
+                android:text="Confirmar"
+                android:enabled="false"
+                android:backgroundTint="@color/cuisine_green_dark"/>
 
         </LinearLayout>
 
+        <!-- ProgressBar -->
         <ProgressBar
             android:id="@+id/progressBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="16dp"
             android:visibility="gone"
-            android:indeterminateTint="@color/cuisine_green_dark"/>
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
 
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-</ScrollView>
+</androidx.core.widget.NestedScrollView>

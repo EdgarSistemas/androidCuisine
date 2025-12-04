@@ -8,62 +8,61 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.button.MaterialButton
-import com.google.android.material.card.MaterialCardView
 import com.intellisoft.androidcuisine.R
 import com.intellisoft.androidcuisine.data.remote.dto.ComboDto
-import java.text.NumberFormat
-import java.util.*
 
 class CombosMenuAdapter(
-    private val onAgregar: (ComboDto) -> Unit
-) : ListAdapter<ComboDto, CombosMenuAdapter.ComboViewHolder>(ComboDiffCallback()) {
+    private val onAgregarClick: (ComboDto) -> Unit
+) : ListAdapter<ComboDto, CombosMenuAdapter.ViewHolder>(DiffCallback()) {
 
-    private val currencyFormat = NumberFormat.getCurrencyInstance(Locale("es", "MX"))
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ComboViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.item_combo_menu, parent, false)
-        return ComboViewHolder(view)
+        return ViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: ComboViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(getItem(position))
     }
 
-    inner class ComboViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val cardCombo: MaterialCardView = itemView.findViewById(R.id.cardCombo)
+    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val tvNombre: TextView = itemView.findViewById(R.id.tvNombre)
         private val tvDescripcion: TextView = itemView.findViewById(R.id.tvDescripcion)
-        private val tvContenido: TextView = itemView.findViewById(R.id.tvContenido)
         private val tvPrecio: TextView = itemView.findViewById(R.id.tvPrecio)
+        private val tvAhorro: TextView = itemView.findViewById(R.id.tvAhorro)
         private val btnAgregar: MaterialButton = itemView.findViewById(R.id.btnAgregar)
 
         fun bind(combo: ComboDto) {
             tvNombre.text = combo.nombre
-            tvPrecio.text = currencyFormat.format(combo.precio)
+            tvPrecio.text = "$${String.format("%.2f", combo.precio)}"
 
-            if (!combo.descripcion.isNullOrEmpty()) {
-                tvDescripcion.text = combo.descripcion
-                tvDescripcion.visibility = View.VISIBLE
-            } else {
+            if (combo.descripcion.isNullOrEmpty()) {
                 tvDescripcion.visibility = View.GONE
-            }
-
-            // Mostrar contenido del combo
-            val contenido = combo.productos?.joinToString(" • ") { "${it.cantidad}x ${it.nombre}" }
-            if (!contenido.isNullOrEmpty()) {
-                tvContenido.text = contenido
-                tvContenido.visibility = View.VISIBLE
             } else {
-                tvContenido.visibility = View.GONE
+                tvDescripcion.visibility = View.VISIBLE
+                tvDescripcion.text = combo.descripcion
             }
 
-            btnAgregar.setOnClickListener { onAgregar(combo) }
-            cardCombo.setOnClickListener { onAgregar(combo) }
+            // Mostrar ahorro si hay precio original
+            combo.precio?.let { precioOriginal ->
+                if (precioOriginal > combo.precio) {
+                    val ahorro = precioOriginal - combo.precio
+                    tvAhorro.visibility = View.VISIBLE
+                    tvAhorro.text = "Ahorras $${String.format("%.2f", ahorro)}"
+                } else {
+                    tvAhorro.visibility = View.GONE
+                }
+            } ?: run {
+                tvAhorro.visibility = View.GONE
+            }
+
+            btnAgregar.setOnClickListener {
+                onAgregarClick(combo)
+            }
         }
     }
 
-    class ComboDiffCallback : DiffUtil.ItemCallback<ComboDto>() {
+    class DiffCallback : DiffUtil.ItemCallback<ComboDto>() {
         override fun areItemsTheSame(oldItem: ComboDto, newItem: ComboDto): Boolean {
             return oldItem.id_combo == newItem.id_combo
         }

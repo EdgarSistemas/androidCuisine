@@ -7,8 +7,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.intellisoft.androidcuisine.data.remote.dto.*
-import com.intellisoft.androidcuisine.data.repository.ReservasRepositoryImpl
-import com.intellisoft.androidcuisine.domain.repository.ReservasRepository
+import com.intellisoft.androidcuisine.domain.repository.reservas.ReservasRepositoryImpl
+import com.intellisoft.androidcuisine.domain.repository.reservas.ReservasRepository
 import kotlinx.coroutines.launch
 
 enum class TipoActor(val valor: Int) {

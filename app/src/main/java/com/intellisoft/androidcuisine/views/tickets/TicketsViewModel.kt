@@ -83,10 +83,7 @@ class TicketsViewModel(application: Application) : AndroidViewModel(application)
         val byteParams = outputStream.toByteArray()
 
         // Convertimos a string base64
-        val base64Raw = Base64.encodeToString(byteParams, Base64.NO_WRAP)
-
-        // Agregamos el prefijo que espera el servidor
-        "data:image/jpeg;base64,$base64Raw"
+        return@withContext Base64.encodeToString(byteParams, Base64.NO_WRAP)
     }
 
     fun resetCreateState() {
